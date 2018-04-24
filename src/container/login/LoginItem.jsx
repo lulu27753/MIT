@@ -4,9 +4,6 @@ import PropTypes from 'prop-types';
 import Form from 'components/form';
 import map from './map.js';
 
-
-import './login.less';
-
 const FormItem = Form.Item;
 
 function generator({ defaultProps, defaultRules, type }) {

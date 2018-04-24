@@ -1,13 +1,21 @@
 import React from 'react';
-import { Layout, Sider, Footer, Header, Content } from 'components/Layout';
+import { Layout } from 'components';
 
 import Menu from 'components/menu';
 import Icon from 'components/icon';
 import menuData, {getMenuPath} from './getMenuData';
+import GlobalHeader from 'component/globalHeader/index';
+import logo from 'assets/images/logo.png'
+
 import './dashboard.less';
 
 const SubMenu = Menu.SubMenu;
 const defaultOpenMenu = menuData[0].path;
+
+const Sider = Layout.Sider;
+const Header = Layout.Header;
+const Footer = Layout.Footer;
+const Content = Layout.Content;
 
 export default class Dashboard extends React.Component {
   state = {
@@ -24,6 +32,12 @@ export default class Dashboard extends React.Component {
   }
 
 	render() {
+    const {
+      currentUser,
+      fetchingNotices,
+      notices
+    } = this.props;
+
     const submenu = menuData.map((menu) => {
       return (
         <SubMenu key={menu.path} title={<span><Icon type={menu.icon} />{menu.name}</span>}>
@@ -52,7 +66,17 @@ export default class Dashboard extends React.Component {
         </Menu>
       </Sider>
       <Layout>
-        <Header style={{ background: '#eee' }} />
+        <Header style={{ background: '#eee' }} >
+          <GlobalHeader
+            logo={logo}
+            currentUser={currentUser}
+            fetchingNotices={fetchingNotices}
+            notices={notices}
+            onNoticeClear={this.handleNoticeClear}
+            onMenuClick={this.handleMenuClick}
+            onNoticeVisibleChange={this.handleNoticeVisibleChange}
+          />
+        </Header>
         <Content />
         <Footer style={{ background: '#eee' }} />
       </Layout>

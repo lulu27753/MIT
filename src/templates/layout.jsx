@@ -1,7 +1,12 @@
 import React from 'react'
-import { Layout, Sider, Footer, Header, Content } from 'components/Layout'
+import { Layout } from 'components'
 
 import './layout.css'
+
+const Sider = Layout.Sider;
+const Header = Layout.Header;
+const Footer = Layout.Footer;
+const Content = Layout.Content;
 
 function onCollapse() {
   console.log('toggle sider')

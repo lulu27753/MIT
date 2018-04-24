@@ -21,6 +21,8 @@
     "enquire-js": "^0.1.1",
     "gregorian-calendar": "^4.1.0",
     "gregorian-calendar-format": "^4.1.0",
+    "lodash": "^4.17.5",
+    "lodash-decorators": "^5.0.0",
     "moment": "^2.20.1",
     "omit": "^1.0.1",
     "omit.js": "^1.0.0",

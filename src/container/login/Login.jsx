@@ -6,7 +6,7 @@ import Form from 'components/form';
 import LoginItem from './LoginItem';
 import LoginSubmit from './LoginSubmit';
 
-import './login.less';
+import styles from './login.less';
 
 // 经 Form.create() 包装过的组件会自带 this.props.form 属性，直接传给 Form 即可
 @Form.create()
@@ -49,9 +49,9 @@ class Login extends React.Component {
     //   // eslint-disable-next-line
     //     // FormChildren.push(item)
     //   }
-    // });
+    // }
     return (
-      <div className={classNames(className, 'main')}>
+      <div className={classNames(className, styles.main)}>
         <Form onSubmit={this.handleSubmit}>
           {
             children

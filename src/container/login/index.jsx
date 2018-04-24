@@ -4,7 +4,8 @@ import Login from './Login';
 import Alert from 'components/alert';
 import Checkbox from 'components/checkbox';
 import Image from 'assets/images/logo.png';
-// import styles from './login.less';
+
+import styles from './login.less';
 
 
 const { UserName, Password, Submit } = Login;
@@ -41,8 +42,8 @@ export default class LoginPage extends React.Component {
 	}
 	render() {
 		return (
-  <div className='loginpage'>
-    <div className='header'>
+  <div className={styles.loginpage}>
+    <div className={styles.header}>
       <img src={Image} alt='' />
       <span>贷款组自动化测试平台</span>
     </div>

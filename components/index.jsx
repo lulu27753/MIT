@@ -17,7 +17,7 @@ import Breadcrumb from './breadcrumb';
 import Tag from './tag';
 import Tabs from './tabs';
 import Tooltip from './tooltip';
-import TimePicker from './timepicker';
+import TimePicker from './time-picker';
 import DatePicker from './date-picker';
 import AutoComplete from './auto-complete';
 import Timeline from './timeline';
@@ -38,7 +38,7 @@ import Table from './table';
 import Anchor from './anchor';
 import Cascader from './cascader';
 
-export default {
+export {
    Dropdown,
    Checkbox,
    Collapse,
