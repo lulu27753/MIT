@@ -66,12 +66,14 @@ export default class Dashboard extends React.Component {
         </Menu>
       </Sider>
       <Layout>
-        <Header style={{ background: '#eee' }} >
+        <Header style={{ background: '#fff' }} >
           <GlobalHeader
             logo={logo}
             currentUser={currentUser}
             fetchingNotices={fetchingNotices}
             notices={notices}
+            systemName={'自动化测试平台'}
+            routerPath={'版本管理'}
             onNoticeClear={this.handleNoticeClear}
             onMenuClick={this.handleMenuClick}
             onNoticeVisibleChange={this.handleNoticeVisibleChange}
