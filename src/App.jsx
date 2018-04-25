@@ -6,7 +6,7 @@ import DboxRouter from './DboxRouter';
 import Login from 'container/login';
 import Dashboard from 'container/dashboard';
 import NotFound from 'container/NotFound';
-// import './App.css';
+// import style from './App.less';
 
 const App = () => (
   <Router>

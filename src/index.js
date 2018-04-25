@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 
 import App from './App.jsx';
 import reducer from 'reduxes/reducer.jsx';
-import './index.css';
+import './index.less';
 
 const reduxDevtools = window.devToolsExtension ? window.devToolsExtension() : f => f;
 const store = createStore(reducer, compose(

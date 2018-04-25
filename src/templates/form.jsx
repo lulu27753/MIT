@@ -6,7 +6,7 @@ import Input from 'components/input';
 import Button from 'components/button';
 import Checkbox from 'components/checkbox';
 
-import './form.css';
+import styles from './form.less';
 
 const FormItem = Form.Item;
 class FormView extends React.Component {
@@ -25,7 +25,7 @@ class FormView extends React.Component {
         <h1 className='h1'>
           普通登录框
         </h1>
-        <Form onSubmit={this.handleSubmit} className='login-form'>
+        <Form onSubmit={this.handleSubmit} className={styles.loginForm}>
           <FormItem>
             {getFieldDecorator('userName', {
             rules: [{ required: true, message: '用户名不能为空!' }],
@@ -47,8 +47,8 @@ class FormView extends React.Component {
           })(
             <Checkbox>记住我</Checkbox>
           )}
-            <a className='login-form-forgot' href=''>忘记密码</a>
-            <Button type='primary' htmlType='submit' className='login-form-button'>
+            <a className={styles.loginFormForgot} href=''>忘记密码</a>
+            <Button type='primary' htmlType='submit' className={styles.loginFormButton}>
             登录
             </Button>
           </FormItem>
