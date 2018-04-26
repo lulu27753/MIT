@@ -1,0 +1,213 @@
+import React, { PureComponent } from 'react';
+import { Link } from 'react-router-dom';
+
+import Layout from 'components/layout';
+import Menu from 'components/menu';
+import Icon from 'components/icon';
+
+import styles from './sider-menu.less';
+
+
+const { SubMenu } = Menu;
+const Sider = Layout.Sider;
+console.log('Sider', Sider);
+
+export default class SiderMenu extends PureComponent {
+	constructor(props) {
+		super(props);
+		this.menus = props.menuData;
+		this.state = {
+			openKeys: this.getDefaultCollapsedSubMenus(props),
+		};
+	}
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.location.pathname !== this.props.location.pathname) {
+      this.setState({
+        openKeys: this.getDefaultCollapsedSubMenus(nextProps),
+      });
+    }
+  }
+	// 获取默认折叠的子级菜单
+	getDefaultCollapsedSubMenus(props) {
+		const { location: { pathname } } = props || this.props;
+		// console.log('getDefaultCollapsedSubMenus', this.props);
+		// 去首尾
+		const snippets = pathname.split('/').slice(1, -1);
+		const currentPathSnippets = snippets.map((item, index) => {
+			const arr = snippets.filter((_, i) => (i <= index))
+			return arr.join('/');
+		})
+		let currentMenuSelectedKeys = [];
+		currentPathSnippets.forEach((item) => {
+			currentMenuSelectedKeys = currentMenuSelectedKeys.concat(this.getSelectedMenuKeys(item));
+		});
+		// 如果没有选中菜单，则返回dashboard
+		if (currentMenuSelectedKeys.length === 0) {
+			return ['dashboard'];
+		}
+		console.log('currentMenuSelectedKey', currentMenuSelectedKeys);
+		return currentMenuSelectedKeys;
+	}
+  getFlatMenuKeys(menus) {
+    let keys = [];
+    menus.forEach((item) => {
+      if (item.children) {
+        keys.push(item.path);
+        keys = keys.concat(this.getFlatMenuKeys(item.children));
+      } else {
+        keys.push(item.path);
+      }
+    });
+    return keys;
+  }
+	getSelectedMenuKeys = (path) => {
+		const flatMenuKeys = this.getFlatMenuKeys(this.menus);
+		// console.log('flatMenuKeys', flatMenuKeys);
+		// console.log('path', path);
+		// 去除路径开头的“/”
+		if (flatMenuKeys.indexOf(path.replace(/^\//, '')) > -1) {
+			return [path.replace(/^\//, '')];
+		}
+		// 去除路径开头结尾的“/”
+		if (flatMenuKeys.indexOf(path.replace(/^\//, '')).replace(/\/$/, '')) {
+			return [path.replace(/^\//)];
+		}
+		return flatMenuKeys.filter((item) => {
+			const itemRegExpStr = `^${item.replace(/:[\w-]+/g)}$`;
+			const itemRegExp = new RegExp(itemRegExpStr);
+			return itemRegExp.test(path.replace(/^\//, '').replace(/\/$/, ''))
+		})
+	}
+	// 获取菜单子节点
+	// @param SiderMenu
+	getNavMenuItems = (menusData) => {
+		if (!menusData) {
+			return [];
+		}
+		const NavMenuItems = menusData
+			.filter(item => item.name && !item.hideInMenu)
+			.map((item) => {
+				const ItemDom = this.getSubMenuOrItem(item);
+
+				return this.checkPermissionItem(item.authority, ItemDom);
+			})
+			.filter(item => !!item);
+			// console.log('NavMenuItems', NavMenuItems);
+		return NavMenuItems;
+	}
+	// 获取SubMenu或者Menu.Item
+	getSubMenuOrItem = (item) => {
+		// console.log('getSubMenuOrItem_item', item);
+		if (item.children && item.children.some(child => child.name)) {
+		return (
+  <SubMenu
+    key={item.key || item.path}
+    title={item.icon ? (<span>{getIcon(item.icon)}<span>{item.name}</span></span>) : item.name}
+	>
+    {this.getNavMenuItems(item.children)}
+  </SubMenu>
+		  );
+				} else {
+					return (
+  <Menu.Item key={item.key || item.path}>
+    {this.getMenuItemPath(item)}
+  </Menu.Item>
+						)
+				}
+			}
+  // 转化路径
+  conversionPath=(path) => {
+    if (path && path.indexOf('http') === 0) {
+      return path;
+    } else {
+      return `/${path || ''}`.replace(/\/+/g, '/');
+    }
+  }
+	// 判断是否是http链接，
+	// http:返回a,直接链接跳转
+	// key:返回Link,通过路由进行跳转
+	// @param Menu.Item
+	getMenuItemPath = (item) => {
+		const itemPath = this.conversionPath(item.path);
+		const icon = getIcon(item.icon);
+		const { target, name } = item;
+		// 判断是否是http链接
+		if (/^https?:\/\//.test(itemPath)) {
+			return (
+  <a href={itemPath} target={target}>
+    {icon}<span>{name}</span>
+  </a>
+				)
+		}
+		return (
+  <Link
+    to={itemPath}
+			>
+    {icon || ''}<span>{name}</span>
+  </Link>
+			)
+	}
+	// 检查授权
+	checkPermissionItem = (authority, ItemDom) => {
+		if (this.props.Authority && this.props.Authorized.check) {
+			const { check } = this.props.Authorized;
+			return check(authority, ItemDom);
+		}
+		return ItemDom;
+	}
+	handleOpenChange = (openKeys) => {
+		const lastOpenKey = openKeys[openKeys.length - 1];
+		// 判断是否是主菜单
+		const isMainMenu = this.menus.some(
+			item => lastOpenKey && (item.key === lastOpenKey || item.path === lastOpenKey)
+		)
+		this.setState({
+			openKeys: isMainMenu ? [lastOpenKey] : [...openKeys],
+		});
+	}
+	render() {
+		const { logo, collapsed, location: { pathname } } = this.props;
+		// console.log('SiderMenuProps', this.props);
+		const { openKeys } = this.state;
+		// 折叠菜单不显示popup menu
+		const menuProps = collapsed ? {} : { openKeys }
+		// 如果路径不匹配，使用最近的父节点的key
+		let selectedKeys = this.getSelectedMenuKeys(pathname);
+		if (!selectedKeys.length) {
+			selectedKeys = [openKeys[openKeys.length - 1]];
+		}
+		return (
+  <div>
+    <div className={styles.logo} key='logo'>
+      <img src={logo} alt='logo' style={{ width: 45 }} />
+      {/* <h1>自动化测试平台</h1> */}
+    </div>
+    <Menu
+      key='Menu'
+      theme='dark'
+      mode='inline'
+      {...menuProps}
+      onOpenChange={this.handleOpenChange}
+      selectedKeys={selectedKeys}
+      style={{ padding: '16px 0', width: '100%' }}
+    >
+      {this.getNavMenuItems(this.menus)}
+    </Menu>
+  </div>
+		);
+	}
+}
+// -----------------------------------------------------
+// icon 可以是 string || ReactNode
+// icon: 'setting'
+// icon: 'http://demo.com/icon.png'
+// icon: <Icon type="setting" />
+const getIcon = (icon) => {
+	if (typeof icon === 'string' && icon.indexOf('http') === 0) {
+		return <img src={icon} alt='icon' className={styles.icon} />
+	}
+	if (typeof icon === 'string') {
+		return <Icon type={icon} />
+	}
+	return icon;
+}

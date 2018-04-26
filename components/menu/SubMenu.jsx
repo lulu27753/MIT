@@ -1,7 +1,7 @@
-import React from 'react'
-import { SubMenu as RcSubMenu } from 'rc-menu'
+import React from 'react';
+import { SubMenu as RcSubMenu } from 'rc-menu';
 import PropTypes from 'prop-types';
-import classNames from 'classnames'
+import classNames from 'classnames';
 
 export default class SubMenu extends React.Component {
   static contextTypes = {

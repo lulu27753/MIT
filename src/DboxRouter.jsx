@@ -42,7 +42,7 @@ import Table from 'templates/table';
 import Anchor from 'templates/anchor';
 import Cascader from 'templates/cascader';
 
-import NotFound from 'container/NotFound';
+
 
 // import styles from './App.css';
 
@@ -89,7 +89,7 @@ const DboxRouter = () => (
       <Route exact path='/table' component={Table} />
       <Route exact path='/cascader' component={Cascader} />
       <Route exact path='/anchor' component={Anchor} />
-      <Route component={NotFound} />
+
     </div>
   </Router>
 )

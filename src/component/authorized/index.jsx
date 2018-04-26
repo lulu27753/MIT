@@ -6,15 +6,14 @@
 */
 import Authorized from './Authorized';
 import AuthorizedRoute from './AuthorizedRoute';
-import check from './CheckPermissions.js';
+import check from './CheckPermissions';
 
 /* eslint-disable import/no-mutable-exports */
 let CURRENTAUTH = 'NULL';
 
 Authorized.AuthorizedRoute = AuthorizedRoute;
 Authorized.check = check;
-
-export default const renderAuthorize = (currentAuthority) => {
+const renderAuthorize = (currentAuthority) => {
 	if (currentAuthority) {
 		if (currentAuthority.constructor.name === 'Function') {
 			CURRENTAUTH = currentAuthority();
@@ -22,7 +21,7 @@ export default const renderAuthorize = (currentAuthority) => {
 		if (currentAuthority.constructor.string === 'String') {
 			CURRENTAUTH = currentAuthority;
 		} else {
-			CURRENTAUTH= 'NULL';
+			CURRENTAUTH = 'NULL';
 		}
 	}
 	return Authorized;

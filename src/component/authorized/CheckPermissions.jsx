@@ -15,7 +15,7 @@ function isPromise(obj) {
  * @param { 未通过的组件 no pass components } Exception
  */
 
-export const checkPermissions = (authority, currentAuthority, target, Exception) => {
+ const checkPermissions = (authority, currentAuthority, target, Exception) => {
  	// authority不存在，则没有判定权限.默认查看所有
  	if (!authority) {
 	    return target;
@@ -55,6 +55,9 @@ export const checkPermissions = (authority, currentAuthority, target, Exception)
   throw new Error('不支持的参数对象！！！')
  }
 
- export default const check = (authority, target, Exception) => {
+const check = (authority, target, Exception) => {
  	return checkPermissions(authority, CURRENTAUTH, target, Exception)
  }
+
+ export default check;
+ export { checkPermissions };

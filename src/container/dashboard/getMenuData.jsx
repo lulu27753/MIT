@@ -1,9 +1,9 @@
 const menuData = [{
-  name: '业务管理',
-  icon: 'home',
-  path: 'business',
+  name: '人员管理',
+  icon: 'user-group',
+  path: 'dashboard',
   children: [{
-    name: '版本管理',
+    name: '现场实时管理',
     path: 'version-manage',
   }, {
     name: '需求管理',
@@ -17,10 +17,11 @@ const menuData = [{
   }, {
     name: '业务树',
     path: 'business-tree',
-    // hideInMenu: true,
+    hideInMenu: true, // 不在菜单中显示
+    // target: '_blank', // 当path是http链接时，使用该参数
   }],
 }, {
-  name: '任务管理',
+  name: '业务洞见',
   icon: 'appstore-o',
   path: 'tasks',
   children: [{
@@ -31,7 +32,7 @@ const menuData = [{
     path: 'task-list',
   }],
 }, {
-  name: '系统管理',
+  name: '智能报表',
   icon: 'edit',
   path: 'system',
   children: [{
@@ -42,10 +43,10 @@ const menuData = [{
     path: 'basic-list',
   }],
 }, {
-  name: '日志管理',
+  name: '信息安全',
   icon: 'copy',
-  path: 'logo',
-  authority: 'guest',
+  path: 'log',
+  // authority: 'guest',
   children: [{
     name: '场景统计图',
     path: 'scenario-chart',
@@ -59,15 +60,42 @@ const menuData = [{
     name: '检查点日志',
     path: 'check-log',
   }],
-}];
-
-export function getMenuPath(parentPath = '', selfPath) {
-  // console.log(`${parentPath}/${selfPath}`);
-    return `${parentPath}/${selfPath}`
+}, {
+  name: '业绩看板',
+  icon: 'achievement',
+  path: 'achievement',
+  // authority: 'guest',
+  children: [{
+    name: '场景统计图',
+    path: 'scenario-chart',
+  }, {
+    name: '用例统计图',
+    path: 'user-case-chart',
+  }, {
+    name: '任务日志查询',
+    path: 'task-logo-search',
+  }, {
+    name: '检查点日志',
+    path: 'check-log',
+  }],
+}
+];
+function formatter(data, parentPath = '', parentAuthority) {
+  return data.map((item) => {
+    const result = {
+      ...item,
+      path: `${parentPath}${item.path}`,
+      authority: item.authority || parentAuthority,
+    };
+    if (item.children) {
+      result.children = formatter(item.children, `${parentPath}${item.path}/`, item.authority);
+    }
+    return result;
+  });
 }
 
+export const getMenuData = () => formatter(menuData);
 
-export default menuData;
 
 
 

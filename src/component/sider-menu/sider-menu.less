@@ -1,0 +1,49 @@
+// @import "../../../style/themes/default";
+
+@ease-in-out-circ: cubic-bezier(.78, .14, .15, .86);
+.logo {
+  height: 84px;
+  display:flex;
+  align-items:center;
+  position: relative;
+  line-height: 84px;
+  // padding-left: 36px;
+  text-align: center;
+  transition: all .3s;
+  background: #2f323b;
+  overflow: hidden;
+  img {
+    display: inline-block;
+    margin: 0 auto;
+    vertical-align: middle;
+    height: 45px;
+    border-radius: 50%;
+  }
+  h1 {
+    color: #fff;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 18px;
+    margin: 0 0 0 12px;
+    font-family: 'Myriad Pro', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    font-weight: 600;
+  }
+}
+
+.sider {
+  min-height: 100vh;
+  box-shadow: 2px 0 6px rgba(0, 21, 41, .35);
+  position: relative;
+  z-index: 10;
+}
+
+.icon {
+  width: 14px;
+  margin-right: 10px;
+}
+
+:global {
+  .drawer .drawer-content {
+    background: #001529;
+  }
+}

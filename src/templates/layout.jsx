@@ -1,12 +1,8 @@
 import React from 'react'
-import { Layout } from 'components'
+import Layout, { Sider, Footer, Header, Content } from 'components/layout'
 
 import styles from './layout.less'
 
-const Sider = Layout.Sider;
-const Header = Layout.Header;
-const Footer = Layout.Footer;
-const Content = Layout.Content;
 
 function onCollapse() {
   console.log('toggle sider')
@@ -38,9 +34,9 @@ const MainLayout = () => (
     <h1 className='h1'>排版3 左菜单栏可缩进</h1>
     <div className={styles.layout_temp} style={{width: '900px', height: '800px'}} >
       <Layout>
-        <Sider toggle foldSpan={{fold: '1', unfold: '19'}} onCollapse={onCollapse} />
+        <Sider toggle toggleStyle={{ top: '30px', fontSize: '18px' }} foldSpan={{ fold: '1', unfold: '19' }} collapsed onCollapse={onCollapse} style={{ background: '#eee' }} />
         <Layout>
-          <Header style={{ background: '#eee' }} />
+          <Header span={2} style={{ background: '#eee' }} />
           <Content />
           <Footer style={{ background: '#eee' }} />
         </Layout>

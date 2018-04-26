@@ -15,13 +15,24 @@ const store = createStore(reducer, compose(
 ));
 
 if (process.env.NODE_ENV !== 'production') {
-   console.log(process.env.NODE_ENV);
+   console.log(process.env);
  }
 
-ReactDOM.render(
-	(
-  <Provider store={store} >
-    <App />
-  </Provider>
-	),
-  document.getElementById('root'));
+
+// ReactDOM.render(
+//   <App />,
+//   document.getElementById('root'));
+
+const render = Component => {
+  ReactDOM.render((
+    <Provider store={store}>
+      <App />
+    </Provider>
+  ), document.getElementById('root'));
+}
+
+render(App)
+
+if (module.hot) {
+  module.hot.accept('./App', () => render(App))
+}

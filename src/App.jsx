@@ -5,19 +5,20 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import DboxRouter from './DboxRouter';
 import Login from 'container/login';
 import Dashboard from 'container/dashboard';
-import NotFound from 'container/NotFound';
-// import style from './App.less';
+import Render from 'container/test/render.jsx';
+// import NotFound from 'container/NotFound';
+// import './App.css';
+
 
 const App = () => (
   <Router>
     <div>
       <Switch>
-        <Route exact path='/' component={Login} />
         <Route exact path='/login' component={Login} />
-        <Route exact path='/dashboard' component={Dashboard} />
-        <DboxRouter />
-        <Route component={NotFound} />
+        <Route path='/render' component={Render} />
+        <Route component={Dashboard} />
       </Switch>
+      <DboxRouter />
     </div>
   </Router>
 )
