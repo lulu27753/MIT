@@ -78,6 +78,10 @@ const menuData = [{
     name: '检查点日志',
     path: 'check-log',
   }],
+}, {
+  name: 'NotFound',
+  icon: 'warning-circle',
+  path: 'notfound',
 }
 ];
 function formatter(data, parentPath = '', parentAuthority) {

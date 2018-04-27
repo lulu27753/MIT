@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { Icon, Menu, Tag, Spin, Dropdown, Button, Divider } from 'components';
 import moment from 'moment';
 import groupBy from 'lodash/groupBy';
-import { getTodayTime } from '../../utils/utils'
+import { getTodayTime } from 'utils/utils';
 
 import styles from './index.less';
 
@@ -20,7 +20,7 @@ export default class GlobalHeader extends PureComponent {
       if (newNotice.datetime) {
         newNotice.datetime = moment(notice.datetime).fromNow();
       }
-      // transform id to item key
+      // 将 id 转换成 item key
       if (newNotice.id) {
         newNotice.key = newNotice.id;
       }

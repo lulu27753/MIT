@@ -52,7 +52,7 @@ export const getRouterData = () => {
 		'/': { component: {About} },
 		'/dashboard': { component: {About} },
 		'/dashboard/version-manage': { component: {Home} },
-		'/dashboard/demand-manage': { component: () => <h1>demand-manage</h1> },
+		'/dashboard/demand-manage': { component: {Inbox} },
 		'/dashboard/scenario-manage': { component: () => <h1>scenario-manage</h1> },
 		'/dashboard/user-case-manage': { component: () => <h1>user-case-manage</h1> },
 		'/dashboard/business-tree': { component: () => <h1>business-tree</h1> },
@@ -63,7 +63,8 @@ export const getRouterData = () => {
 		'/log/scenario-chart': { component: () => <h1>scenario-chart</h1> },
 		'/log/user-case-chart': { component: () => <h1>user-case-chart</h1> },
 		'/log/task-logo-search': { component: () => <h1>task-logo-search</h1> },
-		'/log/check-log': { component: () => <h1>check-logss</h1> },
+		'/log/check-log': { component: () => <h1>check-logs</h1> },
+		'/notfound': { component: () => <h1>notfound</h1> },
 	};
 
 	// 从getMenuData获取name的值 或者 直接在路由数据中设置它的值

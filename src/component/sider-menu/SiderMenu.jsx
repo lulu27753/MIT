@@ -6,11 +6,11 @@ import Menu from 'components/menu';
 import Icon from 'components/icon';
 
 import styles from './sider-menu.less';
-
+import data from '../../data';
 
 const { SubMenu } = Menu;
 const Sider = Layout.Sider;
-console.log('Sider', Sider);
+
 
 export default class SiderMenu extends PureComponent {
 	constructor(props) {
@@ -27,7 +27,7 @@ export default class SiderMenu extends PureComponent {
       });
     }
   }
-	// 获取默认折叠的子级菜单
+	// 获取当前访问的菜单的全部父级菜单
 	getDefaultCollapsedSubMenus(props) {
 		const { location: { pathname } } = props || this.props;
 		// console.log('getDefaultCollapsedSubMenus', this.props);
@@ -61,15 +61,18 @@ export default class SiderMenu extends PureComponent {
     return keys;
   }
 	getSelectedMenuKeys = (path) => {
+		if (!path) {
+			return ['dashboard']
+		}
 		const flatMenuKeys = this.getFlatMenuKeys(this.menus);
-		// console.log('flatMenuKeys', flatMenuKeys);
+		console.log('flatMenuKeys', flatMenuKeys);
 		// console.log('path', path);
 		// 去除路径开头的“/”
 		if (flatMenuKeys.indexOf(path.replace(/^\//, '')) > -1) {
 			return [path.replace(/^\//, '')];
 		}
 		// 去除路径开头结尾的“/”
-		if (flatMenuKeys.indexOf(path.replace(/^\//, '')).replace(/\/$/, '')) {
+		if (flatMenuKeys.indexOf(path.replace(/^\//, '').replace(/\/$/, '')) > -1) {
 			return [path.replace(/^\//)];
 		}
 		return flatMenuKeys.filter((item) => {
@@ -78,7 +81,7 @@ export default class SiderMenu extends PureComponent {
 			return itemRegExp.test(path.replace(/^\//, '').replace(/\/$/, ''))
 		})
 	}
-	// 获取菜单子节点
+	// 获取同级别的菜单
 	// @param SiderMenu
 	getNavMenuItems = (menusData) => {
 		if (!menusData) {
@@ -92,10 +95,11 @@ export default class SiderMenu extends PureComponent {
 				return this.checkPermissionItem(item.authority, ItemDom);
 			})
 			.filter(item => !!item);
-			// console.log('NavMenuItems', NavMenuItems);
+			console.log('NavMenuItems', NavMenuItems);
 		return NavMenuItems;
 	}
-	// 获取SubMenu或者Menu.Item
+	// 如果是一级菜单则返回Menu.Item，如果是多级菜单，则通过递归返回SubMenu及Menu.Item
+	// 最后一级菜单通过path的类型判断返回<a>或者<Link>
 	getSubMenuOrItem = (item) => {
 		// console.log('getSubMenuOrItem_item', item);
 		if (item.children && item.children.some(child => child.name)) {
@@ -105,6 +109,7 @@ export default class SiderMenu extends PureComponent {
     title={item.icon ? (<span>{getIcon(item.icon)}<span>{item.name}</span></span>) : item.name}
 	>
     {this.getNavMenuItems(item.children)}
+    {console.log('item.children', item.children)}
   </SubMenu>
 		  );
 				} else {
@@ -157,22 +162,27 @@ export default class SiderMenu extends PureComponent {
 	}
 	handleOpenChange = (openKeys) => {
 		const lastOpenKey = openKeys[openKeys.length - 1];
-		// 判断是否是主菜单
+		// isMainMenu为true时，没有展开的子菜单
 		const isMainMenu = this.menus.some(
 			item => lastOpenKey && (item.key === lastOpenKey || item.path === lastOpenKey)
 		)
+		console.log('isMainMenu', isMainMenu);
 		this.setState({
 			openKeys: isMainMenu ? [lastOpenKey] : [...openKeys],
 		});
+		console.log('handleOpenChange_openKeys', this.state.openKeys);
 	}
 	render() {
 		const { logo, collapsed, location: { pathname } } = this.props;
-		// console.log('SiderMenuProps', this.props);
+		console.log('SiderMenuProps', this.props);
 		const { openKeys } = this.state;
 		// 折叠菜单不显示popup menu
+		// openKeys：当前展开的 SubMenu 菜单项 key 数组
 		const menuProps = collapsed ? {} : { openKeys }
 		// 如果路径不匹配，使用最近的父节点的key
+		// selectedKeys：当前选中的菜单项 key 数组
 		let selectedKeys = this.getSelectedMenuKeys(pathname);
+		console.log('selectedKeys', selectedKeys);
 		if (!selectedKeys.length) {
 			selectedKeys = [openKeys[openKeys.length - 1]];
 		}
@@ -180,16 +190,16 @@ export default class SiderMenu extends PureComponent {
   <div>
     <div className={styles.logo} key='logo'>
       <img src={logo} alt='logo' style={{ width: 45 }} />
-      {/* <h1>自动化测试平台</h1> */}
+      { /* <h1>{data.common.systemName}</h1> */ }
     </div>
     <Menu
+      {...menuProps}
       key='Menu'
       theme='dark'
       mode='inline'
-      {...menuProps}
       onOpenChange={this.handleOpenChange}
       selectedKeys={selectedKeys}
-      style={{ padding: '16px 0', width: '100%' }}
+      style={{ padding: '8px 0', width: '100%' }}
     >
       {this.getNavMenuItems(this.menus)}
     </Menu>

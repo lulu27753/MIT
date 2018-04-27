@@ -34,7 +34,8 @@ module.exports = {
       'component': path.resolve(__dirname, 'src/component'),
       'container': path.resolve(__dirname, 'src/container'),
       'reduxes': path.resolve(__dirname, 'src/reduxes'),
-      'utils': path.resolve(__dirname, 'src/utils')
+      'utils': path.resolve(__dirname, 'src/utils'),
+      'src': path.resolve(__dirname, 'src')
     }
   },
   // devserver 配置

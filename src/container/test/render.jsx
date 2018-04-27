@@ -17,7 +17,7 @@ export default class Render extends React.Component {
 		console.log('test');
 		return (
   <div>
-    <div><Link to='/render/hi'>Hi</Link></div>
+    <div><a href='/render/hi'>Hi</a></div>
     <div><Link to='/render/cool'>cool</Link></div>
     <Route path='/render/hi' render={() => <h1>Hi</h1>} />
     <FadingRoute path='/render/cool' component={Something} />
