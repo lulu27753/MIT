@@ -10,7 +10,7 @@ import './style'
 class Sider extends Component {
   constructor(props) {
     super(props)
-    const { collapsed } = this.props
+    const { collapsed } = props;
     this.state = {
       collapsed: collapsed
     };
@@ -20,7 +20,12 @@ class Sider extends Component {
   toggleMenu(spanNum) {
     this.setState({
       collapsed: !this.state.collapsed
-    })
+    }, () => {
+      const { onCollapse } = this.props;
+      if (onCollapse) {
+        onCollapse(this.state.collapsed)
+      }
+    });
   }
 
   render() {
@@ -40,18 +45,6 @@ class Sider extends Component {
     })
     const iconType = collapsed ? 'menu-unfold' : 'menu-fold'
 
-    var menuToggle = (toggle) => {
-      const menuDom = []
-      if (toggle) {
-        menuDom.push(<Icon type={iconType} key={0} onClick={this.toggleMenu} className='idoll-silder-toggle' style={toggleStyle} />)
-      }
-
-      if (onCollapse) {
-        onCollapse()
-      }
-      return menuDom
-    }
-
     const otherProps = omit(this.props, [
       'toggle',
       'toggleStyle',
@@ -62,8 +55,8 @@ class Sider extends Component {
 
   	return (
     <div {...otherProps} className={classes}>
-      {menuToggle(toggle)}
-      {children}
+      { toggle ? <Icon type={iconType} key={0} onClick={this.toggleMenu} className='idoll-silder-toggle' style={toggleStyle} /> : ''}
+      { children }
     </div>
   	)
   }

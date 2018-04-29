@@ -46,6 +46,7 @@
     "rc-tabs": "^9.1.2",
     "rc-time-picker": "^1.1.6",
     "rc-tooltip": "^3.7.0",
+    "rc-tree": "^1.11.1",
     "rc-trigger": "^2.3.3",
     "rc-upload": "^2.0.3",
     "react": "^15.6.2",
