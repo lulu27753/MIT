@@ -53,9 +53,10 @@
   // 子项目是链接时的样式
   &-item > a {
     display: block;
-    color: @menu-item-color;
+    color: @menu-dark-item-color;
     &:hover {
-      color: @menu-highlight-color;
+      // color: @menu-highlight-color;
+    color: #fff;
     }
     &:focus {
       text-decoration: none;
@@ -85,7 +86,8 @@
   &:not(&-inline) &-submenu-open,
   &-submenu-active,
   &-submenu-title:hover {
-    color: @menu-highlight-color;
+    color: #fff;
+    background: @menu-dark-item-selected-bg;
   }
 
   &-horizontal &-item,
@@ -184,7 +186,7 @@
     }
 
     > .@{menu-prefix-cls} {
-      background-color: @menu-bg;
+      background-color: @menu-dark-bg;
       border-radius: @border-radius-base;
       &-submenu-title:after {
         transition: transform .3s @ease-in-out;
@@ -372,7 +374,7 @@
     > .@{menu-prefix-cls}-submenu > .@{menu-prefix-cls}-submenu-title {
       left: 0;
       text-overflow: clip;
-      padding: 0 (@menu-collapsed-width - 16px) / 2 !important;
+      padding: 0 (@menu-collapsed-width - 48px) / 2 !important;
       .@{menu-prefix-cls}-submenu-arrow {
         display: none;
       }

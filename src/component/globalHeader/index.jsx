@@ -8,7 +8,7 @@ import styles from './index.less';
 
 export default class GlobalHeader extends PureComponent {
   componentWillUnmount() {
-    this.triggerResizeEvent.cancel();
+    // this.triggerResizeEvent.cancel();
   }
   getNoticeData() {
     const { notices = [] } = this.props;
@@ -41,12 +41,6 @@ export default class GlobalHeader extends PureComponent {
     });
     return groupBy(newNotices, 'type');
   }
-  toggle = () => {
-    const { collapsed, onCollapse } = this.props;
-    onCollapse(!collapsed);
-    this.triggerResizeEvent();
-  };
-
   triggerResizeEvent() {
     const event = document.createEvent('HTMLEvents');
     event.initEvent('resize', true, false);
@@ -54,21 +48,19 @@ export default class GlobalHeader extends PureComponent {
   }
   render() {
     const {
-      // currentUser,
+      currentUser,
       systemName,
       routerPath,
-      onMenuClick
+      onMenuClick,
+      onQuit
     } = this.props;
-    const currentUser = {
-      name: 'NTMSOBTMR001'
-    }
     const menu = (
       <Menu className={styles.menu} selectedKeys={[]} onClick={onMenuClick}>
-        <Menu.Item disabled>
-          <Icon type='user' />个人中心
+        <Menu.Item key='userinfo' disabled>
+         个人中心
         </Menu.Item>
-        <Menu.Item disabled>
-          <Icon type='setting' />设置
+        <Menu.Item key='setinfo' disabled>
+          设置
         </Menu.Item>
       </Menu>
     );
@@ -96,7 +88,7 @@ export default class GlobalHeader extends PureComponent {
           ) : (
             <Spin size='small' style={{ marginLeft: 8 }} />
             )}
-          <Button type='quit' icon='logout' className={styles.quit} style={{ background: '#5093e1', color: '#fff' }} />
+          <Button type='quit' icon='logout' className={styles.quit} style={{ background: '#5093e1', color: '#fff' }} onClick={onQuit} />
         </div>
       </div>
     );

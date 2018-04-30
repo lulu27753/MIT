@@ -58,6 +58,7 @@ module.exports = {
     'react/prop-types': 0,
     'comma-dangle': 0,
     'no-callback-literal': 0,
-    'no-mixed-operators': 0
+    'no-mixed-operators': 0,
+    'no-unsafe-finally': 0,
   }
 }

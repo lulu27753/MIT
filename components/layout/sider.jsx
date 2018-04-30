@@ -16,7 +16,9 @@ class Sider extends Component {
     };
     this.toggleMenu = this.toggleMenu.bind(this);
   }
-
+  static defaultProps = {
+    collapsed: false,
+  }
   toggleMenu(spanNum) {
     this.setState({
       collapsed: !this.state.collapsed
@@ -29,7 +31,7 @@ class Sider extends Component {
   }
 
   render() {
-    const { span, toggle, children, onCollapse, foldSpan, toggleStyle } = this.props
+    const { span, toggle, children, foldSpan, toggleStyle } = this.props
     let collapsed = this.state.collapsed
     let currentSpan = span
 
@@ -68,7 +70,6 @@ Sider.propTypes = {
   toggleStyle: PropTypes.object,
   foldSpan: PropTypes.object,
   children: PropTypes.node,
-  collapsed: PropTypes.bool,
   onCollapse: PropTypes.func,
 }
 

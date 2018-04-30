@@ -1,7 +1,7 @@
 import React from 'react';
-import DocumentTitle from 'react-document-title';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types'
+import DocumentTitle from 'react-document-title';
 
 
 
@@ -16,31 +16,19 @@ import logo from 'assets/images/logo.png';
 // import { getRoutes } from 'utils/getRoutes';
 import { getMenuData } from './getMenuData';
 import TreeMenuRoutes from '../../router/treeMenu';
+import { getAuthority } from 'utils/localStorageAuthority';
+import { getRedirect, redirectData } from 'utils/getRedirect';
 
 import styles from './index.less';
 
 const Sider = Layout.Sider
 const Content = Layout.Content;
 const Header = Layout.Header;
-// const Footer = Layout.Footer;
+
 // const AuthorizedRoute = Authorized.AuthorizedRoute;
 
 
 // 根据菜单取得重定向地址
-const redirectData = [];
-const getRedirect = (item) => {
-  if (item && item.children) {
-    if (item.children[0] && item.children[0].path) {
-      redirectData.push({
-        from: `/${item.path}`,
-        to: `/${item.children[0].path}`,
-      });
-      item.children.forEach((child) => {
-        getRedirect(child);
-      });
-    }
-  }
-}
 getMenuData().forEach(getRedirect);
 console.log('redirectData', redirectData);
 export default class Dashboard extends React.Component {
@@ -48,6 +36,7 @@ export default class Dashboard extends React.Component {
     super(props);
     this.state = {
       collapsed: false,
+      redirectTo: null,
     }
   }
   static childContextTypes = {
@@ -62,6 +51,12 @@ export default class Dashboard extends React.Component {
       location,
       breadcrumbNameMap: routerData,
     };
+  }
+  componentDidMount() {
+    // 从localstorerage里面获取授权
+    let auth = getAuthority();
+    console.log('auth', auth);
+    // 将授权信息存储到context中
   }
   getPageTitle() {
     const { routerData, location } = this.props;
@@ -85,14 +80,22 @@ export default class Dashboard extends React.Component {
     console.log('handleMenuCollapse', collapsed);
     this.setState({
       collapsed
+    }, () => {
+      console.log('sstcollapsed', this.state.collapsed);
     })
   }
+  handleQuit = () => {
+    console.log('handleQuit', 'redirectTo: /login');
+    this.setState({
+      redirectTo: '/login'
+    });
+  }
+
 	render() {
     // console.log('DashboardProps', this.props);
     // console.log('children', this.props.children);
     const {
       currentUser,
-      collapsed,
       // match,
       location,
       fetchingNotices,
@@ -114,7 +117,7 @@ export default class Dashboard extends React.Component {
     //             }
     //           )
     // console.log(childRoute);
-    // console.log(<Route path='/render/hi' render={() => <h1>Hi</h1>} />);
+
     const redirectRoute = redirectData.map(item =>
       <Redirect key={item.from} exact from={item.from} to={item.to} />
       )
@@ -126,7 +129,7 @@ export default class Dashboard extends React.Component {
           toggle
           foldSpan={{fold: '1', unfold: '19'}}
           onCollapse={this.handleMenuCollapse}
-          style={{ background: '#2f323b' }}
+          className={styles.sider}
           collapsed={this.state.collapsed}
         >
           <SiderMenu
@@ -150,11 +153,12 @@ export default class Dashboard extends React.Component {
               onNoticeClear={this.handleNoticeClear}
               onMenuClick={this.handleMenuClick}
               onNoticeVisibleChange={this.handleNoticeVisibleChange}
+              onQuit={this.handleQuit}
             />
           </Header>
           <Content className={styles.content}>
             <Switch>
-              <Route exact path='/dashboard' component={TreeMenu} />
+              {/* <Route exact path='/dashboard' component={TreeMenu} /> */}
               {/* <Route path='/dashboard/version-manage' render={() => <TreeMenu />} /> */}
               <Route path='/dashboard/demand-manage' render={() => <TreeMenu><TreeMenuRoutes /></TreeMenu>} />
               <Route path='/dashboard/scenario-manage' render={() => <h1>scenario-manage</h1>} />
@@ -172,18 +176,16 @@ export default class Dashboard extends React.Component {
               {/* { childRoute } */}
               {redirectRoute}
               <Redirect exact from='/' to={bashRedirect} />
-
             </Switch>
             {/* <TreeMenu /> */}
           </Content>
-          {/* <Footer style={{ background: '#eee' }} /> */}
         </Layout>
       </Layout>
       )
 
     return (
       <DocumentTitle title={this.getPageTitle()}>
-        { layout }
+        {this.state.redirectTo ? <Redirect to={this.state.redirectTo} /> : layout }
       </DocumentTitle>
       )
 	}

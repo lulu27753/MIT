@@ -1,15 +1,13 @@
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 
-import Layout from 'components/layout';
 import Menu from 'components/menu';
 import Icon from 'components/icon';
 
-import styles from './sider-menu.less';
-import data from '../../data';
+import styles from './index.less';
+// import data from '../../data';
 
 const { SubMenu } = Menu;
-const Sider = Layout.Sider;
 
 
 export default class SiderMenu extends PureComponent {
@@ -30,7 +28,7 @@ export default class SiderMenu extends PureComponent {
 	// 获取当前访问的菜单的全部父级菜单
 	getDefaultCollapsedSubMenus(props) {
 		const { location: { pathname } } = props || this.props;
-		// console.log('getDefaultCollapsedSubMenus', this.props);
+		console.log('getDefaultCollapsedSubMenus', this.props);
 		// 去首尾
 		const snippets = pathname.split('/').slice(1, -1);
 		const currentPathSnippets = snippets.map((item, index) => {
@@ -161,25 +159,29 @@ export default class SiderMenu extends PureComponent {
 		return ItemDom;
 	}
 	handleOpenChange = (openKeys) => {
+		console.log('Menu中的openKeys', openKeys);
+		// SubMenu 展开/关闭的回调
 		const lastOpenKey = openKeys[openKeys.length - 1];
-		// isMainMenu为true时，没有展开的子菜单
+		// isMainMenu为false时，没有展开的子菜单
 		const isMainMenu = this.menus.some(
 			item => lastOpenKey && (item.key === lastOpenKey || item.path === lastOpenKey)
 		)
 		console.log('isMainMenu', isMainMenu);
 		this.setState({
 			openKeys: isMainMenu ? [lastOpenKey] : [...openKeys],
+		}, () => {
+			console.log('handleOpenChange_sstopenKeys', this.state.openKeys);
 		});
-		console.log('handleOpenChange_openKeys', this.state.openKeys);
 	}
 	render() {
 		const { logo, collapsed, location: { pathname } } = this.props;
 		console.log('SiderMenuProps', this.props);
 		console.log('collapsed', collapsed);
-		const { openKeys } = this.state;
+		const { openKeys: { menuProps } } = this.state;
+		console.log('this.state.openKeys', menuProps);
 		// 折叠菜单不显示popup menu
 		// openKeys：当前展开的 SubMenu 菜单项 key 数组
-		const menuProps = collapsed ? {} : { openKeys }
+		const openKeys = collapsed ? {} : { menuProps }
 		console.log('menuProps', menuProps);
 		// 如果路径不匹配，使用最近的父节点的key
 		// selectedKeys：当前选中的菜单项 key 数组
@@ -189,19 +191,20 @@ export default class SiderMenu extends PureComponent {
 			selectedKeys = [openKeys[openKeys.length - 1]];
 		}
 		return (
-  <div>
+  <div className={styles.sider}>
     <div className={styles.logo} key='logo'>
       <img src={logo} alt='logo' style={{ width: 45 }} />
       { /* <h1>{data.common.systemName}</h1> */ }
     </div>
     <Menu
-      {...menuProps}
+      {...openKeys}
       key='Menu'
       theme='dark'
       mode='inline'
       onOpenChange={this.handleOpenChange}
-      selectedKeys={selectedKeys}
-      style={{ padding: '8px 0', width: '100%' }}
+      selectedKeys={collapsed ? [] : selectedKeys}
+      className={styles.menu}
+      inlineCollapsed={collapsed}
     >
       {this.getNavMenuItems(this.menus)}
     </Menu>
