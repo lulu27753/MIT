@@ -12,7 +12,7 @@ function Layout(props) {
        'idoll-layout-has-sider': (children.length &&
        	children.filter((item) => {
        		// console.log(item);
-       		return Object.keys(item.type.propTypes).indexOf('toggle') !== -1
+         return Object.keys(item.type.propTypes).indexOf('collapsed') !== -1
        	})).length
     });
   	return <div {...props} className={classes}>{children}</div>;

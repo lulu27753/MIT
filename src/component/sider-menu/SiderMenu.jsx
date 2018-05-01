@@ -1,15 +1,15 @@
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 
-import Layout from 'components/layout';
+// import Layout from 'components/layout';
 import Menu from 'components/menu';
 import Icon from 'components/icon';
 
 import styles from './sider-menu.less';
-import data from '../../data';
+// import data from '../../data';
 
 const { SubMenu } = Menu;
-const Sider = Layout.Sider;
+// const Sider = Layout.Sider;
 
 
 export default class SiderMenu extends PureComponent {

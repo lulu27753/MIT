@@ -1,9 +1,9 @@
 @import '../../../style/theme/default/index.less';
 
-.header {
+// header on floor
+.header_o_floor {
   height: 100%;
-  margin-left: 50px;
-  padding: 0;
+  padding: 0 0 0 20px;
   // box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
   position: relative;
   line-height: 60px;
@@ -17,6 +17,7 @@
 }
 
 .systemName {
+  
   font-size: 18px;
   color: #5093e1;
 }
@@ -81,6 +82,63 @@
   .quit {
     border: 0;
     border-radius: 0;
+  }
+}
+
+// header tow floor
+.header_t_floor {
+  height: 100%;
+  padding: 0 0 0 20px;
+  // box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  line-height: 90px;
+}
+
+// double floor
+.t_floor_box_1 {
+  width: 100%;
+  .title {
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+  }
+}
+
+.t_floor_box_2 {
+  width: 100%;
+  text-align: center;
+  .today {
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+  }
+}
+
+.t_floor_box_3 {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  .userbox {
+    width: 165px;
+    margin-right: 10px;
+    height: 100%;
+    line-height: 60px;
+    .search {
+      position: relative;
+      top: -27px;
+      width:145px
+    }
+  }
+  .userIcon {
+    margin-right: 10px;
+  }
+  .quit {
+    border: 0;
+    border-radius: 0;
+    height: 100%;
   }
 }
 

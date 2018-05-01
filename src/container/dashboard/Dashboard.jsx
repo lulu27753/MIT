@@ -81,8 +81,6 @@ export default class Dashboard extends React.Component {
       collapsed,
       // match,
       location,
-      fetchingNotices,
-      notices,
       systemName
     } = this.props;
     // console.log(getRoutes(match.path, routerData));
@@ -109,11 +107,10 @@ export default class Dashboard extends React.Component {
     const layout = (
       <Layout>
         <Sider
-          toggle
-          foldSpan={{fold: '1', unfold: '19'}}
+          span={{fold: '1', unfold: '19'}}
           onCollapse={onCollapse}
           style={{ background: '#2f323b' }}
-          collapsed={collapsed}
+          collapsed={false}
         >
           <SiderMenu
             logo={logo}
@@ -125,17 +122,12 @@ export default class Dashboard extends React.Component {
            />
         </Sider>
         <Layout>
-          <Header style={{ background: '#fff' }} >
+          <Header span={2} style={{ background: '#fff', borderBottom: '1px solid #eee' }} >
             <GlobalHeader
-              logo={logo}
+              type='double'
               currentUser={currentUser}
-              fetchingNotices={fetchingNotices}
-              notices={notices}
               systemName={systemName}
-              routerPath={'版本管理'}
-              onNoticeClear={this.handleNoticeClear}
-              onMenuClick={this.handleMenuClick}
-              onNoticeVisibleChange={this.handleNoticeVisibleChange}
+              routerPath='版本管理'
             />
           </Header>
           <Content>
