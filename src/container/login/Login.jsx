@@ -44,12 +44,6 @@ class Login extends React.Component {
   }
 	render() {
 		const { className, children } = this.props;
-    // const FormChildren = [];
-    // React.Children.forEach(children, (item) => {
-    //   // eslint-disable-next-line
-    //     // FormChildren.push(item)
-    //   }
-    // }
     return (
       <div className={classNames(className, styles.main)}>
         <Form onSubmit={this.handleSubmit}>

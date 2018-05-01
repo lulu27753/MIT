@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Form from 'components/form';
+
 import map from './map.js';
 
 const FormItem = Form.Item;

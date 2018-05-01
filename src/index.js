@@ -23,7 +23,7 @@ if (process.env.NODE_ENV !== 'production') {
 //   <App />,
 //   document.getElementById('root'));
 
-const render = Component => {
+const render = App => {
   ReactDOM.render((
     <Provider store={store}>
       <App />
