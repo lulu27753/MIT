@@ -49,7 +49,9 @@ class Sider extends Component {
     const { span, children, collapsed } = this.props
 
     let currentSpan
+    console.log('span', span)
     if (typeof span === 'number') {
+      console.log('in')
       currentSpan = span
     } else if (typeof span === 'object') {
       currentSpan = collapsed ? span.fold : span.unfold
