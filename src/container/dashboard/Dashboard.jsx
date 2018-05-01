@@ -139,9 +139,8 @@ export default class Dashboard extends React.Component {
            />
         </Sider>
         <Layout>
-          <Header span={2} style={{ background: '#fff', borderBottom: '1px solid #eee' }} >
+          <Header style={{ background: '#fff', borderBottom: '1px solid #eee' }} >
             <GlobalHeader
-              type='double'
               currentUser={currentUser}
               systemName={systemName}
               routerPath='版本管理'

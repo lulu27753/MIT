@@ -30,7 +30,7 @@ import { Layout, Sider, Header, Footer, Content } from './components/layout'
 </Layout>
 
 <Layout>
-  <Sider toggle foldSpan={{fold: '44', unfold: '116'}} />
+  <Sider span={{fold: '44', unfold: '116'}} />
   <Layout>
     <Header style={{ background: '#eee' }} />
     <Content />
@@ -50,7 +50,7 @@ Sider
 |-----------|-------------------------------------|--------------------|-------------|
 | span      | 基本宽度32px + 12 * span span最大值 20, 或者为一个对象，对象则有连个属性，折叠和未折叠状态  | number,object | 0 | {unfold: '7', fold: '1'} |
 | children    | 可选, 内容元素    | node             |   |
-| collapse    | 可选, sider初始化折叠状态    | boolean             |   |
+| collapsed    | 可选, sider初始化折叠状态    | boolean             |   |
 | onCollapse    | 可选, 切换sider是回调函数    | function             |   |
 
 Header

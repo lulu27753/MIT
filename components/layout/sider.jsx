@@ -79,7 +79,7 @@ Sider.propTypes = {
     PropTypes.number,
     PropTypes.object
   ]),
-  foldSpan: PropTypes.object,
+  collapsed: PropTypes.bool,
   children: PropTypes.node,
   onCollapse: PropTypes.func,
 }
