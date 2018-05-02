@@ -3,72 +3,85 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import omit from 'object.omit'
 
-import Icon from '../icon/index'
-
 import './style'
 
 class Sider extends Component {
   constructor(props) {
     super(props)
-    const { collapsed } = props;
+    let collapsed
+    if ('collapsed' in props) {
+      collapsed = props.collapsed;
+    } else {
+      collapsed = false;
+    }
     this.state = {
-      collapsed: collapsed
+      collapsed
     };
-    this.toggleMenu = this.toggleMenu.bind(this);
+    this.toggle = this.toggle.bind(this);
   }
-  static defaultProps = {
-    collapsed: false,
+
+  componentWillReceiveProps(nextProps) {
+    if ('collapsed' in nextProps) {
+      this.setState({
+        collapsed: nextProps.collapsed,
+      });
+    }
   }
-  toggleMenu(spanNum) {
-    this.setState({
-      collapsed: !this.state.collapsed
-    }, () => {
-      const { onCollapse } = this.props;
-      if (onCollapse) {
-        onCollapse(this.state.collapsed)
-      }
-    });
+
+  setCollapsed = (collapsed) => {
+    if (!('collapsed' in this.props)) {
+      this.setState({
+        collapsed,
+      });
+    }
+    const { onCollapse } = this.props;
+    if (onCollapse) {
+      onCollapse(collapsed);
+    }
+  }
+
+  toggle = () => {
+    const collapsed = !this.state.collapsed;
+    this.setCollapsed(collapsed);
   }
 
   render() {
-    const { span, toggle, children, foldSpan, toggleStyle } = this.props
-    let collapsed = this.state.collapsed
-    let currentSpan = span
+    const { span, children, collapsed } = this.props
 
-    if (toggle && foldSpan && collapsed) {
-      currentSpan = foldSpan.fold
-    } else if (toggle && foldSpan && !collapsed) {
-      currentSpan = foldSpan.unfold
+    let currentSpan
+    console.log('span', span)
+    if (typeof span === 'number') {
+      console.log('in')
+      currentSpan = span
+    } else if (typeof span === 'object') {
+      currentSpan = collapsed ? span.fold : span.unfold
     }
 
     const classes = classNames({
       'idoll-layout-sider': 'doll-layout-sider',
       [`idoll-layout-sider-${currentSpan}`]: currentSpan
     })
-    const iconType = collapsed ? 'menu-unfold' : 'menu-fold'
 
     const otherProps = omit(this.props, [
-      'toggle',
-      'toggleStyle',
-      'foldSpan',
+      'span',
       'collapsed',
       'onCollapse'
     ]);
 
   	return (
     <div {...otherProps} className={classes}>
-      { toggle ? <Icon type={iconType} key={0} onClick={this.toggleMenu} className='idoll-silder-toggle' style={toggleStyle} /> : ''}
-      { children }
+      {children}
     </div>
   	)
   }
 }
 
 Sider.propTypes = {
-  span: PropTypes.string,
-  toggle: PropTypes.bool,
-  toggleStyle: PropTypes.object,
-  foldSpan: PropTypes.object,
+  span: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.object
+  ]),
+  collapsed: PropTypes.bool,
   children: PropTypes.node,
   onCollapse: PropTypes.func,
 }

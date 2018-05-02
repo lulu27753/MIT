@@ -1,56 +1,74 @@
-import React, { PureComponent } from 'react';
-import { Icon, Menu, Tag, Spin, Dropdown, Button, Divider } from 'components';
-import moment from 'moment';
-import groupBy from 'lodash/groupBy';
-import { getTodayTime } from 'utils/utils';
+import React, { PureComponent } from 'react'
+import { Icon, Menu, Spin, Dropdown, Button, Divider, Input } from 'components'
+import { getTodayTime } from 'utils/utils'
 
-import styles from './index.less';
+import styles from './index.less'
 
 export default class GlobalHeader extends PureComponent {
-  componentWillUnmount() {
-    // this.triggerResizeEvent.cancel();
-  }
-  getNoticeData() {
-    const { notices = [] } = this.props;
-    if (notices.length === 0) {
-      return {};
-    }
-    const newNotices = notices.map(notice => {
-      const newNotice = { ...notice };
-      if (newNotice.datetime) {
-        newNotice.datetime = moment(notice.datetime).fromNow();
-      }
-      // 将 id 转换成 item key
-      if (newNotice.id) {
-        newNotice.key = newNotice.id;
-      }
-      if (newNotice.extra && newNotice.status) {
-        const color = {
-          todo: '',
-          processing: 'blue',
-          urgent: 'red',
-          doing: 'gold',
-        }[newNotice.status];
-        newNotice.extra = (
-          <Tag color={color} style={{ marginRight: 0 }}>
-            {newNotice.extra}
-          </Tag>
-        );
-      }
-      return newNotice;
-    });
-    return groupBy(newNotices, 'type');
-  }
-  triggerResizeEvent() {
-    const event = document.createEvent('HTMLEvents');
-    event.initEvent('resize', true, false);
-    window.dispatchEvent(event);
-  }
-  render() {
+  // toggle = () => {
+  //   const { collapsed, onCollapse } = this.props;
+  //   onCollapse(!collapsed);
+  //   this.triggerResizeEvent();
+  // };
+
+  getHeaderOneFloorRender() {
     const {
       currentUser,
       systemName,
       routerPath,
+      centerChildren,
+      onMenuClick,
+      onQuit
+    } = this.props;
+    const menu = (
+      <Menu className={styles.menu} selectedKeys={[]} onClick={onMenuClick}>
+        <Menu.Item key='userCenter' disabled>
+          <Icon type='user' />个人中心
+        </Menu.Item>
+        <Menu.Item disabled>
+          <Icon type='setting' key='setting' />设置
+        </Menu.Item>
+      </Menu>
+    );
+    const today = getTodayTime('today');
+
+
+      return (
+        <div className={styles.header_o_floor}>
+          <span className={styles.systemName} >
+            {systemName}
+          </span>
+          <Divider type='vertical' style={{ fontSize: '20px' }} />
+          <span className={styles.routerPath}>
+            {routerPath}
+          </span>
+          <div className={styles.time}>
+            {centerChildren || today}
+          </div>
+          <div className={styles.right}>
+            {currentUser.name ? (
+              <Dropdown overlay={menu}>
+                <span className={`${styles.action} ${styles.account}`}>
+                  <Icon type='user' className={styles.userIcon} />
+                  <span className={styles.name}>{currentUser.name}</span>
+                </span>
+              </Dropdown>
+            ) : (
+              <Spin size='small' style={{ marginLeft: 8 }} />
+              )}
+            <Button type='quit' icon='logout' className={styles.quit} style={{ background: '#5093e1', color: '#fff' }} onClick={onQuit} />
+          </div>
+        </div>
+      )
+  }
+
+  getHeaderTowFloorRender() {
+    const {
+      currentUser,
+      systemName,
+      routerPath,
+      leftChildren,
+      centerChildren,
       onMenuClick,
       onQuit
     } = this.props;
@@ -65,32 +83,49 @@ export default class GlobalHeader extends PureComponent {
       </Menu>
     );
     const today = getTodayTime('today');
+
+
     return (
-      <div className={styles.header}>
-        <span className={styles.systemName} >
-          {systemName}
-        </span>
-        <Divider type='vertical' style={{ fontSize: '20px' }} />
-        <span className={styles.routerPath}>
-          {routerPath}
-        </span>
-        <div className={styles.time}>
-          {today}
+      <div className={styles.header_t_floor}>
+        <div className={styles.t_floor_box_1}>
+          <div className={styles.title}>
+            <span className={styles.systemName} >
+              {systemName}
+            </span>
+            <Divider type='vertical' style={{ fontSize: '20px' }} />
+            <span className={styles.routerPath}>
+              {routerPath}
+            </span>
+          </div>
+          {leftChildren || ''}
         </div>
-        <div className={styles.right}>
-          {currentUser.name ? (
-            <Dropdown overlay={menu}>
-              <span className={`${styles.action} ${styles.account}`}>
-                <Icon type='user' className={styles.userIcon} />
-                <span className={styles.name}>{currentUser.name}</span>
-              </span>
-            </Dropdown>
-          ) : (
-            <Spin size='small' style={{ marginLeft: 8 }} />
-            )}
+        <div className={styles.t_floor_box_2}>
+          {centerChildren || (<div className={styles.today}>{today}</div>)}
+        </div>
+        <div className={styles.t_floor_box_3}>
+          <div className={styles.userbox}>
+            {currentUser.name ? (
+              <Dropdown overlay={menu}>
+                <span className={`${styles.action} ${styles.account}`}>
+                  <Icon type='user' className={styles.userIcon} />
+                  <span className={styles.name}>{currentUser.name}</span>
+                </span>
+              </Dropdown>
+            ) : (
+              <Spin size='small' style={{ marginLeft: 8 }} />
+              )}
+            {<Input type='text'className={styles.search} placeholder='搜索...' />}
+          </div>
           <Button type='quit' icon='logout' className={styles.quit} style={{ background: '#5093e1', color: '#fff' }} onClick={onQuit} />
         </div>
       </div>
-    );
+    )
+  }
+
+
+  render() {
+    const { type } = this.props;
+
+    return type === 'double' ? this.getHeaderTowFloorRender() : this.getHeaderOneFloorRender();
   }
 }

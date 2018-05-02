@@ -7,13 +7,15 @@ import './style';
 function Layout(props) {
     const { children } = props;
     // console.log('LayoutchildrenLength', children.length);
+    let sider = []
+    if (children && children.length) {
+      sider = children.filter((item) => {
+        return Object.keys(item.type.propTypes).indexOf('collapsed') !== -1
+      })
+    }
     const classes = classNames({
        'idoll-layout': 'doll-layout',
-       'idoll-layout-has-sider': (children.length &&
-       	children.filter((item) => {
-       		// console.log(item);
-       		return Object.keys(item.type.propTypes).indexOf('toggle') !== -1
-       	})).length
+      'idoll-layout-has-sider': sider.length
     });
   	return <div {...props} className={classes}>{children}</div>;
 }
