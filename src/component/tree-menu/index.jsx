@@ -4,11 +4,10 @@ import TreeMenu from './TreeMenu';
 
 export default (props) => (
   <Layout>
-    <Sider>
+    <Sider span={19}>
       <TreeMenu />
     </Sider>
     <Layout>
-      <Content />
       <Content>{props.children}</Content>
     </Layout>
   </Layout>
