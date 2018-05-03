@@ -42,7 +42,7 @@ export default class Overlook extends Component {
       dataSource.length && dataSource.map((item) => {
         if (boxs[item.x]) boxs[item.x].props.children[item.y] = (<div key={item.x + '_' + item.y} className={styles.personal} />)
       })
-
+console.log('boxs', boxs);
       return boxs;
     }
 
