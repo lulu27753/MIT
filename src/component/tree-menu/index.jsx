@@ -5,10 +5,13 @@ import TreeMenu from './TreeMenu';
 export default (props) => (
   <Layout>
     <Sider span={19}>
-      <TreeMenu />
+      <TreeMenu onToggle={onToggle} />
     </Sider>
     <Layout>
       <Content>{props.children}</Content>
     </Layout>
   </Layout>
 	);
+function onToggle(key) {
+  console.log('key', key);
+}

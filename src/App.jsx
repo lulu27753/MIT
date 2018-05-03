@@ -14,8 +14,9 @@ const App = () => (
   <Router>
     <div>
       <Switch>
-        <Route exact path='/login' component={Login} />
+        <Route path='/login' component={Login} />
         <Route path='/render' component={Render} />
+        <Route path='/dashboard' component={Dashboard} />
         <Route component={Dashboard} />
       </Switch>
       <DboxRouter />
