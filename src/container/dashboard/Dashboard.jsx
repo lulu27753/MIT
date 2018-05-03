@@ -9,8 +9,8 @@ import Layout from 'components/layout';
 
 import SiderMenu from 'component/sider-menu';
 // import Authorized from 'component/authorized';
-import GlobalHeader from 'component/globalHeader';
-import TreeMenu from 'component/tree-menu';
+import GlobalHeader from 'component/global-header';
+import RightContainer from 'container/right';
 
 import logo from 'assets/images/logo.png';
 // import { getRoutes } from 'utils/getRoutes';
@@ -151,7 +151,7 @@ export default class Dashboard extends React.Component {
             <Switch>
               {/* <Route exact path='/dashboard' component={TreeMenu} /> */}
               {/* <Route path='/dashboard/version-manage' render={() => <TreeMenu />} /> */}
-              <Route path='/dashboard/demand-manage' render={() => <TreeMenu><TreeMenuRoutes /></TreeMenu>} />
+              <Route path='/dashboard/demand-manage' render={() => <RightContainer><TreeMenuRoutes /></RightContainer>} />
               <Route path='/dashboard/scenario-manage' render={() => <h1>scenario-manage</h1>} />
               <Route path='/dashboard/user-case-manage' render={() => <h1>scenario-manage</h1>} />
               <Route path='/dashboard/business-tree' render={() => <h1>business-tree</h1>} />
@@ -163,7 +163,7 @@ export default class Dashboard extends React.Component {
               <Route path='/log/user-case-chart' render={() => <h1>user-case-chart</h1>} />
               <Route path='/log/task-logo-search' render={() => <h1>task-logo-search</h1>} />
               <Route path='/log/check-log' render={() => <h1>check-log</h1>} />
-              <Route render={() => <TreeMenu><TreeMenuRoutes /></TreeMenu>} />
+              <Route render={() => <RightContainer><TreeMenuRoutes /></RightContainer>} />
               {/* { childRoute } */}
               {redirectRoute}
               <Redirect exact from='/' to={bashRedirect} />
