@@ -5,33 +5,24 @@
     width: 100%;
     height: @number*@boxHeight;
     border-bottom: 1px solid #eee;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    overflow: scroll
 }
 
-.plain_box {
-    width: 40px;
-    height: 40px;
-    border-right: 1px solid #eee;
-    border-bottom: 1px solid #eee;
-}
-
-.plain_first_box {
-    width: 40px;
-    height: 40px;
+.personal {
+    margin: 0;
+    width: 60px;
+    height: 60px;
+    background: red;
     border: 1px solid #eee;
 }
 
-.plain_top_box {
-    width: 40px;
-    height: 40px;
-    border-top: 1px solid #eee;
-    border-right: 1px solid #eee;
-    border-bottom: 1px solid #eee;
-}
-
-.plain_left_box {
-    width: 40px;
-    height: 40px;
-    border-top: 1px solid #eee;
-    border-left: 1px solid #eee;
-    border-right: 1px solid #eee;
+.plain_box {
+    margin: 0;
+    width: 60px;
+    height: 60px;
+    border: 1px solid #eee;
 }
