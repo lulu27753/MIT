@@ -1,4 +1,5 @@
 import React from 'react';
+<<<<<<< HEAD
 import { Link } from 'react-router-dom';
 
 import Tree from 'components/tree';
@@ -76,3 +77,21 @@ return <TreeNode key={item.key} title={<Link to={`/dashboard/version-manage/${it
   }
 }
 
+=======
+import Layout, { Sider, Content } from 'components/layout';
+import TreeMenu from './TreeMenu';
+
+export default (props) => (
+  <Layout>
+    <Sider span={19}>
+      <TreeMenu onToggle={onToggle} />
+    </Sider>
+    <Layout>
+      <Content>{props.children}</Content>
+    </Layout>
+  </Layout>
+	);
+function onToggle(key) {
+  console.log('key', key);
+}
+>>>>>>> f944c34b9bcdf006a7d52d1a5065637905e847ff
