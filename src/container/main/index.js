@@ -4,21 +4,6 @@ import TreeMenu from 'component/tree-menu';
 import RightHeader from 'component/right-header';
 import Overlook from 'component/overlook'
 
-// export default (props) => (
-//   <Layout>
-//     <Sider span={19}>
-//       <TreeMenu />
-//     </Sider>
-//     <Layout>
-//       <Content>
-//         <RightHeader />
-//         {console.log('props', props)}
-//         <Overlook id={1} />
-//       </Content>
-//     </Layout>
-//   </Layout>
-// 	);
-
 export default class right extends Component {
   constructor (props) {
     super(props)
@@ -36,7 +21,7 @@ export default class right extends Component {
   render () {
     const { id } = this.state
     return (
-      <Layout>
+      <Layout style={{height: '100%'}} >
         <Sider span={19}>
           <TreeMenu onToggle={this.toggleTeam} />
         </Sider>
