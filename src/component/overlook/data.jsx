@@ -13,24 +13,24 @@ export default {
         sex: 'M',
         isNew: 0,
         telephoneState: 0,
-        umId: 'wangdatou001',
-        name: '王大头',
+        umId: 'lidatou001',
+        name: '李大头',
         x: 1,
         y: 2
     }, {
         sex: 'M',
         isNew: 0,
         telephoneState: 0,
-        umId: 'wangdatou001',
-        name: '王大头',
+        umId: 'wangdapang001',
+        name: '王大胖',
         x: 2,
         y: 2
     }, {
         sex: 'M',
         isNew: 0,
         telephoneState: 0,
-        umId: 'wangdatou001',
-        name: '王大头',
+        umId: 'wangxiaopang001',
+        name: '王小胖',
         x: 3,
         y: 2
     }, {
@@ -63,23 +63,23 @@ export default {
         telephoneState: 0,
         umId: 'wangdatou001',
         name: '王大头',
-        x: 1,
-        y: 2
+        x: 3,
+        y: 3
     }, {
         sex: 'M',
         isNew: 0,
         telephoneState: 0,
         umId: 'wangdatou001',
         name: '王大头',
-        x: 1,
-        y: 2
+        x: 3,
+        y: 4
     }, {
         sex: 'M',
         isNew: 0,
         telephoneState: 0,
         umId: 'wangdatou001',
         name: '王大头',
-        x: 1,
-        y: 2
+        x: 3,
+        y: 5
     }]
 }
