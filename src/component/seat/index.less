@@ -1,10 +1,63 @@
 .box {
+    position: relative;
     width: 60px;
     height: 60px;
-    border: 1px solid #eee;
-    background: yellow;
+    border: 1px solid #fff;
+    background-color: #b1dce9;
 }
 
 .box:hover {
-    cursor:pointer
+    cursor:pointer;
+    border: 2px solid #3ca7c7;
+}
+
+.person {
+    position: absolute;
+    top: 10px;
+    left: 16px;
+    width: 28px;
+    height: 40px;
+}
+
+.outline {
+    background-color: #e2e2e2;
+    opacity: 0.6;
+}
+
+.dailling {
+    position: absolute;
+    left: 40px;
+    top: 40px;
+    font-size: 18px;
+    color: #3ca7c7;
+    // color: #fff;
+    z-index: 2;
+
+}
+
+.unused {
+    position: absolute;
+    left: 40px;
+    top: 40px;
+    font-size: 18px;
+    color: #ffa632;
+    // color: #fff;
+    z-index: 2;
+
+}
+
+.new {
+    position: absolute;
+    top: 39px;
+    left: 14px;
+    width: 32px;
+    height: 14px;
+    color: #5ecaaa;
+    font-size: 8px;
+    text-align: center;
+    line-height: 14px;
+    z-index: 1;
+    background: #fff;
+    
+
 }

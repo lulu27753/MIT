@@ -4,7 +4,6 @@
 .container {
     width: 100%;
     height: @number*@boxHeight;
-    border-bottom: 1px solid #eee;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -13,17 +12,65 @@
     overflow-x: hidden;
 }
 
-.personal {
+.toolsHeader {
     margin: 0;
-    width: 60px;
-    height: 60px;
-    background: red;
-    border: 1px solid #eee;
+    width: 100%;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px 0;
+    font-size:14px;
+    color: #999;
+    .toolsHeader_left,.toolsHeader_right {
+        .online {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            border-radius: 7px;
+            background-color: #d4eaf2;
+            font-style: normal;
+            font-weight: normal;
+            font-variant: normal;
+            text-transform: none;
+            line-height: 1;
+            vertical-align: middle;
+            text-align: center;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+        }
+        .outline {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            border-radius: 7px;
+            background-color: #e2e2e2;
+            font-style: normal;
+            font-weight: normal;
+            font-variant: normal;
+            text-transform: none;
+            line-height: 1;
+            vertical-align: middle;
+            text-align: center;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
+        }
+        i {
+            font-size: 14px;
+            margin-right: 5px;
+        }
+
+        i:not(:first-child) {
+            margin-left: 10px;
+            color: green;
+        }
+    }
 }
 
 .plain_box {
     margin: 0;
     width: 60px;
     height: 60px;
-    border: 1px solid #eee;
+    border: 1px solid #fff;
+    background-color: #f8f9fc;
 }

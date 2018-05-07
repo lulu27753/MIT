@@ -21,11 +21,11 @@ export default class right extends Component {
   render () {
     const { id } = this.state
     return (
-      <Layout style={{height: '100%'}} >
+      <Layout style={{ height: '100%' }} >
         <Sider span={19}>
           <TreeMenu onToggle={this.toggleTeam} />
         </Sider>
-        <Layout>
+        <Layout style={{ padding: '20px' }}>
           <Content>
             <RightHeader id={id} />
             <Overlook id={id} />

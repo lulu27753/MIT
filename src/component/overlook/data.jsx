@@ -11,6 +11,46 @@ export default {
         y: 1
     }, {
         sex: 'M',
+        isNew: 1,
+        telephoneState: 0,
+        umId: 'wangdatou001',
+        name: '王大头',
+        x: 2,
+        y: 1
+    }, {
+        sex: 'F',
+        isNew: 1,
+        telephoneState: 1,
+        umId: 'wangdatou001',
+        name: '王大头',
+        x: 3,
+        y: 1
+    }, {
+        sex: 'M',
+        isNew: 0,
+        telephoneState: 1,
+        umId: 'wangdatou001',
+        name: '王大头',
+        x: 4,
+        y: 1
+    }, {
+        sex: 'M',
+        isNew: 0,
+        telephoneState: 4,
+        umId: 'wangdatou001',
+        name: '王大头',
+        x: 5,
+        y: 1
+    }, {
+        sex: 'M',
+        isNew: 0,
+        telephoneState: 1,
+        umId: 'wangdatou001',
+        name: '王大头',
+        x: 6,
+        y: 1
+     }, {
+        sex: 'F',
         isNew: 0,
         telephoneState: 0,
         umId: 'lidatou001',
@@ -19,24 +59,24 @@ export default {
         y: 2
     }, {
         sex: 'M',
-        isNew: 0,
-        telephoneState: 0,
+        isNew: 1,
+        telephoneState: 4,
         umId: 'wangdapang001',
         name: '王大胖',
         x: 2,
         y: 2
     }, {
-        sex: 'M',
-        isNew: 0,
-        telephoneState: 0,
+        sex: 'F',
+        isNew: 1,
+        telephoneState: 3,
         umId: 'wangxiaopang001',
         name: '王小胖',
         x: 3,
         y: 2
     }, {
-        sex: 'M',
+        sex: 'F',
         isNew: 0,
-        telephoneState: 0,
+        telephoneState: 3,
         umId: 'wangdatou001',
         name: '王大头',
         x: 4,
@@ -44,7 +84,7 @@ export default {
     }, {
         sex: 'M',
         isNew: 0,
-        telephoneState: 0,
+        telephoneState: 4,
         umId: 'wangdatou001',
         name: '王大头',
         x: 5,
@@ -52,34 +92,10 @@ export default {
     }, {
         sex: 'M',
         isNew: 0,
-        telephoneState: 0,
+        telephoneState: 1,
         umId: 'wangdatou001',
         name: '王大头',
         x: 6,
         y: 2
-    }, {
-        sex: 'M',
-        isNew: 0,
-        telephoneState: 0,
-        umId: 'wangdatou001',
-        name: '王大头',
-        x: 3,
-        y: 3
-    }, {
-        sex: 'M',
-        isNew: 0,
-        telephoneState: 0,
-        umId: 'wangdatou001',
-        name: '王大头',
-        x: 3,
-        y: 4
-    }, {
-        sex: 'M',
-        isNew: 0,
-        telephoneState: 0,
-        umId: 'wangdatou001',
-        name: '王大头',
-        x: 3,
-        y: 5
     }]
 }

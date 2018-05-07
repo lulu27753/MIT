@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 // import { PropTypes } from 'prop-types';
-import { Modal } from 'components';
+import { Modal, Title } from 'components';
 // import axios from 'axios';
 
 // import styles from './index.less';
@@ -21,12 +21,12 @@ export default class SeatInfoModal extends Component {
     //   visible: PropTypes.bool
     // }
 
-    handleOk = () => {
-        const { umId, handleModalStatus } = this.props
-        if (typeof handleModalStatus === 'function') {
-            handleModalStatus(umId, false)
-        }
-    }
+    // handleOk = () => {
+    //     const { umId, handleModalStatus } = this.props
+    //     if (typeof handleModalStatus === 'function') {
+    //         handleModalStatus(umId, false)
+    //     }
+    // }
 
     handleCancel = () => {
         const { umId, handleModalStatus } = this.props
@@ -36,11 +36,14 @@ export default class SeatInfoModal extends Component {
     }
 
     render() {
-      const { visible, umId } = this.props;
+      const { visible } = this.props;
 
       return (
-        <Modal visible={visible} onOk={this.handleOk} onCancel={this.handleCancel} >
-          { visible + umId }
+        <Modal visible={visible} title='坐席详情' footer={null} onCancel={this.handleCancel} width={800} >
+          <Title title='基本信息' />
+          <Title title='当日工作情况' />
+          <Title title='当日业绩情况' />
+          <Title title='当日话务情况' />
         </Modal>
         );
     }

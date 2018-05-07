@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Seat from 'component/seat';
 import SeatInfoModal from 'component/seat-info-modal'
+import { Icon } from 'components'
 // import axios from 'axios';
 import data from './data.jsx'
 
@@ -78,9 +79,23 @@ console.log('boxs', boxs);
     render() {
       const { visible, umId } = this.state
       return (
-        <div className={styles.container} >
-          {this.renderSpace()}
-          <SeatInfoModal visible={visible} umId={umId} handleModalStatus={this.handleModalStatus} />
+        <div>
+          <div className={styles.toolsHeader}>
+            <div className={styles.toolsHeader_left} >
+              <i className={styles.online} />在线
+              <i className={styles.outline} />下线
+              <Icon type='warning-circle' />通话
+              <Icon type='warning-circle' />空闲
+            </div>
+            <div className={styles.toolsHeader_right} >
+              <Icon type='warning-circle' />
+              <Icon type='warning-circle' />
+            </div>
+          </div>
+          <div className={styles.container} >
+            {this.renderSpace()}
+            <SeatInfoModal visible={visible} umId={umId} handleModalStatus={this.handleModalStatus} />
+          </div>
         </div>
         );
     }
