@@ -174,7 +174,7 @@ export default class SiderMenu extends PureComponent {
 		});
 	}
 	render() {
-		const { logo, collapsed, location: { pathname } } = this.props;
+		const { logo, collapsed, location: { pathname }, onSelect } = this.props;
 		console.log('SiderMenuProps', this.props);
 		console.log('collapsed', collapsed);
 		const { openKeys: { menuProps } } = this.state;
@@ -205,6 +205,7 @@ export default class SiderMenu extends PureComponent {
       selectedKeys={collapsed ? [] : selectedKeys}
       className={styles.menu}
       inlineCollapsed={collapsed}
+      onSelect={onSelect}
     >
       {this.getNavMenuItems(this.menus)}
     </Menu>

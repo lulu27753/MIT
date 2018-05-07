@@ -5,12 +5,10 @@ import { getTodayTime } from 'utils/utils'
 import styles from './index.less'
 
 export default class GlobalHeader extends PureComponent {
-  // toggle = () => {
-  //   const { collapsed, onCollapse } = this.props;
-  //   onCollapse(!collapsed);
-  //   this.triggerResizeEvent();
-  // };
-
+  toggle = () => {
+    const { collapsed, onCollapse } = this.props;
+    onCollapse(!collapsed);
+  };
   getHeaderOneFloorRender() {
     const {
       currentUser,
@@ -18,8 +16,13 @@ export default class GlobalHeader extends PureComponent {
       routerPath,
       centerChildren,
       onMenuClick,
-      onQuit
+      onQuit,
+      toggle,
+      collapsed
     } = this.props;
+
+    const iconType = collapsed ? 'menu-unfold' : 'menu-fold'
+
     const menu = (
       <Menu className={styles.menu} selectedKeys={[]} onClick={onMenuClick}>
         <Menu.Item key='userCenter' disabled>
@@ -35,6 +38,7 @@ export default class GlobalHeader extends PureComponent {
 
       return (
         <div className={styles.header_o_floor}>
+          {toggle ? <Icon type={iconType} key={0} onClick={this.toggle} className={styles.trigger} /> : ''}
           <span className={styles.systemName} >
             {systemName}
           </span>
@@ -125,7 +129,6 @@ export default class GlobalHeader extends PureComponent {
 
   render() {
     const { type } = this.props;
-
     return type === 'double' ? this.getHeaderTowFloorRender() : this.getHeaderOneFloorRender();
   }
 }
