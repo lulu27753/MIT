@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
-import classNames from 'classnames';
 import styles from './index.less';
 
 export default class Indicator extends Component {
@@ -18,14 +17,16 @@ export default class Indicator extends Component {
     console.log(this.props)
   }
   render () {
-    const { title, data, className, ...others } = this.props;
+    const { title, data, width, ...others } = this.props;
     delete others.prefixCls
-    const width = others.style.width
-    const height = others.style.height
-    const classString = classNames(className, styles.monitoring)
+    delete others.title
+    delete others.data
+    delete others.width
+
+    // const classString = classNames(className, styles.monitoring)
     return (
-      <div className={styles.indicator} style={{height: height}}>
-        <span className={classString} style={{width:width}}>{ title }</span>
+      <div className={styles.indicator} {...others}>
+        <span className={styles.monitoring} style={{width: width}}>{ title }</span>
         <span className={styles.monitoring_data}>{ data }</span>
       </div>
     )
