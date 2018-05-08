@@ -17,7 +17,6 @@ class Sider extends Component {
     this.state = {
       collapsed
     };
-    this.toggle = this.toggle.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -28,33 +27,18 @@ class Sider extends Component {
     }
   }
 
-  setCollapsed = (collapsed) => {
-    if (!('collapsed' in this.props)) {
-      this.setState({
-        collapsed,
-      });
-    }
-    const { onCollapse } = this.props;
-    if (onCollapse) {
-      onCollapse(collapsed);
-    }
-  }
-
-  toggle = () => {
-    const collapsed = !this.state.collapsed;
-    this.setCollapsed(collapsed);
-  }
-
   render() {
-    const { span, children, collapsed } = this.props
+    const { span, children, collapsed, onCollapse } = this.props
 
     let currentSpan
-    console.log('span', span)
     if (typeof span === 'number') {
-      console.log('in')
       currentSpan = span
     } else if (typeof span === 'object') {
       currentSpan = collapsed ? span.fold : span.unfold
+    }
+
+    if (onCollapse) {
+      onCollapse(collapsed)
     }
 
     const classes = classNames({
@@ -68,11 +52,11 @@ class Sider extends Component {
       'onCollapse'
     ]);
 
-  	return (
-    <div {...otherProps} className={classes}>
-      {children}
-    </div>
-  	)
+    return (
+      <div {...otherProps} className={classes}>
+        {children}
+      </div>
+    )
   }
 }
 
