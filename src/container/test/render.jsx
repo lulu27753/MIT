@@ -3,7 +3,7 @@ import React from 'react';
 import { Route, Link } from 'react-router-dom';
 
 function Something() {
-	return <h1>Something</h1>
+  return <h1>Something</h1>
 }
 export default class Render extends React.Component {
 	render() {

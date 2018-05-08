@@ -22,7 +22,7 @@ export default class TreeMenu extends React.Component {
   }
   onExpand = (expandedKeys) => {
     this.setState({expandedKeys, autoExpandParent: false}, () => {
-    console.log(expandedKeys);
+    console.log('expandedKeys', expandedKeys);
     });
   }
   onChange = (e) => {
@@ -34,6 +34,9 @@ export default class TreeMenu extends React.Component {
       return null;
     }).filter((item, i, self) => item && self.indexOf(item) === i);
     this.setState({expandedKeys, searchValue: value, autoExpandParent: true});
+  }
+  onSelect = (selectedKeys) => {
+    this.props.onToggle(selectedKeys)
   }
   render() {
   const {searchValue, expandedKeys, autoExpandParent} = this.state;
@@ -68,6 +71,7 @@ return <TreeNode key={item.key} title={<Link to={`/dashboard/version-manage/${it
           onExpand={this.onExpand}
           expandedKeys={expandedKeys}
           autoExpandParent={autoExpandParent}
+          onSelect={this.onSelect}
         >
           {loop(gData)}
         </Tree>
