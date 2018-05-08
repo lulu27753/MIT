@@ -37,6 +37,7 @@ import List from './list';
 import Table from './table';
 import Anchor from './anchor';
 import Cascader from './cascader';
+import Grid from './grid';
 
 export {
    Dropdown,
@@ -77,5 +78,6 @@ export {
    List,
    Table,
    Anchor,
-   Cascader
+   Cascader,
+   Grid
 }

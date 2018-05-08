@@ -14,6 +14,7 @@ export default class Overlook extends Component {
     constructor(props) {
       super(props)
       this.state = {
+        id: props.id,
         cNumber: minCNumber,
         rNumber: minRNumber,
         dataSource: '',
@@ -30,8 +31,9 @@ export default class Overlook extends Component {
       })
     }
 
-    componentWillReceiveProps (oldProps, newProps) {
+    componentWillReceiveProps (nextProps) {
       this.setState({
+        id: nextProps.id,
         cNumber: data.cNumber,
         rNumber: data.rNumber,
         dataSource: data.dataSource
@@ -53,7 +55,6 @@ export default class Overlook extends Component {
       dataSource.length && dataSource.map((item) => {
         if (boxs[item.x]) boxs[item.x].props.children[item.y] = (<Seat key={item.x + '_' + item.y} status={item} handleModalStatus={this.handleModalStatus} />)
       })
-console.log('boxs', boxs);
       return boxs;
     }
 
@@ -88,8 +89,8 @@ console.log('boxs', boxs);
               <Icon type='pro-clock-circle' className={styles.unused} />空闲
             </div>
             <div className={styles.toolsHeader_right} >
-              <Icon type='pro-download' />
-              <Icon type='pro-sync' />
+              <Icon type='pro-download' className={styles.download} />
+              <Icon type='pro-sync' className={styles.sync} />
             </div>
           </div>
           <div className={styles.container} >
