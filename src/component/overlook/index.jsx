@@ -84,12 +84,12 @@ console.log('boxs', boxs);
             <div className={styles.toolsHeader_left} >
               <i className={styles.online} />在线
               <i className={styles.outline} />下线
-              <Icon type='warning-circle' />通话
-              <Icon type='warning-circle' />空闲
+              <Icon type='pro-phone-circle' className={styles.dialling} />通话
+              <Icon type='pro-clock-circle' className={styles.unused} />空闲
             </div>
             <div className={styles.toolsHeader_right} >
-              <Icon type='warning-circle' />
-              <Icon type='warning-circle' />
+              <Icon type='pro-download' />
+              <Icon type='pro-sync' />
             </div>
           </div>
           <div className={styles.container} >

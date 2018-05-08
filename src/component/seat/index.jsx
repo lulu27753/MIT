@@ -42,8 +42,8 @@ export default class Seat extends Component {
           <div className={className} onClick={this.handleClick} >
             {status.sex === 'F' ? <img src={female} className={styles.person} /> : <img src={male} className={styles.person} />}
             {status.isNew === 1 && <div className={styles.new}>NEW</div>}
-            {status.telephoneState === 3 && <Icon type='phone' className={styles.dailling} />}
-            {status.telephoneState === 4 && <Icon type='clock-o' className={styles.unused} />}
+            {status.telephoneState === 3 && <Icon type='pro-phone-circle' className={styles.dialling} />}
+            {status.telephoneState === 4 && <Icon type='pro-clock-circle' className={styles.unused} />}
           </div>
         </Tooltip>
         );
