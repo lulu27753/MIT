@@ -29,7 +29,9 @@ const Header = Layout.Header;
 
 
 // 根据菜单取得重定向地址
-getMenuData().forEach(getRedirect);
+const menus = getMenuData();
+console.log('menus', menus);
+menus.forEach(getRedirect);
 console.log('redirectData', redirectData);
 export default class Dashboard extends React.Component {
   constructor(props) {
@@ -45,7 +47,7 @@ export default class Dashboard extends React.Component {
   }
   getChildContext() {
     const { location, routerData } = this.props;
-    // console.log('routerData', routerData);
+    console.log('routerData', routerData);
 
     return {
       location,
@@ -63,7 +65,7 @@ export default class Dashboard extends React.Component {
     const { pathname } = location;
     let title = 'autoTest';
     if (routerData[pathname] && routerData[pathname].name) {
-      title = `${routerData[pathname].name}-autoTest`;
+      title = `${routerData[pathname].name}`;
     }
     return title;
   }
@@ -76,19 +78,17 @@ export default class Dashboard extends React.Component {
     window.history.pushState(null, 'redirect', urlParams.href);
     return redirect;
   }
-  handleMenuCollapse = (collapsed) => {
-    console.log('handleMenuCollapse', collapsed);
-    this.setState({
-      collapsed
-    }, () => {
-      console.log('sstcollapsed', this.state.collapsed);
-    })
-  }
   handleQuit = () => {
     console.log('handleQuit', 'redirectTo: /login');
     this.setState({
       redirectTo: '/login'
     });
+  }
+  onCollapse = (collapsed) => {
+    this.setState({
+      collapsed
+    });
+    console.log('onCollapse', collapsed);
   }
 
 	render() {
@@ -124,10 +124,8 @@ export default class Dashboard extends React.Component {
     const layout = (
       <Layout>
         <Sider
-          span={{fold: '1', unfold: '16'}}
+          span={{fold: '1', unfold: '10'}}
           onCollapse={this.handleMenuCollapse}
-          style={{ background: '#2f323b' }}
-          collapsed={false}
         >
           <SiderMenu
             logo={logo}
@@ -139,12 +137,15 @@ export default class Dashboard extends React.Component {
            />
         </Sider>
         <Layout>
-          <Header style={{ background: '#fff', borderBottom: '1px solid #eee' }} >
+          <Header className={styles.header} >
             <GlobalHeader
               currentUser={currentUser}
               systemName={systemName}
-              routerPath='版本管理'
+              routerPath={this.getPageTitle()}
               onQuit={this.handleQuit}
+              collapsed={this.state.collapsed}
+              onCollapse={this.onCollapse}
+              toggle
             />
           </Header>
           <Content className={styles.content}>
@@ -181,4 +182,5 @@ export default class Dashboard extends React.Component {
       )
 	}
 }
+
 

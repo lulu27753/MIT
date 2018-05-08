@@ -8,6 +8,7 @@ import Dashboard from 'container/dashboard';
 import Render from 'container/test/render.jsx';
 // import NotFound from 'container/NotFound';
 // import './App.css';
+import '../style/reset.less';
 
 
 const App = () => (
