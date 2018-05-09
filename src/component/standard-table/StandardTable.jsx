@@ -12,7 +12,7 @@ export default class StandardTable extends Component {
       currentCallCnt: '', // 当前通话人力
       currentIdleCnt: '', // 当前空闲人力
       todayTotalCiPremium: '', // 当日累计车险保费
-      todayTotalCiCustCnt: '', //当日累计车险标的数
+      todayTotalCiCustCnt: '', // 当日累计车险标的数
       todayTotalCiAvgPremium: '', // 当日累计车险件均
       todayTotalNciPremium: '', // 当日累计非车保费
       realtimeEffecTalktime: '', // 人均实时有效通时(上一时段)
