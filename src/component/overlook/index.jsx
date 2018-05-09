@@ -93,7 +93,6 @@ export default class Overlook extends Component {
         <div>
           <div className={styles.toolsHeader}>
             <div className={styles.toolsHeader_left} >
-              <i className={styles.online} />在线
               <i className={styles.outline} />下线
               <Icon type='pro-phone-circle' className={styles.dialling} />通话
               <Icon type='pro-clock-circle' className={styles.unused} />空闲
