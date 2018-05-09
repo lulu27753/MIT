@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types'
 import classnames from 'classnames';
+// import _ from 'lodash';
 // import axios from 'axios';
 import { Tooltip, Icon } from 'components'
 
@@ -9,16 +10,28 @@ import female from 'assets/images/female.svg'
 import male from 'assets/images/male.svg'
 
 export default class Seat extends Component {
-    // constructor(props) {
-    //   super(props)
-    //   this.state = {
-    //     umId: props.umId
-    //   }
-    // }
+    constructor(props) {
+      super(props)
+      this.state = {
+        status: props.status
+      }
+    }
 
     static propTypes = {
       status: PropTypes.object,
       handleModalStatus: PropTypes.func
+    }
+
+    componentWillReceiveProps (nextProps) {
+      console.log('nextProps', nextProps)
+      const { status } = nextProps
+      // nextProps.status = nextProps.status || {}
+      // _.mapKeys(nextProps.status, function(value, key) {
+      //   return key + value;
+      // });
+      this.setState({
+        status: status
+      })
     }
 
     handleClick = () => {

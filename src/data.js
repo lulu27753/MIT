@@ -1,14 +1,14 @@
 /*
 * @Author: lulu27753
 * @Date:   2018-04-26 15:56:08
-* @Last Modified by:   lulu27753
-* @Last Modified time: 2018-04-27 13:41:57
+ * @Last Modified by: mikey.zhaopeng
+ * @Last Modified time: 2018-05-09 09:25:20
 * @use: 用于配置网站的静态数据信息
 */
 
 const data = {
 	common: {
-		systemName: '产险业务管理系统',
+		systemName: '产险线上化分析平台',
 	},
 	gfooter: {
 		links: [{
