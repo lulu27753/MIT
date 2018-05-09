@@ -63,7 +63,7 @@ export default class Dashboard extends React.Component {
   getPageTitle() {
     const { routerData, location } = this.props;
     const { pathname } = location;
-    let title = 'autoTest';
+    let title = '产险线上化分析平台';
     if (routerData[pathname] && routerData[pathname].name) {
       title = `${routerData[pathname].name}`;
     }

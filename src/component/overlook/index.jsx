@@ -3,7 +3,7 @@ import Seat from 'component/seat';
 import SeatInfoModal from 'component/seat-info-modal'
 import { Icon } from 'components'
 // import axios from 'axios';
-import data from './data.jsx'
+import data from 'doc/interface/example/teamSeatQuery.jsx'
 
 import styles from './index.less';
 
@@ -24,20 +24,17 @@ export default class Overlook extends Component {
     }
 
     componentWillMount () {
-      this.setState({
-        cNumber: data.cNumber,
-        rNumber: data.rNumber,
-        dataSource: data.dataSource
-      })
+      if (this.state.id) {
+        this.setState(data.data)
+      }
     }
 
     componentWillReceiveProps (nextProps) {
-      this.setState({
-        id: nextProps.id,
-        cNumber: data.cNumber,
-        rNumber: data.rNumber,
-        dataSource: data.dataSource
-      })
+      if (nextProps.id === this.state.id) {
+        return false
+      } else {
+        this.setState(data.data)
+      }
     }
 
     // 点击坐席图标
