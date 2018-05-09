@@ -6,8 +6,8 @@ export default {
         rNumber: 8,
         dataSource: [{
             sex: 'M',
-            isNew: 0,
-            telephoneState: 0,
+            isNew: 0, // 0不是新人， 1是新人
+            telephoneState: 0, // 1,2,3 1离线,2通话,3空闲
             umId: 'wangdatou001',
             name: '王大头',
             x: 1,
