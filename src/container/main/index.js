@@ -3,7 +3,7 @@ import Layout, { Sider, Content } from 'components/layout';
 import TreeMenu from 'component/tree-menu';
 import RightHeader from 'component/right-header';
 import Overlook from 'component/overlook';
-// import standardTable from 'component/standard-table'
+import StandardTable from 'component/standard-table'
 
 export default class right extends Component {
   constructor (props) {
@@ -31,7 +31,7 @@ export default class right extends Component {
           <Content>
             <RightHeader id={id} />
             <Overlook id={id} />
-            {/* <standardTable id={id} /> */}
+            <StandardTable id={id} />
           </Content>
         </Layout>
       </Layout>
