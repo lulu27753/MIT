@@ -124,8 +124,8 @@ export default class Dashboard extends React.Component {
     const layout = (
       <Layout>
         <Sider
+          collapsed={this.state.collapsed}
           span={{fold: '1', unfold: '10'}}
-          onCollapse={this.handleMenuCollapse}
         >
           <SiderMenu
             logo={logo}
