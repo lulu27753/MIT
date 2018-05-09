@@ -14,10 +14,12 @@ const treeData = [{
         title: '陆星座席组',
         number: 18,
         key: '0-0-0-0',
+        umid: 'luxing001',
       }, {
         title: '韩寒座席组',
         number: 18,
         key: '0-0-0-1',
+        umid: 'hanhan001',
       }]
     }, {
       title: '一号楼-4楼-B区',
@@ -27,10 +29,12 @@ const treeData = [{
         title: '王坤座席组',
         number: 18,
         key: '0-0-1-0',
+        umid: 'wangkun002',
       }, {
         title: '宋亚强座席组',
         number: 30,
         key: '0-0-1-1',
+        umid: 'songyaqiang002',
       }]
     }]
   }, {
@@ -45,6 +49,7 @@ const treeData = [{
         title: '陆星座席组',
         number: 18,
         key: '0-1-0-1',
+        umid: 'luxing003',
       }]
     }, {
       title: '一号楼-4楼-B区',
@@ -54,10 +59,12 @@ const treeData = [{
         title: '王坤座席组',
         number: 18,
         key: '0-1-1-0',
+        umid: 'wangkun003',
       }, {
         title: '宋亚强座席组',
         number: 30,
         key: '0-1-1-1',
+        umid: 'songyaqiang003',
       }]
     }]
   }, {
@@ -72,6 +79,7 @@ const treeData = [{
         title: '陆星座席组',
         number: 18,
         key: '0-2-0-0',
+        umid: 'luxing004',
       }]
     }, {
       title: '一号楼-4楼-B区',
@@ -81,10 +89,12 @@ const treeData = [{
         title: '王坤座席组',
         number: 18,
         key: '0-2-1-0',
+        umid: 'wangkun005',
       }, {
         title: '宋亚强座席组',
         number: 30,
         key: '0-2-1-1',
+        umid: 'songyaqiang005',
       }]
     }]
   }]
@@ -104,6 +114,7 @@ const treeData = [{
         title: '陆星座席组',
         number: 18,
         key: '1-0-0-0',
+        umid: 'luxing006',
       }]
     }, {
       title: '一号楼-4楼-B区',
@@ -113,10 +124,12 @@ const treeData = [{
         title: '王坤座席组',
         number: 18,
         key: '1-0-1-0',
+        umid: 'wangkun007',
       }, {
         title: '宋亚强座席组',
         number: 30,
         key: '1-0-1-1',
+        umid: 'songyaqiang007',
       }]
     }]
   }, {
@@ -131,6 +144,7 @@ const treeData = [{
         title: '陆星座席组',
         number: 18,
         key: '1-1-0-0',
+        umid: 'luxing007',
       }]
     }, {
       title: '一号楼-4楼-B区',
@@ -140,10 +154,12 @@ const treeData = [{
         title: '王坤座席组',
         number: 18,
         key: '1-1-1-0',
+        umid: 'wangkun008',
       }, {
         title: '宋亚强座席组',
         number: 30,
         key: '1-1-1-1',
+        umid: 'songyaqiang008',
       }]
     }]
   }]
@@ -156,36 +172,9 @@ const treeData = [{
   number: 400,
   key: '3',
 }]
-const dataList = [];
-const generateList = (data) => {
-  for (let i = 0; i < data.length; i++) {
-    const node = data[i];
-    const key = node.key;
-    const title = node.title;
-    const number = node.number;
-    dataList.push({ key, title, number });
-    if (node.children) {
-      generateList(node.children, node.key);
-    }
-  }
-};
-generateList(treeData);
 
-const getParentKey = (key, tree) => {
-  let parentKey;
-  for (let i = 0; i < tree.length; i++) {
-    const node = tree[i];
-    if (node.children) {
-      if (node.children.some(item => item.key === key)) {
-        parentKey = node.key;
-      } else if (getParentKey(key, node.children)) {
-        parentKey = getParentKey(key, node.children);
-      }
-    }
-  }
-  return parentKey;
-};
-
-
-export default treeData;
-export { dataList, getParentKey };
+export default {
+  resultCode: '000000',
+  resultMesg: '成功',
+  data: treeData,
+}
