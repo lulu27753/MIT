@@ -54,7 +54,7 @@ export default class StandardTable extends Component {
           todayTotalTalktime: data.todayTotalTalktime + 'h',
           realtimeEffecTalknum: data.realtimeEffecTalknum + 'h',
           todayTotalTalknum: data.todayTotalTalknum,
-          realtimeAvgTalktime: data.realtimeAvgTalktime,
+          realtimeAvgTalktime: data.realtimeAvgTalktime + 'h',
           todayTotalAvgTalktime: data.todayTotalAvgTalktime + 'h'
         })
       } else {
