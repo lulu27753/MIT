@@ -33,6 +33,9 @@ export default class Overlook extends Component {
       if (nextProps.id === this.state.id) {
         return false
       } else {
+        this.setState({
+          id: nextProps.id
+        })
         this.setState(data.data)
       }
     }
@@ -74,8 +77,18 @@ export default class Overlook extends Component {
       }
     }
 
+    // 下载团队指标
+    downloadTeamIndex () {
+      console.log('downLoadTeamIndex')
+    }
+
+    // 刷新
+    refresh () {
+      console.log('refresh')
+    }
+
     render() {
-      const { visible, umId } = this.state
+      const { id, visible, umId } = this.state
       return (
         <div>
           <div className={styles.toolsHeader}>
@@ -86,8 +99,8 @@ export default class Overlook extends Component {
               <Icon type='pro-clock-circle' className={styles.unused} />空闲
             </div>
             <div className={styles.toolsHeader_right} >
-              <Icon type='pro-download' className={styles.download} />
-              <Icon type='pro-sync' className={styles.sync} />
+              {id && <Icon type='pro-download' className={styles.download} onClick={this.downloadTeamIndex} />}
+              {id && <Icon type='pro-sync' className={styles.sync} onClick={this.refresh} />}
             </div>
           </div>
           <div className={styles.container} >
