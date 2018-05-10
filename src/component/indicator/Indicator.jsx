@@ -22,8 +22,8 @@ export default class Indicator extends Component {
 
     return (
       <div className={styles.indicator} {...others}>
-        <span className={styles.monitoring} style={{width: width}}><p>{ title }</p></span>
-        <span className={styles.monitoring_data}><span>{ data }</span></span>
+        <span className={styles.monitoring} style={{width: width}}><span className={styles.title_span}>{ title }</span></span>
+        <span className={styles.monitoring_data}><span className={styles.data_span}>{ data }</span></span>
       </div>
     )
   }

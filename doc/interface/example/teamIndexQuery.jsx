@@ -7,7 +7,7 @@ export default {
     currentIdleCnt: 10, // 当前空闲人力
     // 业绩指标
     todayTotalCiPremium: 300000, // 当日累计车险保费
-    todayTotalCiCustCnt: 20, //当日累计车险标的数
+    todayTotalCiCustCnt: 20, // 当日累计车险标的数
     todayTotalCiAvgPremium: 20, // 当日累计车险件均
     todayTotalNciPremium: 30000, // 当日累计非车保费
     // 话务指标
@@ -19,7 +19,7 @@ export default {
     todayTotalAvgTalktime: 0.59, // 人均当日累计平均通时
     // 上日话务情况
     perLastSumAvg: 1.23, // 人均上日累计平均通时
-    perLastSumAvg: 1.23, // 人均上日累计通时
+    perLastSumAvg1: 1.23, // 人均上日累计通时
     perLastSumCount: 30, // 人均上日累计通次
   }
 }
