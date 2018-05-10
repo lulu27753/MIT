@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { message, Title, Grid } from 'components';
+import { Title, Grid } from 'components';
 import Indicator from '../indicator/index';
-// import axios from 'axios';
-import data from 'doc/interface/example/teamIndexQuery.jsx';
+import services from 'api/services';
+import urls from 'api/urls';
+
 import styles from './index.less';
 
 const Row = Grid.Row;
@@ -38,7 +39,7 @@ export default class StandardTable extends Component {
  }
   // 初始化数据
   componentWillMount() {
-    this.handleGettingData();
+    this.handleRequestData(this.props.id);
   }
 // 定时调用
   componentDidMount() {
@@ -48,30 +49,32 @@ export default class StandardTable extends Component {
   componentWillUnmount() {
     clearInterval(this.timeId);
   }
-  // 获取数据
-  handleGettingData() {
-    const resultCode = data.resultCode;
-    const resultMesg = data.resultMesg;
-    if (resultCode === '000000') {
-      this.setState({
-          currentCallCnt: data.data.currentCallCnt,
-          currentIdleCnt: data.data.currentIdleCnt,
-          todayTotalCiPremium: this.formatNumber(data.data.todayTotalCiPremium),
-          todayTotalCiCustCnt: data.data.todayTotalCiCustCnt,
-          todayTotalCiAvgPremium: data.data.todayTotalCiAvgPremium,
-          todayTotalNciPremium: this.formatNumber(data.data.todayTotalNciPremium),
-          realtimeEffecTalktime: data.data.realtimeEffecTalktime + 'h',
-          todayTotalTalktime: data.data.todayTotalTalktime + 'h',
-          realtimeEffecTalknum: data.data.realtimeEffecTalknum + 'h',
-          todayTotalTalknum: data.data.todayTotalTalknum,
-          realtimeAvgTalktime: data.data.realtimeAvgTalktime + 'h',
-          todayTotalAvgTalktime: data.data.todayTotalAvgTalktime + 'h'
-      })
-    } else {
-      message.error(resultMesg);
-    }
+
+  handleGetData = (data) => {
+    this.setState(data)
   }
+
+  // 获取数据
+  handleRequestData(id) {
+    services.get(urls.queryTeamIndex, {umId: id}, this.handleGetData)
+  }
+
   render () {
+    const {
+      currentCallCnt,
+      currentIdleCnt,
+      todayTotalCiPremium,
+      todayTotalCiCustCnt,
+      todayTotalCiAvgPremium,
+      todayTotalNciPremium,
+      realtimeEffecTalktime,
+      todayTotalTalktime,
+      realtimeEffecTalknum,
+      todayTotalTalknum,
+      realtimeAvgTalktime,
+      todayTotalAvgTalktime
+    } = this.state;
+
     return (
       <div className={styles.dataContainer}>
         <Row>
@@ -83,10 +86,10 @@ export default class StandardTable extends Component {
               </div>
               <div className={styles.embarkationContainer}>
                 <div className={styles.embarkation}>
-                  <Indicator title='当前通话人力' style={{ height: 80 }} data={this.state.currentCallCnt} />
+                  <Indicator title='当前通话人力' style={{ height: 80 }} data={currentCallCnt} />
                 </div>
                 <div className={styles.embarkation}>
-                  <Indicator title='当前空闲人力' style={{ height: 80 }} data={this.state.currentIdleCnt} />
+                  <Indicator title='当前空闲人力' style={{ height: 80 }} data={currentIdleCnt} />
                 </div>
               </div>
             </div>
@@ -101,26 +104,26 @@ export default class StandardTable extends Component {
                 <Col span={8}>
                   <div className={styles.leftContent}>
                     <div className={styles.perAccumulate}>
-                      <Indicator title='人均实时平均通时(上一时段)' width='80%' style={{height: 48}} data={this.state.realtimeAvgTalktime} />
+                      <Indicator title='人均实时平均通时(上一时段)' width='80%' style={{height: 48}} data={realtimeAvgTalktime + 'h'} />
                     </div>
                     <div className={styles.perAccumulate}>
-                      <Indicator title='人均实时有效通时(上一时段)' width='80%' style={{height: 48}} data={this.state.realtimeEffecTalktime} />
+                      <Indicator title='人均实时有效通时(上一时段)' width='80%' style={{height: 48}} data={realtimeEffecTalktime + 'h'} />
                     </div>
                     <div className={styles.perAccumulate}>
-                      <Indicator title='人均当日累计通时' width='80%' style={{height: 48}} data={this.state.todayTotalTalktime} />
+                      <Indicator title='人均当日累计通时' width='80%' style={{height: 48}} data={todayTotalTalktime + 'h'} />
                     </div>
                   </div>
                 </Col>
                 <Col span={8}>
                   <div className={styles.rightContent}>
                     <div className={styles.perAccumulate}>
-                      <Indicator title='人均当日累计平均通时' width='80%' style={{height: 48}} data={this.state.todayTotalAvgTalktime} />
+                      <Indicator title='人均当日累计平均通时' width='80%' style={{height: 48}} data={todayTotalAvgTalktime + 'h'} />
                     </div>
                     <div className={styles.perAccumulate}>
-                      <Indicator title='人均实时有效通次(上一时段)' width='80%' style={{height: 48}} data={this.state.realtimeEffecTalknum} />
+                      <Indicator title='人均实时有效通次(上一时段)' width='80%' style={{height: 48}} data={realtimeEffecTalknum + 'h'} />
                     </div>
                     <div className={styles.perAccumulate}>
-                      <Indicator title='人均当日累计通次' width='80%' style={{height: 48}} data={this.state.todayTotalTalknum} />
+                      <Indicator title='人均当日累计通次' width='80%' style={{height: 48}} data={todayTotalTalknum} />
                     </div>
                   </div>
                 </Col>
@@ -134,16 +137,16 @@ export default class StandardTable extends Component {
                 <Title className={styles.work} title='业绩指标' />
               </div>
               <div className={styles.perforList}>
-                <Indicator title='当日累计车险保费' width='60%' style={{height: 34}} data={this.state.todayTotalCiPremium} />
+                <Indicator title='当日累计车险保费' width='60%' style={{height: 34}} data={this.formatNumber(todayTotalCiPremium)} />
               </div>
               <div className={styles.perforList}>
-                <Indicator title='当日累计车险标的数' width='62%' style={{height: 34}} data={this.state.todayTotalCiCustCnt} />
+                <Indicator title='当日累计车险标的数' width='62%' style={{height: 34}} data={todayTotalCiCustCnt} />
               </div>
               <div className={styles.perforList}>
-                <Indicator title='当日累计车险件均' data={this.state.todayTotalCiAvgPremium} width='60%' style={{height: 34}} />
+                <Indicator title='当日累计车险件均' data={todayTotalCiAvgPremium} width='60%' style={{height: 34}} />
               </div>
               <div className={styles.perforList}>
-                <Indicator title='当日累计非车险保费' data={this.state.todayTotalNciPremium} width='65%' style={{height: 34}} />
+                <Indicator title='当日累计非车险保费' data={this.formatNumber(todayTotalNciPremium)} width='65%' style={{height: 34}} />
               </div>
             </div>
           </Col>
