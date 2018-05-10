@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import Seat from 'component/seat';
 import SeatInfoModal from 'component/seat-info-modal'
 import { Icon } from 'components'
-// import axios from 'axios';
-import data from 'doc/interface/example/teamSeatQuery.jsx'
+import services from 'api/services';
+import urls from 'api/urls';
 
 import styles from './index.less';
 
@@ -25,7 +25,7 @@ export default class Overlook extends Component {
 
     componentWillMount () {
       if (this.state.id) {
-        this.setState(data.data)
+        this.getData(this.state.id)
       }
     }
 
@@ -33,11 +33,21 @@ export default class Overlook extends Component {
       if (nextProps.id === this.state.id) {
         return false
       } else {
-        this.setState({
-          id: nextProps.id
-        })
-        this.setState(data.data)
+        this.setState({id: nextProps.id})
+        this.getData(this.state.id)
       }
+    }
+
+    handleUpdateState = (data) => {
+      this.setState(data)
+    }
+
+    handleError = (data) => {
+      console.log('handleError', data)
+    }
+
+    getData (id) {
+      services.get(urls.queryTeamSeatStatus, {umId: id}, this.handleUpdateState, this.handleError)
     }
 
     // 点击坐席图标
@@ -78,13 +88,13 @@ export default class Overlook extends Component {
     }
 
     // 下载团队指标
-    downloadTeamIndex () {
+    downloadTeamIndex = () => {
       console.log('downLoadTeamIndex')
     }
 
     // 刷新
-    refresh () {
-      console.log('refresh')
+    refresh = () => {
+      this.getData(this.state.id)
     }
 
     render() {

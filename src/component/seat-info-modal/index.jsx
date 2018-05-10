@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { Modal, Title, Grid } from 'components';
-import Indicator from 'component/indicator'
-// import axios from 'axios';
-import data from 'doc/interface/example/seatIndexQuery'
+import Indicator from 'component/indicator';
+import services from 'api/services';
+import urls from 'api/urls';
 
 import styles from './index.less';
 
@@ -13,7 +13,6 @@ const Col = Grid.Col;
 export default class SeatInfoModal extends Component {
   constructor(props) {
     super(props)
-    console.log('props', props)
     this.state = {
       umId: props.umId,
       visible: props.visible,
@@ -27,9 +26,26 @@ export default class SeatInfoModal extends Component {
   }
 
   componentWillMount () {
+    if (this.state.umId) {
+      this.getData(this.state.umId);
+    }
+  }
+
+  componentWillReceiveProps (nextProps) {
     this.setState({
-      data: data.data
+      umId: nextProps.umId
     })
+    this.getData(nextProps.umId)
+  }
+
+  handleUpdateState = (data) => {
+    this.setState({
+      data: data
+    })
+  }
+
+  getData = (umId) => {
+    services.get(urls.querySeatIndex, {umId: umId}, this.handleUpdateState)
   }
 
   handleCancel = () => {
@@ -50,16 +66,16 @@ export default class SeatInfoModal extends Component {
         </Row>
         <Row className={styles.row}>
           <Col span={6} className={styles.col}>
-            <Indicator title='姓名' data={data.name} />
+            <Indicator title='姓名' data={data.tmrName} />
           </Col>
           <Col span={6} className={styles.col}>
-            <Indicator title='司龄' data={data.onboardCnt} />
+            <Indicator title='司龄' data={data.onboardAge} />
           </Col>
           <Col span={6} className={styles.col}>
-            <Indicator title='坐席业务模式' data={data.tmrBusinessModeCode} />
+            <Indicator title='坐席业务模式' data={data.tmrType} />
           </Col>
           <Col span={6} >
-            <Indicator title='职级描述' data={data.positionTypeDesc} />
+            <Indicator title='职级描述' data={data.positionName} />
           </Col>
         </Row>
         <br />
