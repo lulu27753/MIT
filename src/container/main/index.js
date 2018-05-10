@@ -5,6 +5,8 @@ import RightHeader from 'component/right-header';
 import Overlook from 'component/overlook';
 import StandardTable from 'component/standard-table'
 
+import styles from './index.less'
+
 export default class right extends Component {
   constructor (props) {
     super(props)
@@ -23,11 +25,11 @@ export default class right extends Component {
   render () {
     const { id } = this.state
     return (
-      <Layout style={{ height: '100%' }} >
+      <Layout className={styles.main} >
         <Sider span={19}>
           <TreeMenu onToggle={this.toggleTeam} />
         </Sider>
-        <Layout style={{ padding: '20px' }}>
+        <Layout className={styles.main_right}>
           <Content>
             <RightHeader id={id} />
             <Overlook id={id} />

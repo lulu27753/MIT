@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types'
 import classnames from 'classnames';
-// import _ from 'lodash';
-// import axios from 'axios';
 import { Tooltip, Icon } from 'components'
 
 import styles from './index.less';
@@ -23,12 +21,7 @@ export default class Seat extends Component {
     }
 
     componentWillReceiveProps (nextProps) {
-      console.log('nextProps', nextProps)
       const { status } = nextProps
-      // nextProps.status = nextProps.status || {}
-      // _.mapKeys(nextProps.status, function(value, key) {
-      //   return key + value;
-      // });
       this.setState({
         status: status
       })
