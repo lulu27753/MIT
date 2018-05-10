@@ -42,9 +42,10 @@ export default class TreeMenu extends React.Component {
     this.props.onToggle(selectedKeys)
   }
   render() {
-  const {searchValue, expandedKeys, autoExpandParent } = this.state;
+  const { searchValue, expandedKeys, autoExpandParent } = this.state;
   const { link, parentpath, searchColor } = this.props;
   const loop = data => data.map((item) => {
+    const key = item.um || item.key;
     const index = item.title.indexOf(searchValue);
     const beforeStr = item.title.substr(0, index);
     const afterStr = item.title.substr(index + searchValue.length);
@@ -61,12 +62,12 @@ export default class TreeMenu extends React.Component {
   : <span>{item.title} ({item.number})</span>;
     if (item.children) {
       return (
-        <TreeNode key={item.key} title={title}>
+        <TreeNode key={key} title={title}>
           {loop(item.children)}
         </TreeNode>
       );
     }
-return <TreeNode key={item.key} title={link ? <Link to={`${parentpath}/${item.key}`}>{title}</Link> : title} />;
+return <TreeNode key={key} title={link ? <Link to={`${parentpath}/${key}`}>{title}</Link> : title} />;
 });
     return (
       <div className={styles.tree}>

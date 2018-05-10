@@ -5,7 +5,7 @@ import RightHeader from 'component/right-header';
 import Overlook from 'component/overlook';
 // import standardTable from 'component/standard-table'
 
-export default class right extends Component {
+export default class Main extends Component {
   constructor (props) {
     super(props)
     this.state = {

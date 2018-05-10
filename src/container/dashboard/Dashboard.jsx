@@ -10,7 +10,7 @@ import Layout from 'components/layout';
 import SiderMenu from 'component/sider-menu';
 // import Authorized from 'component/authorized';
 import GlobalHeader from 'component/global-header';
-import Main from 'container/main';
+import Main from 'container/main/index.jsx';
 
 import logo from 'assets/images/logo.png';
 // import { getRoutes } from 'utils/getRoutes';
