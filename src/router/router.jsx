@@ -2,11 +2,11 @@
 * @Author: lulu27753
 * @Date:   2018-04-19 16:32:54
  * @Last Modified by: mikey.zhaopeng
- * @Last Modified time: 2018-04-25 22:33:39
+ * @Last Modified time: 2018-05-09 18:41:55
 */
 import { getMenuData } from 'container/dashboard/getMenuData';
 import React from 'react';
-import {Route} from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 const About = () => (
   <div>
@@ -56,10 +56,13 @@ export const getRouterData = () => {
 		'/dashboard/scenario-manage': { component: () => <h1>scenario-manage</h1> },
 		'/dashboard/user-case-manage': { component: () => <h1>user-case-manage</h1> },
 		'/dashboard/business-tree': { component: () => <h1>business-tree</h1> },
+		'/tasks': { component: () => <h1>business-tree</h1> },
 		'/tasks/server-list': { component: () => <h1>server-list</h1> },
 		'/tasks/task-list': { component: () => <h1>task-list</h1> },
+		'/system': { component: () => <h1>user-list</h1> },
 		'/system/user-list': { component: () => <h1>user-list</h1> },
 		'/system/basic-list': { component: () => <h1>basic-list</h1> },
+		'/log': { component: () => <h1>scenario-chart</h1> },
 		'/log/scenario-chart': { component: () => <h1>scenario-chart</h1> },
 		'/log/user-case-chart': { component: () => <h1>user-case-chart</h1> },
 		'/log/task-logo-search': { component: () => <h1>task-logo-search</h1> },

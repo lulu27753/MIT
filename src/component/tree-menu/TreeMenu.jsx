@@ -20,6 +20,9 @@ export default class TreeMenu extends React.Component {
     searchValue: '',
     autoExpandParent: true
   }
+  static defaultProps = {
+    searchColor: '#f50'
+  }
   onExpand = (expandedKeys) => {
     this.setState({expandedKeys, autoExpandParent: false}, () => {
     console.log('expandedKeys', expandedKeys);
@@ -39,7 +42,8 @@ export default class TreeMenu extends React.Component {
     this.props.onToggle(selectedKeys)
   }
   render() {
-  const {searchValue, expandedKeys, autoExpandParent} = this.state;
+  const {searchValue, expandedKeys, autoExpandParent } = this.state;
+  const { link, parentpath, searchColor } = this.props;
   const loop = data => data.map((item) => {
     const index = item.title.indexOf(searchValue);
     const beforeStr = item.title.substr(0, index);
@@ -49,7 +53,7 @@ export default class TreeMenu extends React.Component {
         <span>
           {beforeStr}
           <span style={{
-            color: '#f50'
+            color: searchColor
           }}>{searchValue}</span>
           {afterStr} ({item.number})
         </span>
@@ -62,12 +66,13 @@ export default class TreeMenu extends React.Component {
         </TreeNode>
       );
     }
-return <TreeNode key={item.key} title={<Link to={`/dashboard/version-manage/${item.key}`}>{title}</Link>} />;
+return <TreeNode key={item.key} title={link ? <Link to={`${parentpath}/${item.key}`}>{title}</Link> : title} />;
 });
     return (
       <div className={styles.tree}>
         <Search style={{ marginBottom: 8 }} placeholder='搜索职场' onChange={this.onChange} />
         <Tree
+          {...this.props}
           onExpand={this.onExpand}
           expandedKeys={expandedKeys}
           autoExpandParent={autoExpandParent}

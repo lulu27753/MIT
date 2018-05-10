@@ -56,6 +56,8 @@ export default class SiderMenu extends PureComponent {
         keys.push(item.path);
       }
     });
+    console.log('getFlatMenuKeys', keys);
+
     return keys;
   }
 	getSelectedMenuKeys = (path) => {

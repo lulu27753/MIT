@@ -36,7 +36,9 @@ module.exports = {
       'reduxes': path.resolve(__dirname, 'src/reduxes'),
       'utils': path.resolve(__dirname, 'src/utils'),
       'src': path.resolve(__dirname, 'src'),
-      'doc': path.resolve(__dirname, 'doc')
+      'doc': path.resolve(__dirname, 'doc'),
+      'style': path.resolve(__dirname, 'style')
+
     }
   },
   // devserver 配置

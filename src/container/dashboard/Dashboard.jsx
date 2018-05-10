@@ -116,10 +116,10 @@ export default class Dashboard extends React.Component {
     //           )
     // console.log(childRoute);
 
-    const redirectRoute = redirectData.map(item =>
-      <Redirect key={item.from} exact from={item.from} to={item.to} />
-      )
-    const bashRedirect = this.getBashRedirect();
+    // const redirectRoute = redirectData.map(item =>
+    //   <Redirect key={item.from} exact from={item.from} to={item.to} />
+    //   )
+    // const bashRedirect = this.getBashRedirect();
     // console.log('bashRedirect', bashRedirect);
     const layout = (
       <Layout>
@@ -150,26 +150,11 @@ export default class Dashboard extends React.Component {
           </Header>
           <Content className={styles.content}>
             <Switch>
-              {/* <Route exact path='/dashboard' component={TreeMenu} /> */}
-              {/* <Route path='/dashboard/version-manage' render={() => <TreeMenu />} /> */}
-              <Route path='/dashboard/demand-manage' render={() => <Main><TreeMenuRoutes /></Main>} />
-              <Route path='/dashboard/scenario-manage' render={() => <h1>scenario-manage</h1>} />
-              <Route path='/dashboard/user-case-manage' render={() => <h1>scenario-manage</h1>} />
-              <Route path='/dashboard/business-tree' render={() => <h1>business-tree</h1>} />
-              <Route path='/tasks/server-list' render={() => <h1>server-list</h1>} />
-              <Route path='/tasks/task-list' render={() => <h1>task-list</h1>} />
-              <Route path='/system/user-list' render={() => <h1>user-list</h1>} />
-              <Route path='/system/basic-list' render={() => <h1>basic-list</h1>} />
-              <Route path='/log/scenario-chart' render={() => <h1>scenario-chart</h1>} />
-              <Route path='/log/user-case-chart' render={() => <h1>user-case-chart</h1>} />
-              <Route path='/log/task-logo-search' render={() => <h1>task-logo-search</h1>} />
-              <Route path='/log/check-log' render={() => <h1>check-log</h1>} />
-              <Route render={() => <Main><TreeMenuRoutes /></Main>} />
+              <Route exact path='/dashboard' render={() => <Main><TreeMenuRoutes /></Main>} />
               {/* { childRoute } */}
-              {redirectRoute}
-              <Redirect exact from='/' to={bashRedirect} />
+              {/* {redirectRoute} */}
+              {/* <Redirect exact from='/' to={bashRedirect} /> */}
             </Switch>
-            {/* <TreeMenu /> */}
           </Content>
         </Layout>
       </Layout>
