@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
-import { Modal, Title, Grid } from 'components';
+import { Modal, Title, Grid, Divider, Icon, Tooltip } from 'components';
 import Indicator from 'component/indicator';
 import services from 'api/services';
 import urls from 'api/urls';
@@ -14,8 +14,6 @@ export default class SeatInfoModal extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      umId: props.umId,
-      visible: props.visible,
       data: {}
     }
   }
@@ -25,17 +23,16 @@ export default class SeatInfoModal extends Component {
     visible: PropTypes.bool
   }
 
-  componentWillMount () {
-    if (this.state.umId) {
-      this.getData(this.state.umId);
-    }
-  }
-
   componentWillReceiveProps (nextProps) {
-    this.setState({
-      umId: nextProps.umId
-    })
-    this.getData(nextProps.umId)
+    if (this.props.umId && (nextProps.umId === this.props.umId)) {
+      return false;
+    } else {
+      this.setState({
+        umId: nextProps.umId
+      }, () => {
+        this.getData(nextProps.umId)
+      })
+    }
   }
 
   handleUpdateState = (data) => {
@@ -45,13 +42,17 @@ export default class SeatInfoModal extends Component {
   }
 
   getData = (umId) => {
-    services.get(urls.querySeatIndex, {umId: umId}, this.handleUpdateState)
+    if (umId) {
+      // console.log('umId2', umId);
+      services.get(urls.querySeatIndex, {umId: umId}, this.handleUpdateState)
+    }
   }
 
   handleCancel = () => {
       const { umId, handleModalStatus } = this.props
       if (typeof handleModalStatus === 'function') {
-          handleModalStatus(umId, false)
+          const visible = false;
+          handleModalStatus(umId, visible)
       }
   }
 
@@ -78,7 +79,7 @@ export default class SeatInfoModal extends Component {
             <Indicator title='职级描述' data={data.positionName} />
           </Col>
         </Row>
-        <br />
+        <Divider className={styles.divider} />
         <Row className={styles.row}>
           <Title title='当日工作情况' style={{paddingLeft: '0'}} />
         </Row>
@@ -87,7 +88,7 @@ export default class SeatInfoModal extends Component {
             <Indicator title='是否话务活跃' data={data.isActive} />
           </Col>
         </Row>
-        <br />
+        <Divider className={styles.divider} />
         <Row className={styles.row}>
           <Title title='当日业绩情况' style={{paddingLeft: '0'}} />
         </Row>
@@ -102,7 +103,7 @@ export default class SeatInfoModal extends Component {
             <Indicator title='当日累计非车保护费' data={data.todayTotalNciPremium} />
           </Col>
         </Row>
-        <br />
+        <Divider className={styles.divider} />
         <Row className={styles.row}>
           <Title title='当日话务情况' style={{paddingLeft: '0'}} />
         </Row>
@@ -131,12 +132,21 @@ export default class SeatInfoModal extends Component {
         <Row className={styles.row}>
           <Col span={8} className={styles.col}>
             <Indicator title='当日累计通时' data={data.todayTotalTalkTime} />
+            <Tooltip placement='right' title={`昨日累计通时 ${data.lastSumTime}`}>
+              <Icon type='pro-phone-circle' className={styles.fixIcon} />
+            </Tooltip>
           </Col>
           <Col span={8} className={styles.col}>
             <Indicator title='当日累计通次' data={data.todayTotalTalkNum} />
+            <Tooltip placement='right' title={`昨日累计通次 ${data.lastSumCount}`}>
+              <Icon type='pro-phone-circle' className={styles.fixIcon} />
+            </Tooltip>
           </Col>
           <Col span={8}>
             <Indicator title='当日累计平均通时' data={data.todayTotalAvgTalkTime} />
+            <Tooltip placement='right' title={`昨日累计平均通时 ${data.lastSumAvg}`}>
+              <Icon type='pro-phone-circle' className={styles.fixIcon} style={{ right: '8px' }} />
+            </Tooltip>
           </Col>
         </Row>
       </Modal>

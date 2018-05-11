@@ -2,99 +2,109 @@ const treeData = [{
   title: '上海-张江销售中心',
   number: 1200,
   key: '0',
+  um: '',
   children: [{
     title: '上海营区',
     number: 400,
     key: '0-0',
+    um: '',
     children: [{
       title: '一号楼-4楼-A区',
       number: 200,
       key: '0-0-0',
+      um: '',
       children: [{
         title: '陆星座席组',
         number: 18,
         key: '0-0-0-0',
-        umid: 'luxing001',
+        um: 'luxing001',
       }, {
         title: '韩寒座席组',
         number: 18,
         key: '0-0-0-1',
-        umid: 'hanhan001',
+        um: 'hanhan001',
       }]
     }, {
       title: '一号楼-4楼-B区',
       number: 200,
       key: '0-0-1',
+      um: '',
       children: [{
         title: '王坤座席组',
         number: 18,
         key: '0-0-1-0',
-        umid: 'wangkun002',
+        um: 'wangkun002',
       }, {
         title: '宋亚强座席组',
         number: 30,
         key: '0-0-1-1',
-        umid: 'songyaqiang002',
+        um: 'songyaqiang002',
       }]
     }]
   }, {
     title: '江苏营区',
     number: 400,
     key: '0-1',
+    um: '',
     children: [{
       title: '一号楼-4楼-A区',
       number: 200,
       key: '0-1-0',
+      um: '',
       children: [{
         title: '陆星座席组',
         number: 18,
         key: '0-1-0-1',
-        umid: 'luxing003',
+        um: 'luxing003',
       }]
     }, {
       title: '一号楼-4楼-B区',
       number: 200,
       key: '0-1-1',
+      um: '',
       children: [{
         title: '王坤座席组',
         number: 18,
         key: '0-1-1-0',
-        umid: 'wangkun003',
+        um: 'wangkun003',
       }, {
         title: '宋亚强座席组',
         number: 30,
         key: '0-1-1-1',
-        umid: 'songyaqiang003',
+        um: 'songyaqiang003',
       }]
     }]
   }, {
     title: '广西营区',
     number: 400,
     key: '0-2',
+    um: '',
     children: [{
       title: '一号楼-4楼-A区',
       number: 200,
       key: '0-2-0',
+      um: '',
       children: [{
         title: '陆星座席组',
         number: 18,
         key: '0-2-0-0',
-        umid: 'luxing004',
+        um: 'luxing004',
       }]
     }, {
       title: '一号楼-4楼-B区',
       number: 200,
       key: '0-2-1',
+      um: '',
       children: [{
         title: '王坤座席组',
         number: 18,
         key: '0-2-1-0',
-        umid: 'wangkun005',
+        um: 'wangkun005',
       }, {
         title: '宋亚强座席组',
         number: 30,
         key: '0-2-1-1',
-        umid: 'songyaqiang005',
+        um: 'songyaqiang005',
       }]
     }]
   }]
@@ -102,10 +112,12 @@ const treeData = [{
   title: '成都销售中心',
   number: 398,
   key: '1',
+  um: '',
   children: [{
     title: '成都营区',
     number: 400,
     key: '1-0',
+    um: '',
     children: [{
       title: '一号楼-4楼-A区',
       number: 200,
@@ -114,52 +126,56 @@ const treeData = [{
         title: '陆星座席组',
         number: 18,
         key: '1-0-0-0',
-        umid: 'luxing006',
+        um: 'luxing006',
       }]
     }, {
       title: '一号楼-4楼-B区',
       number: 200,
       key: '1-0-1',
+      um: '',
       children: [{
         title: '王坤座席组',
         number: 18,
         key: '1-0-1-0',
-        umid: 'wangkun007',
+        um: 'wangkun007',
       }, {
         title: '宋亚强座席组',
         number: 30,
         key: '1-0-1-1',
-        umid: 'songyaqiang007',
+        um: 'songyaqiang007',
       }]
     }]
   }, {
     title: '江苏营区',
     number: 400,
     key: '1-1',
+    um: '',
     children: [{
       title: '一号楼-4楼-A区',
       number: 200,
       key: '1-1-0',
+      um: '',
       children: [{
         title: '陆星座席组',
         number: 18,
         key: '1-1-0-0',
-        umid: 'luxing007',
+        um: 'luxing007',
       }]
     }, {
       title: '一号楼-4楼-B区',
       number: 200,
       key: '1-1-1',
+      um: '',
       children: [{
         title: '王坤座席组',
         number: 18,
         key: '1-1-1-0',
-        umid: 'wangkun008',
+        um: 'wangkun008',
       }, {
         title: '宋亚强座席组',
         number: 30,
         key: '1-1-1-1',
-        umid: 'songyaqiang008',
+        um: 'songyaqiang008',
       }]
     }]
   }]
@@ -167,10 +183,12 @@ const treeData = [{
   title: '天津销售中心',
   number: 500,
   key: '2',
+  um: '',
 }, {
   title: '广州销售中心',
   number: 400,
   key: '3',
+  um: '',
 }]
 
 export default {

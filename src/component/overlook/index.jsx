@@ -7,7 +7,7 @@ import urls from 'api/urls';
 
 import styles from './index.less';
 
-const minCNumber = 13;
+const minCNumber = 20;
 const minRNumber = 8;
 
 export default class Overlook extends Component {
@@ -23,18 +23,13 @@ export default class Overlook extends Component {
       }
     }
 
-    componentWillMount () {
-      if (this.state.id) {
-        this.getData(this.state.id)
-      }
-    }
-
     componentWillReceiveProps (nextProps) {
-      if (nextProps.id === this.state.id) {
+      if (this.state.id && (nextProps.id === this.state.id)) {
         return false
       } else {
-        this.setState({id: nextProps.id})
-        this.getData(this.state.id)
+        this.setState({id: nextProps.id}, () => {
+          this.getData(this.state.id)
+        })
       }
     }
 
@@ -43,11 +38,13 @@ export default class Overlook extends Component {
     }
 
     handleError = (data) => {
-      console.log('handleError', data)
+      // console.log('handleError', data)
     }
 
     getData (id) {
-      services.get(urls.queryTeamSeatStatus, {umId: id}, this.handleUpdateState, this.handleError)
+      if (this.state.id || this.state.visible) {
+          services.get(urls.queryTeamSeatStatus, {umId: id}, this.handleUpdateState, this.handleError)
+      }
     }
 
     // 点击坐席图标
@@ -89,7 +86,7 @@ export default class Overlook extends Component {
 
     // 下载团队指标
     downloadTeamIndex = () => {
-      console.log('downLoadTeamIndex')
+      // console.log('downLoadTeamIndex')
     }
 
     // 刷新
@@ -100,7 +97,7 @@ export default class Overlook extends Component {
     render() {
       const { id, visible, umId } = this.state
       return (
-        <div>
+        <div style={{ height: '100%', position: 'relative' }}>
           <div className={styles.toolsHeader}>
             <div className={styles.toolsHeader_left} >
               <i className={styles.outline} />下线

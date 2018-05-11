@@ -115,7 +115,7 @@ export default function getPlacements(config) {
       ]
     }
   };
-// console.log(config.arrowPointAtCenter);
+// // console.log(config.arrowPointAtCenter);
 
 // 设置了 arrowPointAtCenter 后，箭头将指向目标元素的中心。
   Object.keys(placementMap).forEach(key => {
@@ -128,7 +128,7 @@ export default function getPlacements(config) {
       overflow: getOverflowOptions(autoAdjustOverflow)
     }
   });
-  // console.log(placementMap);
+  // // console.log(placementMap);
 
   return placementMap;
 }

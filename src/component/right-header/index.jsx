@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import services from 'api/services';
 import urls from 'api/urls';
 
 import styles from './index.less';
 
-export default class rightHeader extends Component {
+export default class RightHeader extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -27,8 +27,9 @@ export default class rightHeader extends Component {
     } else {
       this.setState({
         id: nextProps.id
+      }, () => {
+        this.getData(nextProps.id)
       })
-      this.getData(nextProps.id)
     }
   }
 
@@ -45,8 +46,8 @@ export default class rightHeader extends Component {
     return (
       <div className={styles.header} >
         <span>{place}</span>
-        <span>{ name || ''}</span>
-        <span>{ seatNum ? '团队坐席数量' + seatNum : ''}</span>
+        <span>{name || ''}</span>
+        <span>{seatNum ? `团队坐席数量${seatNum}` : ''}</span>
       </div>
      )
   }
