@@ -7,4 +7,5 @@ export default {
     login: `/login`,
     logout: `/logout`,
 
+    queryTeamIndex: '/peopleManagement/teamIndex/query'
 }
