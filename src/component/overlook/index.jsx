@@ -23,18 +23,13 @@ export default class Overlook extends Component {
       }
     }
 
-    componentWillMount () {
-      if (this.state.id) {
-        this.getData(this.state.id)
-      }
-    }
-
     componentWillReceiveProps (nextProps) {
-      if (nextProps.id === this.state.id) {
+      if (this.state.id && (nextProps.id === this.state.id)) {
         return false
       } else {
-        this.setState({id: nextProps.id})
-        this.getData(this.state.id)
+        this.setState({id: nextProps.id}, () => {
+          this.getData(this.state.id)
+        })
       }
     }
 
@@ -47,7 +42,9 @@ export default class Overlook extends Component {
     }
 
     getData (id) {
-      services.get(urls.queryTeamSeatStatus, {umId: id}, this.handleUpdateState, this.handleError)
+      if (this.state.id || this.state.visible) {
+          services.get(urls.queryTeamSeatStatus, {umId: id}, this.handleUpdateState, this.handleError)
+      }
     }
 
     // 点击坐席图标

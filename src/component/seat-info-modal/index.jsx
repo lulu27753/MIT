@@ -14,8 +14,6 @@ export default class SeatInfoModal extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      umId: props.umId,
-      visible: props.visible,
       data: {}
     }
   }
@@ -25,17 +23,16 @@ export default class SeatInfoModal extends Component {
     visible: PropTypes.bool
   }
 
-  componentWillMount () {
-    if (this.state.umId) {
-      this.getData(this.state.umId);
-    }
-  }
-
   componentWillReceiveProps (nextProps) {
-    this.setState({
-      umId: nextProps.umId
-    })
-    this.getData(nextProps.umId)
+    if (this.props.umId && (nextProps.umId === this.props.umId)) {
+      return false;
+    } else {
+      this.setState({
+        umId: nextProps.umId
+      }, () => {
+        this.getData(nextProps.umId)
+      })
+    }
   }
 
   handleUpdateState = (data) => {
@@ -45,13 +42,17 @@ export default class SeatInfoModal extends Component {
   }
 
   getData = (umId) => {
-    services.get(urls.querySeatIndex, {umId: umId}, this.handleUpdateState)
+    if (umId) {
+      console.log('umId2', umId);
+      services.get(urls.querySeatIndex, {umId: umId}, this.handleUpdateState)
+    }
   }
 
   handleCancel = () => {
       const { umId, handleModalStatus } = this.props
       if (typeof handleModalStatus === 'function') {
-          handleModalStatus(umId, false)
+          const visible = false;
+          handleModalStatus(umId, visible)
       }
   }
 
