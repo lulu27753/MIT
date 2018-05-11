@@ -98,7 +98,7 @@ export default class Anchor extends React.Component {
   }
   componentDidUpdate () {
     this.updateInk();
-    // console.log(this.inkNode.style.top);
+    // // console.log(this.inkNode.style.top);
   }
   updateInk = () => {
     if (typeof document === 'undefined') {
@@ -108,7 +108,7 @@ export default class Anchor extends React.Component {
     const linkNode = ReactDOM.findDOMNode(this).getElementsByClassName(`${prefixCls}-link-title-active`)[0];
     if (linkNode) {
       this.inkNode.style.top = `${linkNode.offsetTop + linkNode.clientHeight / 2 - 4.5}px`;
-      // console.log(this.inkNode.style.top = '50px');
+      // // console.log(this.inkNode.style.top = '50px');
     }
   }
 

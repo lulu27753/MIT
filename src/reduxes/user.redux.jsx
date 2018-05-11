@@ -21,7 +21,7 @@ const initState = {
 
 // reducer
 export function user(state = initState, action) {
-	console.log(`action.type: ${action.type}`);
+	// console.log(`action.type: ${action.type}`);
 	if (action) {
 		switch (action.type) {
 			case AUTH_SUCCESS:
@@ -48,7 +48,7 @@ export function login({user, pwd}) {
 	}
 	// 发送异步消息
 	return dispatch => {
-		console.log(`logindispatch: ${dispatch}`); // @TODO SHANCHU
+		// console.log(`logindispatch: ${dispatch}`); // @TODO SHANCHU
 		Axios.post('/user/login', {user, pwd}).then(res => {
 			// 数据成功传入后台
 			if (res.status === 200 && res.data.code === 0) {
@@ -66,7 +66,7 @@ export function userinfo() {
 		// 获取用户信息
 		Axios.get('user/info').then(res => {
 			if (res.status === 200) {
-				console.log(res.data)// @TODO SHANCHU
+				// console.log(res.data)// @TODO SHANCHU
 				// 是否登录
 				if (res.data.code === 0) {
 					// 已登录
@@ -103,7 +103,7 @@ export function logoutSubmit() {
 function authSuccess(obj) {
 	// 过滤掉pwd，只传入其他的data
 	const { pwd, ...data } = obj;
-	console.log(data)
+	// console.log(data)
 	return { type: AUTH_SUCCESS, payload: data }
 }
 function errorMsg(msg) {

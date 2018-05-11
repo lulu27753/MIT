@@ -7,7 +7,7 @@ import StandardTable from 'component/standard-table'
 
 import styles from './index.less'
 
-export default class right extends Component {
+export default class Main extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -16,14 +16,14 @@ export default class right extends Component {
   }
 
   toggleTeam = (id) => {
-    console.log('teamId', id)
+    // console.log('teamId', id)
     this.setState({
       id: id
     })
   }
 
   render () {
-    const { id } = this.state
+    const { id } = this.state;
     return (
       <Layout className={styles.main} >
         <Sider span={19}>

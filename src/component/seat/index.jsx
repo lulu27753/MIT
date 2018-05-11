@@ -29,7 +29,7 @@ export default class Seat extends Component {
 
     handleClick = () => {
       const { handleModalStatus, status } = this.props
-      console.log('status', status)
+      // console.log('status', status)
       if (typeof handleModalStatus === 'function') {
         handleModalStatus(status.umId, true)
       }

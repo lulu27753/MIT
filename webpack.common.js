@@ -37,7 +37,10 @@ module.exports = {
       'utils': path.resolve(__dirname, 'src/utils'),
       'src': path.resolve(__dirname, 'src'),
       'doc': path.resolve(__dirname, 'doc'),
-      'api': path.resolve(__dirname, 'src/api')
+      'style': path.resolve(__dirname, 'style'),
+      'api': path.resolve(__dirname, 'src/api'),
+      'router': path.resolve(__dirname, 'src/router')
+
     }
   },
   // devserver 配置

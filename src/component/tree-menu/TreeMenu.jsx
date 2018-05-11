@@ -11,8 +11,8 @@ const TreeNode = Tree.TreeNode;
 const Search = Input.Search;
 
 
-console.log('gData', gData);
-console.log('dataList', dataList);
+// console.log('gData', gData);
+// console.log('dataList', dataList);
 
 export default class TreeMenu extends React.Component {
   state = {
@@ -20,9 +20,12 @@ export default class TreeMenu extends React.Component {
     searchValue: '',
     autoExpandParent: true
   }
+  static defaultProps = {
+    searchColor: '#f50'
+  }
   onExpand = (expandedKeys) => {
     this.setState({expandedKeys, autoExpandParent: false}, () => {
-    console.log('expandedKeys', expandedKeys);
+    // console.log('expandedKeys', expandedKeys);
     });
   }
   onChange = (e) => {
@@ -39,8 +42,10 @@ export default class TreeMenu extends React.Component {
     this.props.onToggle(selectedKeys)
   }
   render() {
-  const {searchValue, expandedKeys, autoExpandParent} = this.state;
+  const { searchValue, expandedKeys, autoExpandParent } = this.state;
+  const { link, parentpath, searchColor } = this.props;
   const loop = data => data.map((item) => {
+    const key = item.um || item.key;
     const index = item.title.indexOf(searchValue);
     const beforeStr = item.title.substr(0, index);
     const afterStr = item.title.substr(index + searchValue.length);
@@ -49,7 +54,7 @@ export default class TreeMenu extends React.Component {
         <span>
           {beforeStr}
           <span style={{
-            color: '#f50'
+            color: searchColor
           }}>{searchValue}</span>
           {afterStr} ({item.number})
         </span>
@@ -57,17 +62,18 @@ export default class TreeMenu extends React.Component {
   : <span>{item.title} ({item.number})</span>;
     if (item.children) {
       return (
-        <TreeNode key={item.key} title={title}>
+        <TreeNode key={key} title={title}>
           {loop(item.children)}
         </TreeNode>
       );
     }
-return <TreeNode key={item.key} title={<Link to={`/dashboard/version-manage/${item.key}`}>{title}</Link>} />;
+return <TreeNode key={key} title={link ? <Link to={`${parentpath}/${key}`}>{title}</Link> : title} />;
 });
     return (
       <div className={styles.tree}>
         <Search style={{ marginBottom: 8 }} placeholder='搜索职场' onChange={this.onChange} />
         <Tree
+          {...this.props}
           onExpand={this.onExpand}
           expandedKeys={expandedKeys}
           autoExpandParent={autoExpandParent}

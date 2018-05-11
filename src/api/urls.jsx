@@ -2,11 +2,11 @@
 * @Author: lulu27753
 * @Date:   2018-04-16 14:42:32
  * @Last Modified by: mikey.zhaopeng
- * @Last Modified time: 2018-05-10 16:34:39
+ * @Last Modified time: 2018-05-10 21:22:42
 * 用于统一管理域名
 */
 import peopleManagement from './peopleManagement'
-import _ from 'lodash'
+// import _ from 'lodash'
 
 // 判断当前是否处于开发环境
 const _DEV_ = (process.env.NODE_ENV || 'development') === 'development';
@@ -43,8 +43,12 @@ const hostname = initHostname();
 
 const peopleManagementUrl = {}
 
-_.mapKeys(peopleManagement, function(value, key) {
-	peopleManagementUrl[key] = hostname.domainName + value + (hostname.suffix || '')
-})
+Object.keys(peopleManagement).forEach(function(key) {
+  peopleManagementUrl[key] = `${hostname.domainName}${peopleManagement[key]}${hostname.suffix || ''}`
+});
+// console.log('peopleManagementUrl', peopleManagementUrl);
+// _.mapKeys(peopleManagement, function(value, key) {
+// 	peopleManagementUrl[key] = hostname.domainName + value + (hostname.suffix || '')
+// })
 
 export default peopleManagementUrl
