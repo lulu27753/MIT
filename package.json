@@ -16,6 +16,7 @@
   "dependencies": {
     "array-tree-filter": "^2.1.0",
     "axios": "^0.18.0",
+    "babel-polyfill": "^6.26.0",
     "classnames": "^2.2.5",
     "css-animation": "^1.4.1",
     "enquire-js": "^0.1.1",
