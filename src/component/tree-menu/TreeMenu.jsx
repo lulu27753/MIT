@@ -3,25 +3,36 @@ import { Link } from 'react-router-dom';
 
 import Tree from 'components/tree';
 import Input from 'components/input';
-import gData, { dataList, getParentKey } from './treeData'
 
+import { generateList, getParentKey } from './util'
+import services from 'api/services';
+import urls from 'api/urls';
 import styles from './index.less';
 
 const TreeNode = Tree.TreeNode;
 const Search = Input.Search;
 
-
-// console.log('gData', gData);
-// console.log('dataList', dataList);
-
 export default class TreeMenu extends React.Component {
   state = {
     expandedKeys: [],
     searchValue: '',
-    autoExpandParent: true
+    autoExpandParent: true,
+    gData: [],
+    dataList: [],
   }
   static defaultProps = {
     searchColor: '#f50'
+  }
+  componentDidMount() {
+    services.get(urls.queryOrganization, {}, this.getData);
+  }
+  getData = (treeData) => {
+    this.setState({
+      gData: treeData,
+      dataList: generateList(treeData),
+    }, () => {
+      // console.log(this.state.gData)
+    })
   }
   onExpand = (expandedKeys) => {
     this.setState({expandedKeys, autoExpandParent: false}, () => {
@@ -30,9 +41,9 @@ export default class TreeMenu extends React.Component {
   }
   onChange = (e) => {
     const value = e.target.value;
-    const expandedKeys = dataList.map((item) => {
+    const expandedKeys = this.state.dataList.map((item) => {
       if (item.title.indexOf(value) > -1) {
-        return getParentKey(item.key, gData);
+        return getParentKey(item.key, this.state.gData);
       }
       return null;
     }).filter((item, i, self) => item && self.indexOf(item) === i);
@@ -42,7 +53,7 @@ export default class TreeMenu extends React.Component {
     this.props.onToggle(selectedKeys)
   }
   render() {
-  const { searchValue, expandedKeys, autoExpandParent } = this.state;
+  const { searchValue, expandedKeys, autoExpandParent, gData } = this.state;
   const { link, parentpath, searchColor } = this.props;
   const loop = data => data.map((item) => {
     const key = item.um || item.key;

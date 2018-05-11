@@ -9,7 +9,7 @@ import { message } from 'components'
 
 export default {
     get: (url, param, resolve, reject) => {
-        // console.log('url', url)
+        console.log('url', url)
         return axios.get(url, {param: param})
             .then(function(response) {
                 // console.log('res', response)

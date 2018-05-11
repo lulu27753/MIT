@@ -14,8 +14,6 @@ export default class SeatInfoModal extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      umId: props.umId,
-      visible: props.visible,
       data: {}
     }
   }
@@ -25,17 +23,16 @@ export default class SeatInfoModal extends Component {
     visible: PropTypes.bool
   }
 
-  componentWillMount () {
-    if (this.state.umId) {
-      this.getData(this.state.umId);
-    }
-  }
-
   componentWillReceiveProps (nextProps) {
-    this.setState({
-      umId: nextProps.umId
-    })
-    this.getData(nextProps.umId)
+    if (this.props.umId && (nextProps.umId === this.props.umId)) {
+      return false;
+    } else {
+      this.setState({
+        umId: nextProps.umId
+      }, () => {
+        this.getData(nextProps.umId)
+      })
+    }
   }
 
   handleUpdateState = (data) => {
@@ -45,13 +42,17 @@ export default class SeatInfoModal extends Component {
   }
 
   getData = (umId) => {
-    services.get(urls.querySeatIndex, {umId: umId}, this.handleUpdateState)
+    if (umId) {
+      // console.log('umId2', umId);
+      services.get(urls.querySeatIndex, {umId: umId}, this.handleUpdateState)
+    }
   }
 
   handleCancel = () => {
       const { umId, handleModalStatus } = this.props
       if (typeof handleModalStatus === 'function') {
-          handleModalStatus(umId, false)
+          const visible = false;
+          handleModalStatus(umId, visible)
       }
   }
 
@@ -131,19 +132,19 @@ export default class SeatInfoModal extends Component {
         <Row className={styles.row}>
           <Col span={8} className={styles.col}>
             <Indicator title='当日累计通时' data={data.todayTotalTalkTime} />
-            <Tooltip placement='right' title={'昨日累计通时' + data.lastSumTime}>
+            <Tooltip placement='right' title={`昨日累计通时 ${data.lastSumTime}`}>
               <Icon type='pro-phone-circle' className={styles.fixIcon} />
             </Tooltip>
           </Col>
           <Col span={8} className={styles.col}>
             <Indicator title='当日累计通次' data={data.todayTotalTalkNum} />
-            <Tooltip placement='right' title={'昨日累计通次' + data.lastSumCount}>
+            <Tooltip placement='right' title={`昨日累计通次 ${data.lastSumCount}`}>
               <Icon type='pro-phone-circle' className={styles.fixIcon} />
             </Tooltip>
           </Col>
           <Col span={8}>
             <Indicator title='当日累计平均通时' data={data.todayTotalAvgTalkTime} />
-            <Tooltip placement='right' title={'昨日累计平均通时' + data.lastSumAvg}>
+            <Tooltip placement='right' title={`昨日累计平均通时 ${data.lastSumAvg}`}>
               <Icon type='pro-phone-circle' className={styles.fixIcon} style={{ right: '8px' }} />
             </Tooltip>
           </Col>
