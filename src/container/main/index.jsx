@@ -3,7 +3,7 @@ import Layout, { Sider, Content } from 'components/layout';
 import TreeMenu from 'component/tree-menu';
 import RightHeader from 'component/right-header';
 import Overlook from 'component/overlook';
-import StandardTable from 'component/standard-table'
+// import StandardTable from 'component/standard-table'
 
 import styles from './index.less'
 
@@ -33,7 +33,7 @@ export default class Main extends Component {
           <Content>
             <RightHeader id={id} />
             <Overlook id={id} />
-            <StandardTable id={id} />
+            {/* <StandardTable id={id} /> */}
           </Content>
         </Layout>
       </Layout>
