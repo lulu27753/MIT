@@ -2,7 +2,7 @@
 * @Author: lulu27753
 * @Date:   2018-04-16 15:00:30
  * @Last Modified by: mikey.zhaopeng
- * @Last Modified time: 2018-05-10 15:49:59
+ * @Last Modified time: 2018-05-11 09:54:42
 */
 import axios from 'axios'
 import { message } from 'components'
@@ -68,6 +68,56 @@ export default {
                 // console.log(error)
                 typeof reject === 'function' && reject(error);
             })
+    },
+    getAsync: async (url, param) => {
+        const data = await axios.request({
+            method: 'GET',
+            url: url,
+            params: param
+        })
+        .then(function(response) {
+            const data = response.data
+            if (data.resultCode === '000000') {
+                return data.data;
+            } else {
+                message.success(data.resultMesg);
+                return data.data;
+            }
+        }, function(response) {
+            message.warning('服务器异常！')
+            return {}
+        })
+        .catch(function(error) {
+            console.log(error)
+            return {}
+        })
+
+        return data;
+    },
+    postAsync: async (url, param) => {
+        const data = await axios.request({
+            method: 'POST',
+            url: url,
+            params: param
+        })
+        .then(function(response) {
+            const data = response.data
+            if (data.resultCode === '000000') {
+                return data.data;
+            } else {
+                message.success(data.resultMesg);
+                return data.data;
+            }
+        }, function(response) {
+            message.warning('服务器异常！')
+            return {}
+        })
+        .catch(function(error) {
+            console.log(error)
+            return {}
+        })
+
+        return data;
     }
 }
 
