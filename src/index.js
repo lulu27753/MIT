@@ -15,7 +15,7 @@ import './index.less';
 // ));
 
 if (process.env.NODE_ENV !== 'production') {
-   console.log(process.env);
+   // console.log(process.env);
  }
 
 

@@ -11,8 +11,8 @@ const TreeNode = Tree.TreeNode;
 const Search = Input.Search;
 
 
-console.log('gData', gData);
-console.log('dataList', dataList);
+// console.log('gData', gData);
+// console.log('dataList', dataList);
 
 export default class TreeMenu extends React.Component {
   state = {
@@ -25,7 +25,7 @@ export default class TreeMenu extends React.Component {
   }
   onExpand = (expandedKeys) => {
     this.setState({expandedKeys, autoExpandParent: false}, () => {
-    console.log('expandedKeys', expandedKeys);
+    // console.log('expandedKeys', expandedKeys);
     });
   }
   onChange = (e) => {

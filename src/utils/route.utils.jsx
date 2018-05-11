@@ -76,7 +76,7 @@ function recursiveRoute(route, file, _path, root, level) {
 
 
 exports.createRoutes = function (dir) {
-    console.log("开始生成路由表信息");
+    // console.log("开始生成路由表信息");
     var files = recursiveFiles(dir, {ext: 'vue'});
     var routes = buildRoutes(files);
     var str = JSON.stringify(routes, null, 4);
@@ -85,6 +85,6 @@ exports.createRoutes = function (dir) {
     str = str.replace(/"SYNCLOAD:([\S\\]+)"/g, "require('./$1.vue')");
 
     fs.writeFile(path.join(dir, './route.js'), "export default " + str);
-    console.log("路由表信息已经生成完毕");
+    // console.log("路由表信息已经生成完毕");
 }
 

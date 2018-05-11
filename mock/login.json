@@ -1,0 +1,9 @@
+{
+    "resultCode": "000000",
+    "resultMesg": "成功",
+    "data": {
+      "userType": "团队长",
+      "msg": "账号密码错误",
+      "um": 'admin'
+    }
+}

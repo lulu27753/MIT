@@ -6,6 +6,10 @@ import Checkbox from 'components/checkbox';
 
 import Image from 'assets/images/logo.png';
 import Login from './Login';
+import { setAuthority } from 'utils/localStorageAuthority';
+
+import services from 'api/services';
+import urls from 'api/urls';
 
 import data from '../../data';
 import styles from './login.less';
@@ -24,21 +28,24 @@ export default class LoginPage extends React.Component {
 		}
 	}
 	componentDidMount() {
-		console.log(this.props.history);
+		// console.log(this.props.history);
 	}
 	authSuccess(data) {
+		// 如果登陆成功，则将登陆账号存入localStorage
+		setAuthority(data.um);
     this.setState({
       redirectTO: '/dashboard',
     })
-		console.log('data', data);
+		// console.log('data', data);
 	}
 	errorMsg = (message) => {
-		console.log('message', message);
+		// console.log('message', message);
 		this.setState({
 			notice: message
 		})
 	}
 	onSubmit = (err, values) => {
+		services.get(urls.login, {um: values.username, pwd: values.password}, this.authSuccess)
 		this.setState({
 			notice: '',
 			},

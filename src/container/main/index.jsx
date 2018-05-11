@@ -3,7 +3,9 @@ import Layout, { Sider, Content } from 'components/layout';
 import TreeMenu from 'component/tree-menu';
 import RightHeader from 'component/right-header';
 import Overlook from 'component/overlook';
-// import standardTable from 'component/standard-table'
+import StandardTable from 'component/standard-table'
+
+import styles from './index.less'
 
 export default class Main extends Component {
   constructor (props) {
@@ -14,24 +16,24 @@ export default class Main extends Component {
   }
 
   toggleTeam = (id) => {
-    console.log('teamId', id)
+    // console.log('teamId', id)
     this.setState({
       id: id
     })
   }
 
   render () {
-    const { id } = this.state
+    const { id } = this.state;
     return (
-      <Layout style={{ height: '100%' }} >
+      <Layout className={styles.main} >
         <Sider span={19}>
           <TreeMenu onToggle={this.toggleTeam} />
         </Sider>
-        <Layout style={{ padding: '20px' }}>
+        <Layout className={styles.main_right}>
           <Content>
             <RightHeader id={id} />
             <Overlook id={id} />
-            {/* <standardTable id={id} /> */}
+            <StandardTable id={id} />
           </Content>
         </Layout>
       </Layout>

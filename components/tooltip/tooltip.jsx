@@ -35,7 +35,7 @@ export default class Tooltip extends React.Component {
     this.tooltip = node;
   }
   getPopupDomNode() {
-    console.log(this.tooltip)
+    // console.log(this.tooltip)
     return this.tooltip.getPopupDomNode();
   }
   // Tooltip在不可使用的button中无法隐藏的问题

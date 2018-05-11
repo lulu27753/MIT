@@ -11,6 +11,7 @@ name: 树形菜单
 ----|------|-----|------
 link | 是否支持路由<Link> | bool | false
 searchColor | 搜索框匹配字符串高亮显示的颜色 | string | ‘#f50’
+parentpath | 父级路由的路径 | string | -
 
 
 支持Dbox UI 中Tree组件中所有的API

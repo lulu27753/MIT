@@ -1,14 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-
 import DboxRouter from './DboxRouter';
 import Login from 'container/login';
 import Dashboard from 'container/dashboard';
-// import Render from 'container/test/render.jsx';
-// import MenuLink from './router/MenuLink.jsx';
-// import NotFound from 'container/NotFound';
-// import './App.css';
+import NotFound from 'container/NotFound';
 import '../style/reset.less';
 
 
@@ -18,7 +14,8 @@ const App = () => (
       <Switch>
         <Route exact path='/' component={Dashboard} />
         <Route exact path='/login' component={Login} />
-        <Route component={Dashboard} />
+        <Route path='/dashboard' component={Dashboard} />
+        <Route component={NotFound} />
       </Switch>
       <DboxRouter />
     </div>

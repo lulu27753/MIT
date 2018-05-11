@@ -28,7 +28,7 @@ export default class SiderMenu extends PureComponent {
 	// 获取当前访问的菜单的全部父级菜单
 	getDefaultCollapsedSubMenus(props) {
 		const { location: { pathname } } = props || this.props;
-		console.log('getDefaultCollapsedSubMenus', this.props);
+		// console.log('getDefaultCollapsedSubMenus', this.props);
 		// 去首尾
 		const snippets = pathname.split('/').slice(1, -1);
 		const currentPathSnippets = snippets.map((item, index) => {
@@ -43,7 +43,7 @@ export default class SiderMenu extends PureComponent {
 		if (currentMenuSelectedKeys.length === 0) {
 			return ['dashboard'];
 		}
-		console.log('currentMenuSelectedKey', currentMenuSelectedKeys);
+		// console.log('currentMenuSelectedKey', currentMenuSelectedKeys);
 		return currentMenuSelectedKeys;
 	}
   getFlatMenuKeys(menus) {
@@ -56,7 +56,7 @@ export default class SiderMenu extends PureComponent {
         keys.push(item.path);
       }
     });
-    console.log('getFlatMenuKeys', keys);
+    // console.log('getFlatMenuKeys', keys);
 
     return keys;
   }
@@ -65,8 +65,8 @@ export default class SiderMenu extends PureComponent {
 			return ['dashboard']
 		}
 		const flatMenuKeys = this.getFlatMenuKeys(this.menus);
-		console.log('flatMenuKeys', flatMenuKeys);
-		// console.log('path', path);
+		// console.log('flatMenuKeys', flatMenuKeys);
+		// // console.log('path', path);
 		// 去除路径开头的“/”
 		if (flatMenuKeys.indexOf(path.replace(/^\//, '')) > -1) {
 			return [path.replace(/^\//, '')];
@@ -95,13 +95,13 @@ export default class SiderMenu extends PureComponent {
 				return this.checkPermissionItem(item.authority, ItemDom);
 			})
 			.filter(item => !!item);
-			console.log('NavMenuItems', NavMenuItems);
+			// console.log('NavMenuItems', NavMenuItems);
 		return NavMenuItems;
 	}
 	// 如果是一级菜单则返回Menu.Item，如果是多级菜单，则通过递归返回SubMenu及Menu.Item
 	// 最后一级菜单通过path的类型判断返回<a>或者<Link>
 	getSubMenuOrItem = (item) => {
-		// console.log('getSubMenuOrItem_item', item);
+		// // console.log('getSubMenuOrItem_item', item);
 		if (item.children && item.children.some(child => child.name)) {
 		return (
   <SubMenu
@@ -109,7 +109,6 @@ export default class SiderMenu extends PureComponent {
     title={item.icon ? (<span>{getIcon(item.icon)}<span>{item.name}</span></span>) : item.name}
 	>
     {this.getNavMenuItems(item.children)}
-    {console.log('item.children', item.children)}
   </SubMenu>
 		  );
 				} else {
@@ -161,34 +160,34 @@ export default class SiderMenu extends PureComponent {
 		return ItemDom;
 	}
 	handleOpenChange = (openKeys) => {
-		console.log('Menu中的openKeys', openKeys);
+		// console.log('Menu中的openKeys', openKeys);
 		// SubMenu 展开/关闭的回调
 		const lastOpenKey = openKeys[openKeys.length - 1];
 		// isMainMenu为false时，没有展开的子菜单
 		const isMainMenu = this.menus.some(
 			item => lastOpenKey && (item.key === lastOpenKey || item.path === lastOpenKey)
 		)
-		console.log('isMainMenu', isMainMenu);
+		// console.log('isMainMenu', isMainMenu);
 		this.setState({
 			openKeys: isMainMenu ? [lastOpenKey] : [...openKeys],
 		}, () => {
-			console.log('handleOpenChange_sstopenKeys', this.state.openKeys);
+			// console.log('handleOpenChange_sstopenKeys', this.state.openKeys);
 		});
 	}
 	render() {
 		const { logo, collapsed, location: { pathname }, onSelect } = this.props;
-		console.log('SiderMenuProps', this.props);
-		console.log('collapsed', collapsed);
+		// console.log('SiderMenuProps', this.props);
+		// console.log('collapsed', collapsed);
 		const { openKeys: { menuProps } } = this.state;
-		console.log('this.state.openKeys', menuProps);
+		// console.log('this.state.openKeys', menuProps);
 		// 折叠菜单不显示popup menu
 		// openKeys：当前展开的 SubMenu 菜单项 key 数组
 		const openKeys = collapsed ? {} : { menuProps }
-		console.log('menuProps', menuProps);
+		// console.log('menuProps', menuProps);
 		// 如果路径不匹配，使用最近的父节点的key
 		// selectedKeys：当前选中的菜单项 key 数组
 		let selectedKeys = this.getSelectedMenuKeys(pathname);
-		console.log('selectedKeys', selectedKeys);
+		// console.log('selectedKeys', selectedKeys);
 		if (!selectedKeys.length) {
 			selectedKeys = [openKeys[openKeys.length - 1]];
 		}

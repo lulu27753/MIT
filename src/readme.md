@@ -68,7 +68,7 @@
   * 可能是纯静态的，也可能包含自己的 state，但不涉及服务器数据流，仅受父组件（通常是一个页面）传递的参数控制。
 
 * 容器组件：`src/container/`
-* 傻瓜组件：`src/component`
+* 傻瓜组件：`src/component/`
 * Hint：
   * 导出组件的类名一定要大写，命名尽量体现组件的功能
   * less文件不要放在style文件夹下，由于我们默认配置了 CSS Modules，排除了style文件夹下的文件生成

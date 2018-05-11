@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import services from 'api/services';
+import urls from 'api/urls';
 
 import styles from './index.less';
-import data from 'doc/interface/example/teamInfoQuery'
 
 export default class rightHeader extends Component {
   constructor (props) {
@@ -16,21 +17,27 @@ export default class rightHeader extends Component {
 
   componentWillMount () {
     if (this.state.id) {
-      this.setState(data.data)
+      this.getData(this.state.id)
     }
   }
 
   componentWillReceiveProps (nextProps) {
-    console.log('nextProps id', nextProps.id)
-    console.log('state id', this.state.id)
     if (nextProps.id === this.state.id) {
       return false
     } else {
       this.setState({
         id: nextProps.id
       })
-      this.setState(data.data)
+      this.getData(nextProps.id)
     }
+  }
+
+  handleUpstate = (data) => {
+    this.setState(data)
+  }
+
+  getData = (id) => {
+    services.get(urls.queryTeamInfo, {umId: id}, this.handleUpstate)
   }
 
   render () {
