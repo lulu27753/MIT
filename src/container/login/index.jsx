@@ -6,7 +6,7 @@ import Checkbox from 'components/checkbox';
 
 import Image from 'assets/images/logo.png';
 import Login from './Login';
-import { setAuthority } from 'utils/localStorageAuthority';
+import { setAuthority, getAuthority } from 'utils/localStorageAuthority';
 
 import services from 'api/services';
 import urls from 'api/urls';
@@ -29,14 +29,26 @@ export default class LoginPage extends React.Component {
 	}
 	componentDidMount() {
 		// console.log(this.props.history);
+		const auth = getAuthority();
+		console.log(auth)
 	}
-	authSuccess(data) {
+	authSuccess = ({userType, msg, um}) => {
 		// 如果登陆成功，则将登陆账号存入localStorage
-		setAuthority(data.um);
-    this.setState({
-      redirectTO: '/dashboard',
-    })
-		// console.log('data', data);
+		if (um === 'admin' && !msg) {
+			// console.log('um', um)
+			setAuthority(um);
+			this.setState({
+				redirectTO: '/dashboard',
+			})
+		} else {
+			this.setState({
+			notice: '',
+			},
+			() => {
+					this.errorMsg(msg)
+			}
+		)
+		}
 	}
 	errorMsg = (message) => {
 		// console.log('message', message);
@@ -45,20 +57,9 @@ export default class LoginPage extends React.Component {
 		})
 	}
 	onSubmit = (err, values) => {
-		services.get(urls.login, {um: values.username, pwd: values.password}, this.authSuccess)
-		this.setState({
-			notice: '',
-			},
-			() => {
-				if (!err && (values.username !== 'admin' || values.password !== 'admin')) {
-					setTimeout(() => {
-						this.errorMsg('账号密码错误！')
-					}, 500);
-				}
-		})
-				if (!err && (values.username === 'admin' || values.password === 'admin')) {
-						this.authSuccess({...values, autoLogin: this.state.autoLogin})
-				}
+		if (!err) {
+			services.get(urls.login, {um: values.username, pwd: values.password, autoLogin: this.state.autoLogin}, this.authSuccess)
+		}
 	}
 	changeAutoLogin = (e) => {
     this.setState({

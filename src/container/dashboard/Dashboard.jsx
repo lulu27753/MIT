@@ -44,7 +44,7 @@ export default class Dashboard extends React.Component {
   componentDidMount() {
     // 从localstorerage里面获取授权
     let auth = getAuthority();
-    // console.log('auth', auth);
+    console.log('auth', auth);
     // 将授权信息存储到context中
     this.setState({
       auth: auth
@@ -67,17 +67,17 @@ export default class Dashboard extends React.Component {
     window.history.pushState(null, 'redirect', urlParams.href);
     return redirect;
   }
-  logoutSuccess(data) {
+  logoutSuccess = (data) => {
     // console.log(data)
     // 清除auth
     setAuthority('')
+    this.setState({
+      redirectTo: '/login'
+    });
   }
   handleQuit = () => {
     // console.log('handleQuit', 'redirectTo: /login');
     services.get(urls.logout, {um: this.state.auth}, this.logoutSuccess)
-    this.setState({
-      redirectTo: '/login'
-    });
   }
   onCollapse = (collapsed) => {
     this.setState({

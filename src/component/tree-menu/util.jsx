@@ -1,15 +1,5 @@
-import organizationSource from 'doc/interface/example/organizationQuery'
-import services from 'api/services';
-import urls from 'api/urls';
-
-function getData(data) {
-  // console.log('treeData', data)
-}
-// const treeData = []
-const treeData = organizationSource.data
-services.get(urls.queryOrganization, {}, getData)
-const dataList = [];
 const generateList = (data) => {
+  const dataList = [];
   for (let i = 0; i < data.length; i++) {
     const node = data[i];
     const key = node.key;
@@ -20,8 +10,8 @@ const generateList = (data) => {
       generateList(node.children, node.key);
     }
   }
+  return dataList
 };
-generateList(treeData);
 
 const getParentKey = (key, tree) => {
   let parentKey;
@@ -38,7 +28,5 @@ const getParentKey = (key, tree) => {
   return parentKey;
 };
 
-
-export default treeData;
-export { dataList, getParentKey };
+export { generateList, getParentKey };
 

@@ -2,17 +2,14 @@ import React from 'react';
 import Axios from 'axios';
 import { withRouter } from 'react-router';
 // 将非路由组件传入到withRouter高阶组件以获得{ match, location, history }等对象属性
-import { connect } from 'react-redux';
-import { loadData } from 'reduxes/user.redux';
+
+import services from 'api/services';
+import urls from 'api/urls';
 
 import Authorized, { setAuthority } from 'utils/localStorageAuthority';
 
 
 
-@connect(
-	null,
-	{ loadData }
-)
 class LoginAuth extends React.Component {
 	componentDidMount() {
 		// 现在的URL地址，login页面则是不需要跳转的
@@ -23,6 +20,7 @@ class LoginAuth extends React.Component {
 			return null;
 		} else {
 			// 获取用户信息
+			services.get(urls.login, {um: values.username, pwd: values.password}, this.auth)
 			Axios.get('user/info').then(res => {
 				if (res.status === 200) {
 					// // console.log(res.data)// @TODO SHANCHU

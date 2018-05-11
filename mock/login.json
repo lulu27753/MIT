@@ -3,7 +3,7 @@
     "resultMesg": "成功",
     "data": {
       "userType": "团队长",
-      "msg": "账号密码错误",
-      "um": 'admin'
+      "msg": "", 
+      "um": "admin"
     }
 }

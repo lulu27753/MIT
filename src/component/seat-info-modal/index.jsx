@@ -43,7 +43,7 @@ export default class SeatInfoModal extends Component {
 
   getData = (umId) => {
     if (umId) {
-      console.log('umId2', umId);
+      // console.log('umId2', umId);
       services.get(urls.querySeatIndex, {umId: umId}, this.handleUpdateState)
     }
   }
@@ -132,19 +132,19 @@ export default class SeatInfoModal extends Component {
         <Row className={styles.row}>
           <Col span={8} className={styles.col}>
             <Indicator title='当日累计通时' data={data.todayTotalTalkTime} />
-            <Tooltip placement='right' title={'昨日累计通时' + data.lastSumTime}>
+            <Tooltip placement='right' title={`昨日累计通时 ${data.lastSumTime}`}>
               <Icon type='pro-phone-circle' className={styles.fixIcon} />
             </Tooltip>
           </Col>
           <Col span={8} className={styles.col}>
             <Indicator title='当日累计通次' data={data.todayTotalTalkNum} />
-            <Tooltip placement='right' title={'昨日累计通次' + data.lastSumCount}>
+            <Tooltip placement='right' title={`昨日累计通次 ${data.lastSumCount}`}>
               <Icon type='pro-phone-circle' className={styles.fixIcon} />
             </Tooltip>
           </Col>
           <Col span={8}>
             <Indicator title='当日累计平均通时' data={data.todayTotalAvgTalkTime} />
-            <Tooltip placement='right' title={'昨日累计平均通时' + data.lastSumAvg}>
+            <Tooltip placement='right' title={`昨日累计平均通时 ${data.lastSumAvg}`}>
               <Icon type='pro-phone-circle' className={styles.fixIcon} style={{ right: '8px' }} />
             </Tooltip>
           </Col>
