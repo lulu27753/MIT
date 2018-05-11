@@ -1,16 +1,21 @@
 .dataContainer {
   width: 100%;
   zoom: 1;
-  position: relative;
+  position: absolute;
+  background-color:#fff;
   border-top: 1px solid #ccc;
   margin-top: 20px;
+  bottom: 86px;
+  right: 20px;
+  left: 0;
 
   .icon {
     position: absolute;
-    top: 15px;
+    top: 17px;
     right: 0;
     color: #999;
     font-size: 18px;
+    z-index: 999;
   }
 
   .row {
@@ -80,6 +85,9 @@
   width: 100%;
   float: left;
   margin-left: 24px;
+  .perforCol {
+    padding-left: 10px;
+  }
 
   .ColCiAvg {
     padding-left: 15px;

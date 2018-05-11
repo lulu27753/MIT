@@ -95,7 +95,7 @@ export default class StandardTable extends Component {
 
   render () {
     return (
-      <div className={styles.dataContainer}>
+      <div className={styles.dataContainer} style={{ height: this.state.expand ? '' : 50 }}>
         <div className={styles.icon} onClick={this.handleToggle}>
           <Icon type={this.state.expand ? 'down-circle-o' : 'up-circle-o'} />
         </div>
@@ -123,7 +123,7 @@ export default class StandardTable extends Component {
                 <div>
                   <Title className={styles.work} title='业绩指标' />
                 </div>
-                <Col span={12} style={{ display: this.state.expand ? 'block' : 'none' }}>
+                <Col span={12} className={styles.perforCol} style={{ display: this.state.expand ? 'block' : 'none' }}>
                   <div className={styles.perforList}>
                     <Indicator title='当日累计车险保费' width='60%' style={{height: 38}} data={this.formatNumber(this.state.todayTotalCiPremium)} />
                   </div>
