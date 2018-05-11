@@ -1,7 +1,7 @@
 const menuData = [{
   name: '人员管理',
   icon: 'user-group',
-  path: 'dashboard',
+  path: 'user',
   // children: [{
   //   name: '现场实时管理',
   //   path: 'version-manage',
@@ -23,7 +23,7 @@ const menuData = [{
 }, {
   name: '现场管理',
   icon: 'appstore-o',
-  path: 'tasks',
+  path: 'dashboard',
   // children: [{
   //   name: '执行机管理',
   //   path: 'server-list',
@@ -34,7 +34,7 @@ const menuData = [{
   }, {
     name: '业务洞见',
     icon: 'pro-sharealt',
-    path: 'tasks',
+    path: 'business',
     // children: [{
     //   name: '执行机管理',
     //   path: 'server-list',
@@ -45,7 +45,7 @@ const menuData = [{
   }, {
   name: '智能报表',
   icon: 'pro-table',
-  path: 'system',
+  path: 'report',
   // children: [{
   //   name: '用户管理',
   //   path: 'user-list',
@@ -56,7 +56,7 @@ const menuData = [{
 }, {
   name: '信息安全',
   icon: 'pro-safety',
-  path: 'log',
+  path: 'infosafe',
   // authority: 'guest',
   // children: [{
   //   name: '场景统计图',

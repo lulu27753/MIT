@@ -9,14 +9,17 @@ import { message } from 'components'
 
 export default {
     get: (url, param, resolve, reject) => {
-        console.log(url)
-        axios.get(url, {param: param})
+        // console.log('url', url)
+        return axios.get(url, {param: param})
             .then(function(response) {
+                // console.log('res', response)
                 const data = response.data
                 if (data.resultCode === '000000') {
+                    // console.log('成功', data.data)
                     typeof resolve === 'function' && resolve(data.data)
+                    return data.data;
                 } else {
-                    message.success(data.resultMesg);
+                    message.success(data.resaultMesg);
                     typeof reject === 'function' && reject(data.data);
                 }
             }, function(response) {
@@ -24,7 +27,7 @@ export default {
                 typeof reject === 'function' && reject(response);
             })
             .catch(function(error) {
-                console.log(error)
+                // console.log(error)
                 typeof reject === 'function' && reject(error);
             })
     },
@@ -43,7 +46,7 @@ export default {
                 typeof reject === 'function' && reject(response);
             })
             .catch(function(error) {
-                console.log(error)
+                // console.log(error)
                 typeof reject === 'function' && reject(error);
             })
     },
@@ -62,7 +65,7 @@ export default {
                 typeof reject === 'function' && reject(response);
             })
             .catch(function(error) {
-                console.log(error)
+                // console.log(error)
                 typeof reject === 'function' && reject(error);
             })
     },

@@ -7,9 +7,9 @@ import data from '../../data';
 
 class BasicLayout extends React.Component {
 	render() {
-		// console.log('BasicLayout', this.props);
+		// // console.log('BasicLayout', this.props);
 		const routerData = getRouterData();
-		console.log('routerData', routerData);
+		// console.log('routerData', routerData);
 		const currentUser = {
 			avatar: '',
 			name: 'admin',

@@ -43,7 +43,7 @@ export default class Overlook extends Component {
     }
 
     handleError = (data) => {
-      console.log('handleError', data)
+      // console.log('handleError', data)
     }
 
     getData (id) {
@@ -89,7 +89,7 @@ export default class Overlook extends Component {
 
     // 下载团队指标
     downloadTeamIndex = () => {
-      console.log('downLoadTeamIndex')
+      // console.log('downLoadTeamIndex')
     }
 
     // 刷新
