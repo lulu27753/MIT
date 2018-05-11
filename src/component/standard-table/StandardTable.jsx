@@ -108,10 +108,10 @@ export default class StandardTable extends Component {
               </div>
               <div className={styles.embarkationContainer} style={{ display: this.state.expand ? 'block' : 'none' }}>
                 <div className={styles.embarkation}>
-                  <Indicator title='当前通话人力' style={{ height: 38 }} data={this.state.currentCallCnt} />
+                  <Indicator title='当前通话人力' width='80%' style={{ height: 38 }} data={this.state.currentCallCnt} />
                 </div>
                 <div className={styles.embarkation}>
-                  <Indicator title='当前空闲人力' style={{ height: 38 }} data={this.state.currentIdleCnt} />
+                  <Indicator title='当前空闲人力' width='80%' style={{ height: 38 }} data={this.state.currentIdleCnt} />
                 </div>
               </div>
             </div>
@@ -125,15 +125,15 @@ export default class StandardTable extends Component {
                 </div>
                 <Col span={12} className={styles.perforCol} style={{ display: this.state.expand ? 'block' : 'none' }}>
                   <div className={styles.perforList}>
-                    <Indicator title='当日累计车险保费' width='60%' style={{height: 38}} data={this.formatNumber(this.state.todayTotalCiPremium)} />
+                    <Indicator title='当日累计车险保费' width='65%' style={{height: 38}} data={this.formatNumber(this.state.todayTotalCiPremium)} />
                   </div>
                   <div className={styles.perforList}>
-                    <Indicator title='当日累计车险标的数' width='62%' style={{height: 38}} data={this.state.todayTotalCiCustCnt} />
+                    <Indicator title='当日累计车险标的数' width='65%' style={{height: 38}} data={this.state.todayTotalCiCustCnt} />
                   </div>
                 </Col>
                 <Col span={12} className={styles.ColCiAvg} style={{ display: this.state.expand ? 'block' : 'none' }}>
                   <div className={styles.perforList}>
-                    <Indicator title='当日累计车险件均' data={this.state.todayTotalCiAvgPremium} width='60%' style={{height: 38}} />
+                    <Indicator title='当日累计车险件均' data={this.state.todayTotalCiAvgPremium} width='65%' style={{height: 38}} />
                   </div>
                   <div className={styles.perforList}>
                     <Indicator title='当日累计非车险保费' data={this.formatNumber(this.state.todayTotalNciPremium)} width='65%' style={{height: 38}} />
