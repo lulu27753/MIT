@@ -7,7 +7,7 @@ import urls from 'api/urls';
 
 import styles from './index.less';
 
-const minCNumber = 13;
+const minCNumber = 20;
 const minRNumber = 8;
 
 export default class Overlook extends Component {
@@ -100,7 +100,7 @@ export default class Overlook extends Component {
     render() {
       const { id, visible, umId } = this.state
       return (
-        <div>
+        <div style={{ height: '100%', position: 'relative' }}>
           <div className={styles.toolsHeader}>
             <div className={styles.toolsHeader_left} >
               <i className={styles.outline} />下线
