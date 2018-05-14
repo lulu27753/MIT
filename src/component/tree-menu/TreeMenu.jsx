@@ -12,6 +12,7 @@ import styles from './index.less';
 const TreeNode = Tree.TreeNode;
 const Search = Input.Search;
 
+
 export default class TreeMenu extends React.Component {
   state = {
     expandedKeys: [],
@@ -31,22 +32,28 @@ export default class TreeMenu extends React.Component {
       gData: treeData,
       dataList: generateList(treeData),
     }, () => {
-      // console.log(this.state.gData)
+      console.log('treeData', this.state.gData)
+      console.log('dataList', this.state.dataList)
     })
   }
   onExpand = (expandedKeys) => {
     this.setState({expandedKeys, autoExpandParent: false}, () => {
-    // console.log('expandedKeys', expandedKeys);
+    // console.log('onExpandexpandedKeys', expandedKeys);
     });
   }
   onChange = (e) => {
     const value = e.target.value;
     const expandedKeys = this.state.dataList.map((item) => {
       if (item.title.indexOf(value) > -1) {
-        return getParentKey(item.key, this.state.gData);
+        // 一级包含搜索值
+        const key = item.um || item.key
+        return getParentKey(key, this.state.gData);
       }
       return null;
-    }).filter((item, i, self) => item && self.indexOf(item) === i);
+    }).filter((item, i, self) => {
+      return item && self.indexOf(item) === i
+    });
+    // console.log('expandedKeys', expandedKeys)
     this.setState({expandedKeys, searchValue: value, autoExpandParent: true});
   }
   onSelect = (selectedKeys) => {
