@@ -8,7 +8,7 @@ import { getConfirmLocale } from './locale';
 
 export default function confirm(config) {
   const props = { ...config };
-  console.log(props);
+  // // console.log(props);
   let div = document.createElement('div');
   document.body.appendChild(div);
 

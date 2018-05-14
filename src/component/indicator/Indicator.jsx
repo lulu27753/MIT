@@ -13,9 +13,6 @@ export default class Indicator extends Component {
     data: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     className: PropTypes.string
   }
-  componentDidMount() {
-    console.log(this.props)
-  }
   render () {
     const { title, data, width, ...others } = this.props;
     delete others.prefixCls
@@ -23,11 +20,10 @@ export default class Indicator extends Component {
     delete others.data
     delete others.width
 
-    // const classString = classNames(className, styles.monitoring)
     return (
       <div className={styles.indicator} {...others}>
-        <span className={styles.monitoring} style={{width: width}}>{ title }</span>
-        <span className={styles.monitoring_data}>{ data }</span>
+        <span className={styles.monitoring} style={{width: width}}><span className={styles.title_span}>{ title }</span></span>
+        <span className={styles.monitoring_data}><span className={styles.data_span}>{ data }</span></span>
       </div>
     )
   }

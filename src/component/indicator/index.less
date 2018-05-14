@@ -8,15 +8,30 @@
   border-radius: 4px;
 
   .monitoring {
+    position: relative;
     display: inline-block;
     width: 65%;
     height: 100%;
-    padding: 2px 0 0 10px;
+    padding-left: 10px;
     box-sizing: border-box;
     background-color: #f8f9fc;
+    .title_span {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
   }
 
   .monitoring_data {
-    padding-left: 10px; 
+    display: inline-block;
+    height: 100%;
+    position: relative;
+    padding-left: 10px;
+    .data_span {
+      width: 60px;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
   }
 }

@@ -3,10 +3,10 @@ export default {
     resultMesg: '成功',
     data: {
         // 基本信息
-        name: '大大', // 姓名
-        onboardCnt: 3, // 司龄
-        tmrBusinessModeCode: 'ib', // 坐席业务模式
-        positionTypeDesc: 'A类坐席', // 坐席职级描述
+        tmrName: '大大', // 姓名
+        onboardAge: 3, // 司龄
+        tmrType: 'ib', // 坐席业务模式
+        positionName: 'A类坐席', // 坐席职级描述
         // 当日工作情况
         isActive: 1, // 坐席活跃状态，0非活跃，1活跃
         // 当日业绩情况

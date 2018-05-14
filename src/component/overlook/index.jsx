@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import Seat from 'component/seat';
 import SeatInfoModal from 'component/seat-info-modal'
 import { Icon } from 'components'
-// import axios from 'axios';
-import data from 'doc/interface/example/teamSeatQuery.jsx'
+import services from 'api/services';
+import urls from 'api/urls';
 
 import styles from './index.less';
 
@@ -23,17 +23,27 @@ export default class Overlook extends Component {
       }
     }
 
-    componentWillMount () {
-      if (this.state.id) {
-        this.setState(data.data)
+    componentWillReceiveProps (nextProps) {
+      if (this.state.id && (nextProps.id === this.state.id)) {
+        return false
+      } else {
+        this.setState({id: nextProps.id}, () => {
+          this.getData(this.state.id)
+        })
       }
     }
 
-    componentWillReceiveProps (nextProps) {
-      if (nextProps.id === this.state.id) {
-        return false
-      } else {
-        this.setState(data.data)
+    handleUpdateState = (data) => {
+      this.setState(data)
+    }
+
+    handleError = (data) => {
+      // console.log('handleError', data)
+    }
+
+    getData (id) {
+      if (this.state.id || this.state.visible) {
+          services.get(urls.queryTeamSeatStatus, {umId: id}, this.handleUpdateState, this.handleError)
       }
     }
 
@@ -74,20 +84,29 @@ export default class Overlook extends Component {
       }
     }
 
+    // 下载团队指标
+    downloadTeamIndex = () => {
+      // console.log('downLoadTeamIndex')
+    }
+
+    // 刷新
+    refresh = () => {
+      this.getData(this.state.id)
+    }
+
     render() {
-      const { visible, umId } = this.state
+      const { id, visible, umId } = this.state
       return (
         <div>
           <div className={styles.toolsHeader}>
             <div className={styles.toolsHeader_left} >
-              <i className={styles.online} />在线
               <i className={styles.outline} />下线
               <Icon type='pro-phone-circle' className={styles.dialling} />通话
               <Icon type='pro-clock-circle' className={styles.unused} />空闲
             </div>
             <div className={styles.toolsHeader_right} >
-              <Icon type='pro-download' className={styles.download} />
-              <Icon type='pro-sync' className={styles.sync} />
+              {id && <Icon type='pro-download' className={styles.download} onClick={this.downloadTeamIndex} />}
+              {id && <Icon type='pro-sync' className={styles.sync} onClick={this.refresh} />}
             </div>
           </div>
           <div className={styles.container} >

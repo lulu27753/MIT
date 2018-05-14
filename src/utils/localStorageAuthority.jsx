@@ -29,7 +29,7 @@ function setItem(key, value) {
 }
 // 通过localStorage来保存从server端发过来的授权信息
 export function getAuthority() {
-  return getItem('idoll-pro-authority') || 'admin';
+  return getItem('idoll-pro-authority') || '';
 }
 
 export function setAuthority(authority) {
