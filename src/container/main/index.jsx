@@ -17,9 +17,13 @@ export default class Main extends Component {
 
   toggleTeam = (id) => {
     // console.log('teamId', id)
-    this.setState({
-      id: id
-    })
+    if (/^[0-9]/.test(id)) {
+      return false
+    } else {
+      this.setState({
+        id: id
+      })
+    }
   }
 
   render () {
