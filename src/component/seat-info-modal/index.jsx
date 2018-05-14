@@ -133,19 +133,21 @@ export default class SeatInfoModal extends Component {
           <Col span={8} className={styles.col}>
             <Indicator title='当日累计通时' data={data.todayTotalTalkTime} />
             <Tooltip placement='right' title={`昨日累计通时 ${data.lastSumTime}`}>
-              <Icon type='pro-phone-circle' className={styles.fixIcon} />
+              <Icon type={data.todayTotalTalkTime > data.lastSumTime ? 'arrowup' : 'arrowdown'}
+                className={styles.fixIcon}
+              />
             </Tooltip>
           </Col>
           <Col span={8} className={styles.col}>
             <Indicator title='当日累计通次' data={data.todayTotalTalkNum} />
             <Tooltip placement='right' title={`昨日累计通次 ${data.lastSumCount}`}>
-              <Icon type='pro-phone-circle' className={styles.fixIcon} />
+              <Icon type={data.todayTotalTalkNum >= data.lastSumCount ? 'arrowup' : 'arrowdown'} className={styles.fixIcon} />
             </Tooltip>
           </Col>
           <Col span={8}>
             <Indicator title='当日累计平均通时' data={data.todayTotalAvgTalkTime} />
             <Tooltip placement='right' title={`昨日累计平均通时 ${data.lastSumAvg}`}>
-              <Icon type='pro-phone-circle' className={styles.fixIcon} style={{ right: '8px' }} />
+              <Icon type={data.todayTotalAvgTalkTime > data.lastSumAvg ? 'arrowup' : 'arrowdown'} className={styles.fixIcon} style={{ right: '8px' }} />
             </Tooltip>
           </Col>
         </Row>
