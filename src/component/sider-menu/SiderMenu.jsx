@@ -26,6 +26,10 @@ export default class SiderMenu extends PureComponent {
       });
     }
   }
+  toggle = () => {
+    const { collapsed, onCollapse } = this.props;
+    onCollapse(!collapsed);
+  };
 	// 获取当前访问的菜单的全部父级菜单
 	getDefaultCollapsedSubMenus(props) {
 		const { location: { pathname } } = props || this.props;
@@ -176,7 +180,13 @@ export default class SiderMenu extends PureComponent {
 		});
 	}
 	render() {
-		const { logo, collapsed, location: { pathname }, onSelect } = this.props;
+		const {
+			logo,
+			collapsed,
+			location: { pathname },
+			onSelect,
+			toggle
+		} = this.props;
 		// console.log('SiderMenuProps', this.props);
 		// console.log('collapsed', collapsed);
 		const { openKeys: { menuProps } } = this.state;
@@ -193,6 +203,7 @@ export default class SiderMenu extends PureComponent {
 		if (!selectedKeys.length) {
 			selectedKeys = [openKeys[openKeys.length - 1]];
 		}
+		const iconType = collapsed ? 'left-circle-o' : 'right-circle-o'
 		return (
   <div className={styles.sider}>
     <div className={styles.logo} key='logo'>
@@ -211,6 +222,9 @@ export default class SiderMenu extends PureComponent {
       onSelect={onSelect}
     >
       {this.getNavMenuItems(this.menus)}
+      <Menu.Item key='collapsed_icon' className={styles.toggle}>
+        {toggle ? <Icon type={iconType} key={0} onClick={this.toggle} className={styles.trigger} /> : ''}
+      </Menu.Item>
     </Menu>
   </div>
 		);
