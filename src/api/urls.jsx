@@ -30,7 +30,7 @@ function initHostname() {
 		// 用于生产环境
 		return {
 			domainName: `/`,
-			suffix: '',
+			suffix: '.do',
 			// mock数据中间地址
 			mockAdd: '',
 			userUrl: '',
@@ -44,7 +44,7 @@ const hostname = initHostname();
 const peopleManagementUrl = {}
 
 Object.keys(peopleManagement).forEach(function(key) {
-  peopleManagementUrl[key] = `${hostname.domainName}${peopleManagement[key]}${hostname.suffix || ''}`
+  peopleManagementUrl[key] = `${hostname.domainName}${peopleManagement[key]}${hostname.suffix}`
 });
 // console.log('peopleManagementUrl', peopleManagementUrl);
 // _.mapKeys(peopleManagement, function(value, key) {

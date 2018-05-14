@@ -79,24 +79,24 @@ module.exports = {
       //   //   path.resolve(__dirname, 'style'),
       //   // ]
       // },
-      {
-        test: /\.(css)$/,
-        use: [{
-          loader: 'style-loader'
-        }, {
-          loader: 'css-loader',
-        }]
-        // ,
-        // exclude: [
-        //   path.resolve(__dirname, 'component'),
-        //   path.resolve(__dirname, 'container'),
-        //   path.resolve(__dirname, 'templates'),
-        // ],
-        // include: [
-        //   path.resolve(__dirname, 'components'),
-        //   path.resolve(__dirname, 'style'),
-        // ]
-      },
+      // {
+      //   test: /\.(css)$/,
+      //   use: [{
+      //     loader: 'style-loader'
+      //   }, {
+      //     loader: 'css-loader',
+      //   }]
+      //   // ,
+      //   // exclude: [
+      //   //   path.resolve(__dirname, 'component'),
+      //   //   path.resolve(__dirname, 'container'),
+      //   //   path.resolve(__dirname, 'templates'),
+      //   // ],
+      //   // include: [
+      //   //   path.resolve(__dirname, 'components'),
+      //   //   path.resolve(__dirname, 'style'),
+      //   // ]
+      // },
       // {
       //   test: /\.(less)$/,
       //   use: [{
@@ -129,6 +129,7 @@ module.exports = {
           options: {
             modules: true,
             import: true,
+            localIdentName: '[path][name]__[local]--[hash:base64:5]'
           }
         }, {
           loader: 'less-loader',
