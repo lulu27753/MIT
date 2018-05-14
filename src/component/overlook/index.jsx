@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Seat from 'component/seat';
 import SeatInfoModal from 'component/seat-info-modal'
+import StandardTable from 'component/standard-table'
 import { Icon } from 'components'
 import services from 'api/services';
 import urls from 'api/urls';
@@ -113,6 +114,7 @@ export default class Overlook extends Component {
             {this.renderSpace()}
             <SeatInfoModal visible={visible} umId={umId} handleModalStatus={this.handleModalStatus} />
           </div>
+          <StandardTable id={id} />
         </div>
         );
     }

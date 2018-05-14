@@ -30,7 +30,7 @@ export default class Main extends Component {
           <TreeMenu onToggle={this.toggleTeam} />
         </Sider>
         <Layout className={styles.main_right}>
-          <Content>
+          <Content style={{position: 'relative'}}>
             <RightHeader id={id} />
             <Overlook id={id} />
             {/* <StandardTable id={id} /> */}
