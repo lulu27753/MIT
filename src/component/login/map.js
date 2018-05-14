@@ -9,7 +9,7 @@ import React from 'react';
 import Input from 'components/input';
 import Icon from 'components/icon';
 
-import styles from './login.less';
+import styles from './index.less';
 
 const map = {
 	UserName: {

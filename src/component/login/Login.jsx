@@ -6,7 +6,7 @@ import Form from 'components/form';
 import LoginItem from './LoginItem';
 import LoginSubmit from './LoginSubmit';
 
-import styles from './login.less';
+import styles from './index.less';
 
 // 经 Form.create() 包装过的组件会自带 this.props.form 属性，直接传给 Form 即可
 @Form.create()
