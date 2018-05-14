@@ -1,4 +1,5 @@
 import React from 'react';
+
 import services from 'api/services';
 import urls from 'api/urls';
 
@@ -47,7 +48,7 @@ export default class RightHeader extends React.Component {
       <div className={styles.header} >
         <span>{place}</span>
         <span>{name || ''}</span>
-        <span>{seatNum ? `团队坐席数量${seatNum}` : ''}</span>
+        <span>{seatNum ? `团队坐席数量 ${seatNum}` : ''}</span>
       </div>
      )
   }
