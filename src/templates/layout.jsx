@@ -27,11 +27,7 @@ class MainLayout extends Component {
     return (
       <div id='main-container'>
         <h1 className='h1'>排版1</h1>
-<<<<<<< HEAD
         <div className={styles.layout_temp} style={{ width: '900px', height: '100vh' }}>
-=======
-        <div className='layout_temp' style={{ width: '900px', height: '100vh' }}>
->>>>>>> e13cacbc1a2e35f33e58cb65fa8b0ef2c9606bc6
           <Layout>
             <Sider style={{ background: '#eee' }} />
             <Layout>
@@ -43,11 +39,7 @@ class MainLayout extends Component {
         </div>
         <br />
         <h1 className='h1'>排版2</h1>
-<<<<<<< HEAD
         <div className={styles.layout_temp} style={{ width: '900px', height: '100vh' }}>
-=======
-        <div className='layout_temp' style={{ width: '900px', height: '100vh' }}>
->>>>>>> e13cacbc1a2e35f33e58cb65fa8b0ef2c9606bc6
           <Layout>
             <Header style={{ background: '#eee' }} />
             <Content />
@@ -57,11 +49,7 @@ class MainLayout extends Component {
         <br />
         <h1 className='h1'>排版3 左菜单栏可缩进</h1>
         <h1 className='h1'><Button type='normal' onClick={this.toggle}>toggle Sider</Button></h1>
-<<<<<<< HEAD
         <div className={styles.layout_temp} style={{ width: '900px', height: '100vh' }} >
-=======
-        <div className='layout_temp' style={{ width: '900px', height: '100vh' }} >
->>>>>>> e13cacbc1a2e35f33e58cb65fa8b0ef2c9606bc6
           <Layout>
             <Sider span={{ fold: '1', unfold: '12' }} collapsed={collpased} onCollapse={this.onCollapse} style={{ background: '#eee' }} />
             <Layout>
