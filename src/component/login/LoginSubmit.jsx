@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import Button from 'components/button';
 import Form from 'components/form';
 
-import styles from './login.less';
+import styles from './index.less';
 
 const FormItem = Form.Item;
 
