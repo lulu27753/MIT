@@ -1,6 +1,9 @@
 // @import "../../../style/themes/default";
+@import "../../../style/mixins/size.less";
+
 
 @ease-in-out-circ: cubic-bezier(.78, .14, .15, .86);
+@width: 60px;
 
 .menu {
   padding: 8px 0;
@@ -23,8 +26,12 @@
     display: inline-block;
     margin: 0 auto;
     vertical-align: middle;
-    height: 45px;
+    .square(@width);
+    height: 60px;
     border-radius: 50%;
+  }
+  .collapse {
+    .square(@width / 2)
   }
   h1 {
     color: #fff;

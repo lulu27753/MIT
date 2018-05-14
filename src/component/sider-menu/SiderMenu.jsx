@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
+import classNames from 'classnames';
 
 import Menu from 'components/menu';
 import Icon from 'components/icon';
@@ -188,13 +189,14 @@ export default class SiderMenu extends PureComponent {
 		// selectedKeys：当前选中的菜单项 key 数组
 		let selectedKeys = this.getSelectedMenuKeys(pathname);
 		// console.log('selectedKeys', selectedKeys);
+		const classString = classNames({[styles.collapse]: collapsed})
 		if (!selectedKeys.length) {
 			selectedKeys = [openKeys[openKeys.length - 1]];
 		}
 		return (
   <div className={styles.sider}>
     <div className={styles.logo} key='logo'>
-      <img src={logo} alt='logo' style={{ width: 45 }} />
+      <img src={logo} alt='logo' className={classString} />
       { /* <h1>{data.common.systemName}</h1> */ }
     </div>
     <Menu
