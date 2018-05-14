@@ -29,7 +29,7 @@ function initHostname() {
 	if (_PRD_) {
 		// 用于生产环境
 		return {
-			domainName: `http://iqsh-d9539:8080/loancloud-manage`,
+			domainName: `/`,
 			suffix: '',
 			// mock数据中间地址
 			mockAdd: '',
