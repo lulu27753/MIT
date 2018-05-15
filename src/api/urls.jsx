@@ -29,8 +29,8 @@ function initHostname() {
 	if (_PRD_) {
 		// 用于生产环境
 		return {
-			domainName: `http://iqsh-d9539:8080/loancloud-manage`,
-			suffix: '',
+			domainName: `/`,
+			suffix: '.do',
 			// mock数据中间地址
 			mockAdd: '',
 			userUrl: '',
@@ -44,7 +44,7 @@ const hostname = initHostname();
 const peopleManagementUrl = {}
 
 Object.keys(peopleManagement).forEach(function(key) {
-  peopleManagementUrl[key] = `${hostname.domainName}${peopleManagement[key]}${hostname.suffix || ''}`
+  peopleManagementUrl[key] = `${hostname.domainName}${peopleManagement[key]}${hostname.suffix}`
 });
 // console.log('peopleManagementUrl', peopleManagementUrl);
 // _.mapKeys(peopleManagement, function(value, key) {

@@ -28,7 +28,7 @@ class Sider extends Component {
   }
 
   render() {
-    const { span, children, collapsed, onCollapse } = this.props
+    const { span, children, collapsed, onCollapse, className } = this.props
 
     let currentSpan
     if (typeof span === 'number') {
@@ -43,8 +43,8 @@ class Sider extends Component {
 
     const classes = classNames({
       'idoll-layout-sider': 'doll-layout-sider',
-      [`idoll-layout-sider-${currentSpan}`]: currentSpan
-    })
+      [`idoll-layout-sider-${currentSpan}`]: currentSpan,
+    }, className)
 
     const otherProps = omit(this.props, [
       'span',
