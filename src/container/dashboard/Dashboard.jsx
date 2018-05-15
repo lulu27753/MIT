@@ -102,6 +102,8 @@ export default class Dashboard extends React.Component {
             location={location}
             menuData={getMenuData()}
             collapsed={this.state.collapsed}
+            onCollapse={this.onCollapse}
+            toggle
            />
         </Sider>
         <Layout>
@@ -112,8 +114,6 @@ export default class Dashboard extends React.Component {
               routerPath={this.getPageTitle()}
               onQuit={this.handleQuit}
               collapsed={this.state.collapsed}
-              onCollapse={this.onCollapse}
-              toggle
             />
           </Header>
           <Content className={styles.content}>

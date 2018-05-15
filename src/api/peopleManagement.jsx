@@ -1,11 +1,10 @@
 export default {
-    queryTeamSeatStatus: '/peopleManagement/teamSeat/query',
-    queryTeamInfo: '/peopleManagement/teamInfo/query',
+    queryTeamSeatStatus: '/peopleManagement/teamSeat',
+    queryTeamInfo: '/peopleManagement/teamInfo',
     downloadTeamIndx: '/peopleManagement/teamIndex/download',
-    querySeatIndex: '/peopleManagement/seatIndex/query',
-    queryOrganization: '/peopleManagement/organization/query',
+    querySeatIndex: '/peopleManagement/seatIndex',
+    queryOrganization: '/peopleManagement/organization',
     login: `/login`,
     logout: `/logout`,
-
-    queryTeamIndex: '/peopleManagement/teamIndex/query'
+    queryTeamIndex: '/peopleManagement/teamIndex'
 }
