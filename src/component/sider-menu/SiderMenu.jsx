@@ -112,7 +112,6 @@ export default class SiderMenu extends PureComponent {
   <SubMenu
     key={item.key || item.path}
     title={item.icon ? (<span>{getIcon(item.icon)}<span>{item.name}</span></span>) : item.name}
-    
 	>
     {this.getNavMenuItems(item.children)}
   </SubMenu>
@@ -120,8 +119,8 @@ export default class SiderMenu extends PureComponent {
 				} else {
 					return (
   <Menu.Item
-	  key={item.key || item.path}
-	  className={styles.menu_selected}
+    key={item.key || item.path}
+    className={styles.menu_selected}
   >
     {this.getMenuItemPath(item)}
   </Menu.Item>

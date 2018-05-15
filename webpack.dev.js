@@ -35,8 +35,8 @@ module.exports = merge(common, {
 		new CleanWebpackPlugin(['dist']),
 		// 会自动生成一个html文件
 		new HtmlwebpackPlugin({
-			filename: 'index.html',
-			template: 'index.html',
+			filename: 'dbox.html',
+			template: 'dbox.html',
 			inject: true
 		}),
 		// 热加载插件
