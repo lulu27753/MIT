@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
+import classNames from 'classnames';
 
 import Menu from 'components/menu';
 import Icon from 'components/icon';
@@ -25,6 +26,10 @@ export default class SiderMenu extends PureComponent {
       });
     }
   }
+  toggle = () => {
+    const { collapsed, onCollapse } = this.props;
+    onCollapse(!collapsed);
+  };
 	// 获取当前访问的菜单的全部父级菜单
 	getDefaultCollapsedSubMenus(props) {
 		const { location: { pathname } } = props || this.props;
@@ -113,7 +118,10 @@ export default class SiderMenu extends PureComponent {
 		  );
 				} else {
 					return (
-  <Menu.Item key={item.key || item.path}>
+  <Menu.Item
+    key={item.key || item.path}
+    className={styles.menu_selected}
+  >
     {this.getMenuItemPath(item)}
   </Menu.Item>
 						)
@@ -175,7 +183,13 @@ export default class SiderMenu extends PureComponent {
 		});
 	}
 	render() {
-		const { logo, collapsed, location: { pathname }, onSelect } = this.props;
+		const {
+			logo,
+			collapsed,
+			location: { pathname },
+			onSelect,
+			toggle
+		} = this.props;
 		// console.log('SiderMenuProps', this.props);
 		// console.log('collapsed', collapsed);
 		const { openKeys: { menuProps } } = this.state;
@@ -188,13 +202,15 @@ export default class SiderMenu extends PureComponent {
 		// selectedKeys：当前选中的菜单项 key 数组
 		let selectedKeys = this.getSelectedMenuKeys(pathname);
 		// console.log('selectedKeys', selectedKeys);
+		const classString = classNames({[styles.collapse]: collapsed})
 		if (!selectedKeys.length) {
 			selectedKeys = [openKeys[openKeys.length - 1]];
 		}
+		const iconType = collapsed ? 'left-circle-o' : 'right-circle-o'
 		return (
   <div className={styles.sider}>
     <div className={styles.logo} key='logo'>
-      <img src={logo} alt='logo' style={{ width: 45 }} />
+      <img src={logo} alt='logo' className={classString} />
       { /* <h1>{data.common.systemName}</h1> */ }
     </div>
     <Menu
@@ -209,6 +225,9 @@ export default class SiderMenu extends PureComponent {
       onSelect={onSelect}
     >
       {this.getNavMenuItems(this.menus)}
+      <Menu.Item key='collapsed_icon' className={styles.toggle}>
+        {toggle ? <Icon type={iconType} key={0} onClick={this.toggle} className={styles.trigger} /> : ''}
+      </Menu.Item>
     </Menu>
   </div>
 		);

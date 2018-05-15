@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+// import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import 'babel-polyfill';
 
 import Login from 'container/login';
@@ -9,7 +10,7 @@ import '../style/reset.less';
 
 
 const App = () => (
-  <Router>
+  <Router basename='/spotManage'>
     <div>
       <Switch>
         <Route exact path='/' component={Dashboard} />
