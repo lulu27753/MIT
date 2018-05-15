@@ -96,8 +96,8 @@ export default class StandardTable extends Component {
   render () {
     return (
       <div className={styles.dataContainer} style={{ height: this.state.expand ? '' : 50 }}>
-        <div className={styles.icon} onClick={this.handleToggle}>
-          <Icon type={this.state.expand ? 'down-circle-o' : 'up-circle-o'} />
+        <div onClick={this.handleToggle}>
+          <Icon className={styles.icon} type={this.state.expand ? 'down-circle-o' : 'up-circle-o'} />
         </div>
         <Row className={styles.row}>
           {/* 工作指标区域 */}
