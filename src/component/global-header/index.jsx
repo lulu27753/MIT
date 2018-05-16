@@ -60,7 +60,7 @@ export default class GlobalHeader extends PureComponent {
             ) : (
               <Spin size='small' style={{ marginLeft: 8 }} />
               )}
-            <Button type='quit' icon='logout' className={styles.quit} style={{ background: '#5093e1', color: '#fff' }} onClick={onQuit} />
+            <Button type='create' icon='logout' className={styles.quit} onClick={onQuit} />
           </div>
         </div>
       )

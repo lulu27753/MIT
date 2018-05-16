@@ -8,7 +8,7 @@
 
 #production
 # /dist
-# dist/
+dist/
 
 # misc
 .DS_Store

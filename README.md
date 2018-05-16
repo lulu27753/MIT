@@ -54,6 +54,23 @@ Dbox Pro 已经为你生成了一个完整的开发框架，提供了涵盖中�
 
 ## 构建部署发布
 
+1. 将index.html中的注释放开
+	`<script src="dll/vendors.dll.js"></script> `
+2.配置src/api/urls.jsx中的相关配置
+```js
+	if (_PRD_) {
+		// 用于生产环境
+		return {
+			domainName: `/`,
+			suffix: '.do',
+			// mock数据中间地址
+			mockAdd: '',
+			userUrl: '',
+		}
+	}
+```
+3.在命令行输入命令并打包
+
 ```bash
 npm run build # 打包以后，可以在dist文件夹下找到项目的最终生成文件
 ```

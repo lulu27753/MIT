@@ -118,7 +118,10 @@ export default class SiderMenu extends PureComponent {
 		  );
 				} else {
 					return (
-  <Menu.Item key={item.key || item.path}>
+  <Menu.Item
+    key={item.key || item.path}
+    className={styles.menu_selected}
+  >
     {this.getMenuItemPath(item)}
   </Menu.Item>
 						)
