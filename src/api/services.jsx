@@ -8,9 +8,9 @@ import axios from 'axios'
 import { message } from 'components'
 
 export default {
-    get: (url, param, resolve, reject) => {
+    get: (url, params, resolve, reject) => {
         console.log('url', url)
-        return axios.get(url, {param: param})
+        return axios.get(url, {params: params})
             .then(function(response) {
                 // console.log('res', response)
                 const data = response.data
@@ -31,8 +31,8 @@ export default {
                 typeof reject === 'function' && reject(error);
             })
     },
-    post: (url, param, resolve, reject) => {
-        axios.post(url, param)
+    post: (url, params, resolve, reject) => {
+        axios.post(url, params)
             .then(function(response) {
                 const data = response.data
                 if (data.resultCode === '000000') {
@@ -69,11 +69,11 @@ export default {
                 typeof reject === 'function' && reject(error);
             })
     },
-    getAsync: async (url, param) => {
+    getAsync: async (url, params) => {
         const data = await axios.request({
             method: 'GET',
             url: url,
-            params: param
+            params: params
         })
         .then(function(response) {
             const data = response.data
@@ -94,11 +94,11 @@ export default {
 
         return data;
     },
-    postAsync: async (url, param) => {
+    postAsync: async (url, params) => {
         const data = await axios.request({
             method: 'POST',
             url: url,
-            params: param
+            params: params
         })
         .then(function(response) {
             const data = response.data

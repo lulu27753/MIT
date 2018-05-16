@@ -44,7 +44,7 @@ export default class Overlook extends Component {
 
     getData (id) {
       if (this.state.id || this.state.visible) {
-          services.get(urls.queryTeamSeatStatus, {umId: id}, this.handleUpdateState, this.handleError)
+          services.post(urls.queryTeamSeatStatus, {umId: id}, this.handleUpdateState, this.handleError)
       }
     }
 
