@@ -67,16 +67,16 @@ export default class SeatInfoModal extends Component {
         </Row>
         <Row className={styles.row}>
           <Col span={6} className={styles.col}>
-            <Indicator title='姓名' data={data.tmrName} />
+            <Indicator title='姓名' data={data.TMR_NAME} />
           </Col>
           <Col span={6} className={styles.col}>
-            <Indicator title='司龄' data={data.onboardAge} />
+            <Indicator title='司龄' data={data.ONBOARD_AGE} />
           </Col>
           <Col span={6} className={styles.col}>
-            <Indicator title='坐席业务模式' data={data.tmrType} />
+            <Indicator title='坐席业务模式' data={data.TMR_TYPE} />
           </Col>
           <Col span={6} >
-            <Indicator title='职级描述' data={data.positionName} />
+            <Indicator title='职级描述' data={data.POSITION_NAME} />
           </Col>
         </Row>
         <Divider className={styles.divider} />
@@ -85,7 +85,7 @@ export default class SeatInfoModal extends Component {
         </Row>
         <Row className={styles.row}>
           <Col span={8}>
-            <Indicator title='是否话务活跃' data={data.isActive} />
+            <Indicator title='是否话务活跃' data={data.IS_ACTIVE} />
           </Col>
         </Row>
         <Divider className={styles.divider} />
@@ -94,13 +94,13 @@ export default class SeatInfoModal extends Component {
         </Row>
         <Row className={styles.row}>
           <Col span={8} className={styles.col}>
-            <Indicator title='当日累计车险保费' data={data.todayTotalCiPreminm} />
+            <Indicator title='当日累计车险保费' data={data.TODAY_TOTAL_CI_PREMIUM} />
           </Col>
           <Col span={8} className={styles.col}>
-            <Indicator title='当日累计核保通过客户数' data={data.securityThroughCustCnt} width='70%' />
+            <Indicator title='当日累计核保通过客户数' data={data.SECURITY_THROUGH_CUST_CNT} width='70%' />
           </Col>
           <Col span={8}>
-            <Indicator title='当日累计非车保护费' data={data.todayTotalNciPremium} />
+            <Indicator title='当日累计非车保护费' data={data.TODAY_TOTAL_NCI_PREMIUM} />
           </Col>
         </Row>
         <Divider className={styles.divider} />
@@ -120,34 +120,34 @@ export default class SeatInfoModal extends Component {
         </Row> */}
         <Row className={styles.row}>
           <Col span={8} className={styles.col}>
-            <Indicator title='实时有效通时(上一时段)' data={data.refaltimeEffecTalkTime} width='75%' />
+            <Indicator title='实时有效通时(上一时段)' data={data.REALTIME_EFFEC_TALKTIME} width='75%' />
           </Col>
           <Col span={8} className={styles.col}>
-            <Indicator title='实时有效通次(上一时段)' data={data.refaltimeEffecTalkNum} width='75%' />
+            <Indicator title='实时有效通次(上一时段)' data={data.REALTIME_EFFEC_TALKNUM} width='75%' />
           </Col>
           <Col span={8}>
-            <Indicator title='实时平均通时(上一时段)' data={data.refaltimeAvgTalkTime} width='75%' />
+            <Indicator title='实时平均通时(上一时段)' data={data.REALTIME_AVG_TALKTIME} width='75%' />
           </Col>
         </Row>
         <Row className={styles.row}>
           <Col span={8} className={styles.col}>
-            <Indicator title='当日累计通时' data={data.todayTotalTalkTime} />
-            <Tooltip placement='right' title={`昨日累计通时 ${data.lastSumTime}`}>
-              <Icon type={data.todayTotalTalkTime > data.lastSumTime ? 'arrowup' : 'arrowdown'}
+            <Indicator title='当日累计通时' data={data.TODAY_TOTAL_TALKTIME} />
+            <Tooltip placement='right' title={`昨日累计通时 ${data.LAST_SUM_TIME}`}>
+              <Icon type={data.TODAY_TOTAL_TALKTIME > data.LAST_SUM_TIME ? 'arrowup' : 'arrowdown'}
                 className={styles.fixIcon}
               />
             </Tooltip>
           </Col>
           <Col span={8} className={styles.col}>
-            <Indicator title='当日累计通次' data={data.todayTotalTalkNum} />
-            <Tooltip placement='right' title={`昨日累计通次 ${data.lastSumCount}`}>
-              <Icon type={data.todayTotalTalkNum >= data.lastSumCount ? 'arrowup' : 'arrowdown'} className={styles.fixIcon} />
+            <Indicator title='当日累计通次' data={data.TODAY_TOTAL_TALKNUM} />
+            <Tooltip placement='right' title={`昨日累计通次 ${data.LAST_SUM_COUNT}`}>
+              <Icon type={data.todayTotalTalkNum >= data.LAST_SUM_COUNT ? 'arrowup' : 'arrowdown'} className={styles.fixIcon} />
             </Tooltip>
           </Col>
           <Col span={8}>
-            <Indicator title='当日累计平均通时' data={data.todayTotalAvgTalkTime} />
-            <Tooltip placement='right' title={`昨日累计平均通时 ${data.lastSumAvg}`}>
-              <Icon type={data.todayTotalAvgTalkTime > data.lastSumAvg ? 'arrowup' : 'arrowdown'} className={styles.fixIcon} style={{ right: '8px' }} />
+            <Indicator title='当日累计平均通时' data={data.TODAY_TOTAL_AVG_TALKTIME} />
+            <Tooltip placement='right' title={`昨日累计平均通时 ${data.LAST_SUM_AVG}`}>
+              <Icon type={data.TODAY_TOTAL_AVG_TALKTIME > data.LAST_SUM_AVG ? 'arrowup' : 'arrowdown'} className={styles.fixIcon} style={{ right: '8px' }} />
             </Tooltip>
           </Col>
         </Row>
