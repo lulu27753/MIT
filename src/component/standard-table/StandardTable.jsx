@@ -17,7 +17,7 @@ export default class StandardTable extends Component {
       id: props.id,
       CURRENT_CALL_CNT: '', // 当前通话人力
       CURRENT_IDLE_CNT: '', // 当前空闲人力
-      TODAY_TOTAL_CI_PREMIUM:'', // 当日累计车险保费
+      TODAY_TOTAL_CI_PREMIUM: '', // 当日累计车险保费
       TODAY_TOTAL_CI_CUST_CNT: '', // 当日累计车险标的数
       TODAY_TOTAL_CI_AVG_PREMIUM: '', // 当日累计车险件均
       TODAY_TOTAL_NCI_PREMIUM: '', // 当日累计非车保费
