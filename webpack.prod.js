@@ -63,8 +63,8 @@ let webpackConfig = merge(common, {
   plugins: [
     // 会自动生成一个html文件
     new HtmlwebpackPlugin({
-      filename: 'index.html',
-      template: 'index.html',
+      filename: 'dbox.html',
+      template: 'dbox.html',
       inject: true,
       minify: {
         removeComments: true,
