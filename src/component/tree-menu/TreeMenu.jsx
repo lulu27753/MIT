@@ -46,7 +46,7 @@ export default class TreeMenu extends React.Component {
     const expandedKeys = this.state.dataList.map((item) => {
       if (item.title.indexOf(value) > -1) {
         // 一级包含搜索值
-        const key = item.um || item.key
+        const key = item.umId || item.key
         return getParentKey(key, this.state.gData);
       }
       return null;
@@ -63,7 +63,7 @@ export default class TreeMenu extends React.Component {
   const { searchValue, expandedKeys, autoExpandParent, gData } = this.state;
   const { link, parentpath, searchColor } = this.props;
   const loop = data => data.map((item) => {
-    const key = item.um || item.key;
+    const key = item.umId || item.key;
     const index = item.title.indexOf(searchValue);
     const beforeStr = item.title.substr(0, index);
     const afterStr = item.title.substr(index + searchValue.length);
@@ -88,14 +88,15 @@ export default class TreeMenu extends React.Component {
 return <TreeNode key={key} title={link ? <Link to={`${parentpath}/${key}`}>{title}</Link> : title} />;
 });
     return (
-      <div className={styles.tree}>
-        <Search style={{ marginBottom: 8 }} placeholder='搜索职场' onChange={this.onChange} />
+      <div className={styles.treeContainer}>
+        <Search style={{ marginBottom: 8 }} className={styles.search} placeholder='搜索职场' onChange={this.onChange} />
         <Tree
           {...this.props}
           onExpand={this.onExpand}
           expandedKeys={expandedKeys}
           autoExpandParent={autoExpandParent}
           onSelect={this.onSelect}
+          className={styles.tree}
         >
           {loop(gData)}
         </Tree>

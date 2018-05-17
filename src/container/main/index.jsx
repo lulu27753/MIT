@@ -48,7 +48,7 @@ export default class Main extends Component {
     }, styles.toggle)
     return (
       <Layout className={styles.main} >
-        <Sider span={span} collapsed={this.state.collapsed} className={styles.tree_sider}>
+        <Sider span={span} collapsed={this.state.collapsed} className={styles.tree_sider} >
           { collapsed ? ''
             : <TreeMenu onToggle={this.toggleTeam} />
           }
