@@ -2,8 +2,8 @@
   "resultCode": "000000",
   "resultMesg": "操作成功",
   "data": {
-    "CURRENT_CALL_ CNT": "18",
-    "CURRENT_IDLE_ CNT": "10",
+    "CURRENT_CALL_CNT": "18",
+    "CURRENT_IDLE_CNT": "10",
     "TODAY_TOTAL_CI_PREMIUM": "300000",
     "TODAY_TOTAL_CI_CUST_CNT": "20",
     "TODAY_TOTAL_CI_AVG_PREMIUM": "20",
