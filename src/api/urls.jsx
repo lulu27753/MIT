@@ -29,7 +29,7 @@ function initHostname() {
 	if (_PRD_) {
 		// 用于生产环境
 		return {
-			domainName: `/`,
+			domainName: `http://localhost:7001/pnc-analysis`,
 			suffix: '.do',
 			// mock数据中间地址
 			mockAdd: '',
