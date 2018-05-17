@@ -5,8 +5,8 @@ import styles from './index.less';
 export default class Indicator extends Component {
   static defaultProps = {
     prefixCls: 'indicator',
-    title: '指标',
-    data: '200'
+    title: '',
+    data: ''
   }
   static propTypes = {
     title: PropTypes.string,

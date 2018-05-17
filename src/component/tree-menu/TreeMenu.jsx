@@ -88,14 +88,15 @@ export default class TreeMenu extends React.Component {
 return <TreeNode key={key} title={link ? <Link to={`${parentpath}/${key}`}>{title}</Link> : title} />;
 });
     return (
-      <div className={styles.tree}>
-        <Search style={{ marginBottom: 8 }} placeholder='搜索职场' onChange={this.onChange} />
+      <div className={styles.treeContainer} style={{ position: 'relative' }}>
+        <Search style={{ marginBottom: 8 }} className={styles.search} placeholder='搜索职场' onChange={this.onChange} />
         <Tree
           {...this.props}
           onExpand={this.onExpand}
           expandedKeys={expandedKeys}
           autoExpandParent={autoExpandParent}
           onSelect={this.onSelect}
+          className={styles.tree}
         >
           {loop(gData)}
         </Tree>

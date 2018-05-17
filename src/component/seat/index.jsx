@@ -4,8 +4,8 @@ import classnames from 'classnames';
 import { Tooltip, Icon } from 'components'
 
 import styles from './index.less';
-import female from 'assets/images/female.svg'
-import male from 'assets/images/male.svg'
+import female from 'assets/images/female.png'
+import male from 'assets/images/male.png'
 
 export default class Seat extends Component {
     constructor(props) {

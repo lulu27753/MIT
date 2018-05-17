@@ -10,7 +10,7 @@ import '../style/reset.less';
 
 
 const App = () => (
-  <Router basename='/spotManage'>
+  <Router>
     <div>
       <Switch>
         <Route exact path='/' component={Dashboard} />
