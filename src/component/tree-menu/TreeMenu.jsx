@@ -88,7 +88,7 @@ export default class TreeMenu extends React.Component {
 return <TreeNode key={key} title={link ? <Link to={`${parentpath}/${key}`}>{title}</Link> : title} />;
 });
     return (
-      <div className={styles.treeContainer} style={{ position: 'relative' }}>
+      <div className={styles.treeContainer}>
         <Search style={{ marginBottom: 8 }} className={styles.search} placeholder='搜索职场' onChange={this.onChange} />
         <Tree
           {...this.props}
