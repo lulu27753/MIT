@@ -61,7 +61,7 @@ export default class Overlook extends Component {
       const { dataSource } = this.state
       const boxs = this.renderPlain();
       dataSource.length && dataSource.map((item) => {
-        if (boxs[item.x]) boxs[item.x].props.children[item.y] = (<Seat key={item.x + '_' + item.y} status={item} handleModalStatus={this.handleModalStatus} />)
+        if (boxs[item.y]) boxs[item.y].props.children[item.x] = (<Seat key={item.x + '_' + item.y} status={item} handleModalStatus={this.handleModalStatus} />)
       })
       return boxs;
     }
