@@ -34,5 +34,5 @@ const render = App => {
 render(App)
 
 if (module.hot) {
-  module.hot.accept('./App', () => render(App))
+  module.hot.accept('./App', (App) => render(App))
 }

@@ -5,22 +5,14 @@ const ROOT_PATH = path.resolve(__dirname);
 const APP_PATH = path.resolve(ROOT_PATH, 'src');
 const BUILD_PATH = path.resolve(ROOT_PATH, 'dist');
 
-// 判断当前是否处于开发环境
-const _DEV_ = (process.env.NODE_ENV || 'development') === 'development';
-// 判断当前是否处于测试环境
-const _STG_ = (process.env.NODE_ENV || 'staging') === 'staging';
-// 判断当前是否处于生产环境
-const _PRD_ = (process.env.NODE_ENV || 'production') === 'production';
-
-
-
 module.exports = {
   // 项目的文件夹 可以直接用文件夹名称 默认会找index.js 也可以确定是哪个文件名字
   entry: APP_PATH,
   // 输出的文件名 合并以后的js会命名为bundle.js
   output: {
     path: BUILD_PATH,
-    filename: 'build.js'
+    filename: 'build.js',
+    publicPath: '/'
   },
 
   resolve: {
@@ -40,7 +32,6 @@ module.exports = {
       'style': path.resolve(__dirname, 'style'),
       'api': path.resolve(__dirname, 'src/api'),
       'router': path.resolve(__dirname, 'src/router')
-
     }
   },
   // devserver 配置

@@ -12,7 +12,7 @@ import { setAuthority, getAuthority } from 'utils/localStorageAuthority';
 import services from 'api/services';
 import urls from 'api/urls';
 
-import data from '../../data';
+// import data from '../../data';
 import styles from './index.less';
 
 
@@ -78,7 +78,7 @@ return this.state.redirectTO ? <Redirect to={this.state.redirectTO} /> : (
   <div className={styles.loginpage}>
     <div className={styles.header}>
       <img src={Image} alt='' />
-      <span>{data.common.systemName}</span>
+      {/* <span>{data.common.systemName}</span> */}
     </div>
     <Login
       onSubmit={this.onSubmit}

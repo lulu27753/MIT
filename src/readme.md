@@ -1,8 +1,16 @@
 ## 布局
 
+布局主要帮助我们快速搭建页面结构，划分区域，处理页面响应式。我们目前提供的页面布局是主要有页面的整体布局Layout和栅格系统布局Grid。
+
 ### Dbox UI 的 Grid 组件
 
+目前提供的栅格系统是按照24等分原则进行划分的，采用的flex布局方法，你需要了解flex布局相关基础知识。
+
 ### Dbox UI 的 Layout 组件
+
+Layout组件是用于页面整体布局的组件，提供Layout，Sider，Header，Content，Footer组件。
+
+Layout作为容器组件，Sider，Header，Content，Footer使用时必须包含在Layout内，同时使用Sider时，如果需要配合其他Header, Content, Footer使用其他类型组件外层需要在包个Layout
 
 ## 路由和菜单
 
@@ -54,7 +62,7 @@
 菜单配置文件：`src/dashboard/getMenuData.jsx`，其主要作用是：
 
 * 配置菜单相关数据，菜单项的跳转链接`<Link>`的“to”为配置项及其所有父级配置 path 参数的拼接
-* 为菜单路由：`src/router/router.jsx`提供路由名称（name)等数据，根据拼接好的跳转链接来匹配相关路由
+* 为菜单路由：`src/router/router.jsx`提供路由名称（name) 等数据，根据拼接好的跳转链接来匹配相关路由
 * 如果你的项目并不需要菜单，你也可以直接在 `src/router/router.jsx`中配置 name 信息
 * 如果需要隐藏某条菜单项，可以在`src/dashboard/getMenuData.jsx`的该条数据中增加hideInMenu（Boolean）字段，并设置为true
 
@@ -194,6 +202,17 @@ ReactDOM.render(
 因为上一条的关系，覆盖是全局性的，为了防止对其他 Select 造成影响，可以给组件添加 className，只对这类组件进行覆盖，也可以利用外层类名实现这种限制。
 
 ## 和服务端进行交互
+
+我们使用axios框架进行与后端的交互，同时对接口统一的管理。
+
+* service `api/services.jsx` 提供与后端交互的方法，根据统一的接口规范进行统一处理。[接口规范](http://git-ma.paic.com.cn/loan-cloud/code-guide/blob/master/interface-specification.md)
+* urls `api/urls.jsx` 将所有接口按各自模块划分，最后通过urls.jsx对后端接口统一进行整合暴露给外部引用
+
+### 不同模式下数据来源
+
+service中根据当前的NODE_ENV，配置不同的hostName，获取相应数据。你可以在servic中配置不同模式下的数据源
+
+在开发模式下，默认获取mock文件夹中的前端的mock数据
 
 ## 引入外部模块
 

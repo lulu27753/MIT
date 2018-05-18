@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import DocumentTitle from 'react-document-title';
 
 
@@ -8,12 +8,14 @@ import Layout from 'components/layout';
 
 import SiderMenu from 'component/sider-menu';
 import GlobalHeader from 'component/global-header';
-import Main from 'container/main/index.jsx';
+import ChildContent from 'container/Content';
+import User from 'container/user';
 
+import data from '../../data';
 import logo from 'assets/images/logo.png';
 import { getMenuData } from './getMenuData';
 import { getAuthority, setAuthority } from 'utils/localStorageAuthority';
-import { getRedirect, redirectData } from 'utils/getRedirect';
+import { getRedirect } from 'utils/getRedirect';
 
 import services from 'api/services';
 import urls from 'api/urls';
@@ -29,7 +31,11 @@ const Header = Layout.Header;
 const menus = getMenuData();
 // console.log('menus', menus);
 menus.forEach(getRedirect);
-console.log('redirectData', redirectData);
+
+const Task = () => (<ChildContent title='Task' />)
+const ChildDashboard = () => (<ChildContent title='Dashboard' />)
+// const User = () => (<ChildContent title='User' />)
+const NotFound = () => (<Content title='404' text='抱歉，你访问的页面不存在' />)
 
 export default class Dashboard extends React.Component {
   constructor(props) {
@@ -43,6 +49,7 @@ export default class Dashboard extends React.Component {
 
   componentDidMount() {
     // 从localstorerage里面获取授权
+    // console.log('match', this.props.match)
     let auth = getAuthority();
     console.log('auth', auth);
     // 将授权信息存储到context中
@@ -53,19 +60,11 @@ export default class Dashboard extends React.Component {
   getPageTitle() {
     const { routerData, location } = this.props;
     const { pathname } = location;
-    let title = '产险线上化分析平台';
+    let title = data.common.systemName;
     if (routerData[pathname] && routerData[pathname].name) {
       title = `${routerData[pathname].name}`;
     }
     return title;
-  }
-  getBashRedirect() {
-    // 重定向到url的redirect参数所示地址
-    const urlParams = new URL(window.location.href);
-    const redirect = urlParams.searchParams.get('redirect') || '/dashboard/';
-    urlParams.searchParams.delete('redirect');
-    window.history.pushState(null, 'redirect', urlParams.href);
-    return redirect;
   }
   logoutSuccess = (data) => {
     // console.log(data)
@@ -117,7 +116,13 @@ export default class Dashboard extends React.Component {
             />
           </Header>
           <Content className={styles.content}>
-            <Main />
+            <Switch>
+              <Route exact path='/' component={Dashboard} />
+              <Route exact path='/dashboard' component={User} />
+              <Route path='/dashboard/task-list' component={Task} />
+              <Route path='/user' component={User} />
+              <Route component={NotFound} />
+            </Switch>
           </Content>
         </Layout>
       </Layout>
