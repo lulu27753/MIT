@@ -87,7 +87,8 @@ export default class Overlook extends Component {
 
     // 下载团队指标
     downloadTeamIndex = () => {
-      // console.log('downLoadTeamIndex')
+      console.log('download')
+      window.location.href = urls.downloadTeamIndx
     }
 
     // 刷新

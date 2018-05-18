@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import DocumentTitle from 'react-document-title';
 
 
@@ -53,9 +53,11 @@ export default class Dashboard extends React.Component {
   getPageTitle() {
     const { routerData, location } = this.props;
     const { pathname } = location;
+    const routerArr = pathname.split('/');
+    const currentPath = routerArr && routerArr[1] ? '/' + routerArr[1] : '/';
     let title = '产险线上化分析平台';
-    if (routerData[pathname] && routerData[pathname].name) {
-      title = `${routerData[pathname].name}`;
+    if (routerData[currentPath] && routerData[currentPath].name) {
+      title = `${routerData[currentPath].name}`;
     }
     return title;
   }
@@ -117,7 +119,12 @@ export default class Dashboard extends React.Component {
             />
           </Header>
           <Content className={styles.content}>
-            <Main />
+            <Switch>
+              <Route exact path='/' component={Main} />
+              <Route exact path='/dashboard' component={Main} />
+              <Route path='/dashboard/version-manage' component={Main} />
+            </Switch>
+            {/* <Main /> */}
           </Content>
         </Layout>
       </Layout>

@@ -9,6 +9,12 @@
 
 import originJsonp from 'jsonp';
 
+const COMMON_PARAMS = {
+  'systemName': 'PAD-PAC',
+  'operateTime': '2018-05-07 10:05:45.451',
+  'operateUm': ''
+}
+
 // 将Object形式的参数处理成URL挂载参数的形式函数
 function param (params) {
   let url = '';
@@ -22,6 +28,7 @@ function param (params) {
 const jsonp = (({url, option, params, type}) => {
   url += '/edf-behavior/api/rlog/' + type;
   if (params) {
+    params = Object.assign({}, COMMON_PARAMS,params);
     url += (url.indexOf('?') < 0 ? '?' : '&') + param(params);
   }
   return new Promise((resolve, reject) => {
