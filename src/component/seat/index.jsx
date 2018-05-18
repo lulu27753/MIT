@@ -40,16 +40,16 @@ export default class Seat extends Component {
 
       let className = classnames({
         [styles.box]: styles.box,
-        [styles.outline]: status.telephoneState === 1
+        [styles.outline]: status.telephoneState === '1'
       })
 
       return (
         <Tooltip placement='top' title={status.umId} >
           <div className={className} onClick={this.handleClick} >
             {status.sex === 'F' ? <img src={female} className={styles.person} /> : <img src={male} className={styles.person} />}
-            {status.isNew === 1 && <div className={styles.new}>NEW</div>}
-            {status.telephoneState === 3 && <Icon type='pro-phone-circle' className={styles.dialling} />}
-            {status.telephoneState === 4 && <Icon type='pro-clock-circle' className={styles.unused} />}
+            {status.isNew === '1' && <div className={styles.new}>NEW</div>}
+            {status.telephoneState === '2' && <Icon type='pro-phone-circle' className={styles.dialling} />}
+            {status.telephoneState === '3' && <Icon type='pro-clock-circle' className={styles.unused} />}
           </div>
         </Tooltip>
         );

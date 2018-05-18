@@ -55,7 +55,7 @@ export default class StandardTable extends Component {
       return false;
     } else {
       this.setState({ id: nextProps.id });
-      this.handleRequestData(this.state.id)
+      this.handleRequestData(nextProps.id)
     }
     // 每五分钟调用一次接口
     this.timeId = setInterval(() => this.handleRequestData(this.state.id), 1000 * 60 * 5)
