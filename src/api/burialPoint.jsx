@@ -8,10 +8,20 @@
  */
 
 import originJsonp from 'jsonp';
+import moment from 'moment';
+
+// 格式化时间函数
+function dateFormat (date, type) {
+  if (!date) {
+    return ''
+  }
+  type = type || 'YYYY-MM-DD HH:mm:ss'
+  return moment(date).format(type)
+}
 
 const COMMON_PARAMS = {
   'systemName': 'PAD-PAC',
-  'operateTime': '2018-05-07 10:05:45.451',
+  'operateTime': dateFormat(Date.now()),
   'operateUm': ''
 }
 
