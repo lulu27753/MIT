@@ -69,7 +69,7 @@ export default class Dashboard extends React.Component {
       url: data.url,
       params: params,
       option: option,
-      type: 'login'
+      type: 'dologin'
     }
     // const objParamsActive = {
     //   url: data.url,
