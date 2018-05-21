@@ -6,5 +6,6 @@ export default {
     queryOrganization: '/peopleManagement/organization',
     login: `/login`,
     logout: `/logout`,
-    queryTeamIndex: '/peopleManagement/teamIndex'
+    queryTeamIndex: '/peopleManagement/teamIndex',
+    assitSignature: '/peopleManagement/assitSignature'
 }

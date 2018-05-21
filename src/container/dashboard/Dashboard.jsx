@@ -55,12 +55,7 @@ export default class Dashboard extends React.Component {
       auth: auth
     })
     // 埋点信息(判断是否登陆成功)
-    if (!localStorage.getItem('idoll-pro-authority')) {
-      return false;
-    } else {
-      console.log(111111)
-      services.get('peopleManagement/assitSignature.do', this.getAssitSignature)
-    }
+      services.get(urls.assitSignature, {}, this.getAssitSignature)
   }
 
   getAssitSignature(data) {
