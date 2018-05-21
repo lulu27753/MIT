@@ -37,7 +37,7 @@ export default class SeatInfoModal extends Component {
 
   handleUpdateState = (data) => {
     this.setState({
-      data: data
+      data: data || {}
     })
   }
 
