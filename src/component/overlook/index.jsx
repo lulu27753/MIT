@@ -44,7 +44,7 @@ export default class Overlook extends Component {
 
     getData (id) {
       if (this.state.id || this.state.visible) {
-          services.post(urls.queryTeamSeatStatus, {umId: id}, this.handleUpdateState, this.handleError)
+          services.get(urls.queryTeamSeatStatus, {umId: id}, this.handleUpdateState, this.handleError)
       }
     }
 
@@ -87,7 +87,6 @@ export default class Overlook extends Component {
 
     // 下载团队指标
     downloadTeamIndex = () => {
-      console.log('download')
       window.location.href = urls.downloadTeamIndx
     }
 

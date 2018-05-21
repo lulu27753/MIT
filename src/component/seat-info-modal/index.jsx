@@ -37,7 +37,15 @@ export default class SeatInfoModal extends Component {
 
   handleUpdateState = (data) => {
     this.setState({
-      data: data || {}
+      data: Object.assign({
+        'ONBOARD_AGE': '',
+        'TODAY_TOTAL_CI_PREMIUM': '',
+        'TODAY_TOTAL_NCI_PREMIUM': '',
+        'REALTIME_EFFEC_TALKTIME': '',
+        'REALTIME_AVG_TALKTIME': '',
+        'LAST_SUM_TIME': '',
+        'LAST_SUM_AVG': ''
+      }, data)
     })
   }
 
@@ -59,6 +67,7 @@ export default class SeatInfoModal extends Component {
   render() {
     const { visible } = this.props;
     const { data } = this.state;
+    console.log('seatIndex data:', data)
 
     return (
       <Modal visible={visible} title='坐席详情' footer={null} onCancel={this.handleCancel} width={880} >
