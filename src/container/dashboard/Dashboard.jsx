@@ -57,7 +57,13 @@ export default class Dashboard extends React.Component {
     // 埋点信息
       services.get(urls.assitSignature, {}, this.getAssitSignature)
   }
-  // 调用印记埋点登录
+  /**
+   * 
+   * 
+   * @param {any} data 
+   * @returns 
+   * @memberof Dashboard
+   */
   getAssitSignature(data) {
     if (data && data.resultCode === '000000') {
       this.setState({url: data.url});
@@ -78,8 +84,15 @@ export default class Dashboard extends React.Component {
         option: option,
         type: 'active'
       }
-      jsonpCMT.writeLogLogin(objParamsLogin);
-      this.timeId = setInterval(() => jsonpCMT.writeLogActive(objParamsAcive), 1000 * 60 * 10)
+      jsonpCMT.writeLogLogin(objParamsLogin).then((res) => {
+        if (res.resultCode === 'success') {
+          console.log(111);
+        }
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+      // this.timeId = setInterval(() => jsonpCMT.writeLogActive(objParamsAcive), 1000 * 60 * 10)
     } else {
       return false;
     }

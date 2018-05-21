@@ -57,16 +57,16 @@ const jsonp = ({url, option, params, type}) => {
 const jsonpCMT = {
   writeLogLogin: function (objParams) {
     jsonp(objParams)
-    .then((res) => {
-      if (res && res.resultCode && res.resultCode === 'success') {
-        console.log('[edfBehaviorWriteLogLogin登录成功！]resultMsg:' + res.resultMsg);
-      } else {
-        console.log('[edfBehaviorWriteLogLogin登录失败！]resultMsg:' + res.resultMsg);
-      }
-    })
-    .catch((err) => {
-      console.log(err)
-    })
+    // .then((res) => {
+    //   if (res && res.resultCode && res.resultCode === 'success') {
+    //     console.log('[edfBehaviorWriteLogLogin登录成功！]resultMsg:' + res.resultMsg);
+    //   } else {
+    //     console.log('[edfBehaviorWriteLogLogin登录失败！]resultMsg:' + res.resultMsg);
+    //   }
+    // })
+    // .catch((err) => {
+    //   console.log(err)
+    // })
   },
   writeLogActive: function (objParams) {
     jsonp(objParams);
