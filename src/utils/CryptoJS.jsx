@@ -3829,7 +3829,7 @@ SecureRandom.prototype.nextBytes = rng_get_bytes;
  * @name KJUR
  * @namespace kjur's class library name space
  */
-if (typeof KJUR == "undefined" || !KJUR) KJUR = {};
+if (typeof KJUR == "undefined" || !KJUR) var KJUR = {};
 /**
  * kjur's cryptographic algorithm provider library name space
  * <p>
@@ -6518,7 +6518,7 @@ SM3Digest.prototype = {
 	}
 };
 Array.Clear = function(destinationArray, destinationIndex, length) {
-	for (elm in destinationArray) {
+	for (var elm in destinationArray) {
 		destinationArray[elm] = null
 	}
 };
@@ -7476,3 +7476,5 @@ window.SM2CipherMode = {
 	C1C2C3 : '0',
 	C1C3C2 : '1'
 };
+
+export  { CryptoJS, SM2CipherMode, SM2Cipher }

@@ -14,7 +14,15 @@ export default class SeatInfoModal extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      data: {}
+      data: {
+        'ONBOARD_AGE': '',
+        'TODAY_TOTAL_CI_PREMIUM': '',
+        'TODAY_TOTAL_NCI_PREMIUM': '',
+        'REALTIME_EFFEC_TALKTIME': '',
+        'REALTIME_AVG_TALKTIME': '',
+        'LAST_SUM_TIME': '',
+        'LAST_SUM_AVG': ''
+      }
     }
   }
 

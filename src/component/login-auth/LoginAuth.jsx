@@ -6,7 +6,7 @@ import { withRouter } from 'react-router';
 import services from 'api/services';
 import urls from 'api/urls';
 
-import Authorized, { setAuthority } from 'utils/localStorageAuthority';
+import { setAuthority } from 'utils/localStorageAuthority';
 
 
 
