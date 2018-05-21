@@ -57,7 +57,7 @@ export default class Dashboard extends React.Component {
     // 埋点信息
       services.get(urls.assitSignature, {}, this.getAssitSignature)
   }
-
+  // 调用印记埋点登录
   getAssitSignature(data) {
     this.setState({url: data.url});
     const url = data.url;
@@ -72,13 +72,7 @@ export default class Dashboard extends React.Component {
       option: option,
       type: 'dologin'
     }
-    // const objParamsActive = {
-    //   url: data.url,
-    //   option: 'activeCallback',
-    //   type: 'active'
-    // }
     jsonpCMT.writeLogLogin(objParamsLogin);
-    // this.timeId = setInterval(() => jsonpCMT.writeLogActive(objParamsActive), 1000 * 60 * 10)
   }
 
   getPageTitle() {

@@ -10,6 +10,8 @@
 import originJsonp from 'jsonp';
 import moment from 'moment';
 
+import { getAuthority } from 'utils/localStorageAuthority';
+
 // 格式化时间函数
 function dateFormat (date, type) {
   if (!date) {
@@ -22,7 +24,7 @@ function dateFormat (date, type) {
 const COMMON_PARAMS = {
   'systemName': 'PNC-ANALYSIS',
   'operateTime': dateFormat(Date.now()),
-  'operateUm': ''
+  'operateUm': getAuthority()
 }
 
 // 将Object形式的参数处理成URL挂载参数的形式函数
