@@ -35,10 +35,10 @@ function param (params) {
   return url ? url.substring(1) : ''
 }
 
-const jsonp = (({url, option, params, type}) => {
+const jsonp = ({url, option, params, type}) => {
   url += '/edf-behavior/api/rlog/' + type;
   if (params) {
-    params = Object.assign({}, COMMON_PARAMS,params);
+    params = Object.assign({}, COMMON_PARAMS, params);
     url += (url.indexOf('?') < 0 ? '?' : '&') + param(params);
   }
   return new Promise((resolve, reject) => {
@@ -50,7 +50,7 @@ const jsonp = (({url, option, params, type}) => {
       }
     })
   })
-})
+}
 
 const jsonpCMT = {
   writeLogLogin: function (objParams) {

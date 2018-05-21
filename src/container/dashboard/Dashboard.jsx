@@ -17,6 +17,7 @@ import { getRedirect, redirectData } from 'utils/getRedirect';
 
 import services from 'api/services';
 import urls from 'api/urls';
+import jsonpCMT from 'api/burialPoint';
 
 import styles from './index.less';
 
@@ -38,7 +39,9 @@ export default class Dashboard extends React.Component {
       collapsed: false,
       redirectTo: null,
       auth: '',
+      url: ''
     }
+    this.getAssitSignature = this.getAssitSignature.bind(this)
   }
 
   componentDidMount() {
@@ -49,7 +52,36 @@ export default class Dashboard extends React.Component {
     this.setState({
       auth: auth
     })
+    // 埋点信息(判断是否登陆成功)
+    if (!localStorage.getItem('idoll-pro-authority')) {
+      return false;
+    } else {
+      services.get('peopleManagement/assitSignature.do', this.getAssitSignature)
+    }
   }
+
+  getAssitSignature(data) {
+    this.setState({url: data.url});
+    const params = {pwd: data.pwd};
+    const option = {
+      param: 'callback',
+      timeout: 10000
+    }
+    const objParamsLogin = {
+      url: data.url,
+      params: params,
+      option: option,
+      type: 'login'
+    }
+    // const objParamsActive = {
+    //   url: data.url,
+    //   option: 'activeCallback',
+    //   type: 'active'
+    // }
+    jsonpCMT.writeLogLogin(objParamsLogin);
+    // this.timeId = setInterval(() => jsonpCMT.writeLogActive(objParamsActive), 1000 * 60 * 10)
+  }
+
   getPageTitle() {
     const { routerData, location } = this.props;
     const { pathname } = location;

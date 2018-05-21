@@ -24,6 +24,7 @@ export const getRouterData = () => {
 	const routerConfig = {
 		'/': { component: {Dashboard} },
 		'/dashboard': { component: {Dashboard} },
+		'/dashboard/version-manage': { component: {Dashboard} },
 		'/user': { component: () => <h1>business-tree</h1> },
 		'/business': { component: () => <h1>user-list</h1> },
 		'/report': { component: () => <h1>scenario-chart</h1> },
