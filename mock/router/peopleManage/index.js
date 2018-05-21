@@ -13,6 +13,16 @@ router.post('/mock/peopleManagement/teamSeat.json', function (req, res, next) {
     }
   })
 })
+router.post('/mock/login.json', function (req, res, next) {
+  fs.readFile(path.resolve(__dirname, '../../login.json'), function(err, data) {
+    if (err) {
+      console.log(err)
+    } else {
+      res.send(data)
+      res.end()
+    }
+  })
+})
 
 module.exports = router
 

@@ -32,8 +32,8 @@ export default class TreeMenu extends React.Component {
       gData: treeData,
       dataList: generateList(treeData),
     }, () => {
-      console.log('treeData', this.state.gData)
-      console.log('dataList', this.state.dataList)
+      // console.log('treeData', this.state.gData)
+      // console.log('dataList', this.state.dataList)
     })
   }
   onExpand = (expandedKeys) => {

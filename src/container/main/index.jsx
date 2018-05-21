@@ -21,7 +21,7 @@ export default class Main extends Component {
   }
 
   toggleTeam = (id) => {
-    console.log('teamId', id)
+    // console.log('teamId', id)
     id = id.length && id[0]
     if (/^[0-9]/.test(id)) {
       return false
