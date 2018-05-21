@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { PropTypes } from 'prop-types'
 import classnames from 'classnames';
 import { Tooltip, Icon } from 'components'
+import burialPoint from 'api/burialPoint'
 
 import styles from './index.less';
 import female from 'assets/images/female.png'
@@ -33,6 +34,7 @@ export default class Seat extends Component {
       if (typeof handleModalStatus === 'function') {
         handleModalStatus(status.umId, true)
       }
+      burialPoint.writeLogToDSInfo({telephoneState: status.telephoneState})
     }
 
     render() {

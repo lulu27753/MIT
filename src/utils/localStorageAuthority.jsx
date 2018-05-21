@@ -36,5 +36,13 @@ export function setAuthority(authority) {
   return setItem('idoll-pro-authority', authority);
 }
 
+export function setBurialUrl(burialUrl) {
+    return setItem('burial-url', burialUrl);
+}
+
+export function getBurialUrl() {
+    return getItem('burial-url');
+}
+
 const Authorized = authorizedRender(getAuthority());
 export default Authorized;
