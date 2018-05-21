@@ -51,6 +51,11 @@ export default class Dashboard extends React.Component {
     this.setState({
       auth: auth
     })
+    if (!auth) {
+      this.setState({
+        redirectTo: '/login'
+      })
+    }
   }
   getPageTitle() {
     const { routerData, location } = this.props;
@@ -71,7 +76,7 @@ export default class Dashboard extends React.Component {
   }
   handleQuit = () => {
     // console.log('handleQuit', 'redirectTo: /login');
-    services.get(urls.logout, {um: this.state.auth}, this.logoutSuccess)
+    services.get(urls.logout, {umId: this.state.auth}, this.logoutSuccess)
   }
   onCollapse = (collapsed) => {
     this.setState({

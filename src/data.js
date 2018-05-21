@@ -2,13 +2,13 @@
 * @Author: lulu27753
 * @Date:   2018-04-26 15:56:08
  * @Last Modified by: mikey.zhaopeng
- * @Last Modified time: 2018-05-09 09:25:20
+ * @Last Modified time: 2018-05-21 11:10:43
 * @use: 用于配置网站的静态数据信息
 */
 
 const data = {
 	common: {
-		systemName: 'Dbox Pro',
+		systemName: '产险线上化分析平台',
 	},
 	gfooter: {
 		links: [{

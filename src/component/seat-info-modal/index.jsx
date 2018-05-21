@@ -61,7 +61,7 @@ export default class SeatInfoModal extends Component {
     const { data } = this.state;
 
     return (
-      <Modal visible={visible} title='坐席详情' footer={null} onCancel={this.handleCancel} width={800} >
+      <Modal visible={visible} title='坐席详情' footer={null} onCancel={this.handleCancel} width={880} >
         <Row className={styles.row} >
           <Title title='基本信息' style={{paddingLeft: '0'}} />
         </Row>
@@ -76,7 +76,7 @@ export default class SeatInfoModal extends Component {
             <Indicator title='坐席业务模式' data={data.TMR_TYPE} />
           </Col>
           <Col span={6} >
-            <Indicator title='职级描述' data={data.POSITION_NAME} />
+            <Indicator title='职级描述' width='40%' data={data.POSITION_NAME} />
           </Col>
         </Row>
         <Divider className={styles.divider} />
