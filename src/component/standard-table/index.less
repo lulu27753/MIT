@@ -1,25 +1,30 @@
 .dataContainer {
+  position: absolute;
   width: 100%;
   zoom: 1;
-  position: absolute;
-  background-color:#fff;
-  border-top: 1px solid #ccc;
-  margin-top: 20px;
-  bottom: 86px;
   right: 20px;
   left: 0;
+  bottom: 86px;
+  z-index: 99;
+  background-color:#fff;
+  border-top: 1px solid #ccc;
 
   .icon {
     position: absolute;
-    top: 17px;
+    top: 23px;
     right: 0;
     color: #999;
-    font-size: 18px;
+    font-size: 14px;
     z-index: 999;
+    transition: color 0.5s;
+    &:hover {
+      cursor: pointer;
+      color: rgba(0, 0, 0, .7);
+    }
   }
 
   .row {
-    left: -16px;
+    left: -19px;
   }
 
   &:after {
@@ -31,7 +36,18 @@
   }
 
   .work {
-    padding: 20px 0;
+    font-size: 14px;
+    padding: 18px 0;
+    color: #666666;
+    font-family: MicrosoftYaHei;
+  }
+
+  .perforWork {
+    font-size: 14px;
+    padding: 18px 0;
+    margin-left: 10px;
+    color: #666666;
+  font-family: MicrosoftYaHei;
   }
 }
 
@@ -50,13 +66,13 @@
 }
 
 .phoneCol {
+  position: relative;
+  top: -14px;
   margin-left: 20px;
 }
 
 .phoneContainer {
   width: 100%;
-  float: left;
-  margin-right: 20px;
   zoom: 1;
 
   .ColTalk {
@@ -64,7 +80,7 @@
   }
 
   .ColTalknum {
-    padding-left: 28px
+    padding-left: 14px;
   }
 
   &:after {

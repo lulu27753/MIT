@@ -61,7 +61,7 @@ export default class Overlook extends Component {
       const { dataSource } = this.state
       const boxs = this.renderPlain();
       dataSource.length && dataSource.map((item) => {
-        if (boxs[item.x]) boxs[item.x].props.children[item.y] = (<Seat key={item.x + '_' + item.y} status={item} handleModalStatus={this.handleModalStatus} />)
+        if (boxs[item.y]) boxs[item.y].props.children[item.x] = (<Seat key={item.x + '_' + item.y} status={item} handleModalStatus={this.handleModalStatus} />)
       })
       return boxs;
     }
@@ -87,7 +87,8 @@ export default class Overlook extends Component {
 
     // 下载团队指标
     downloadTeamIndex = () => {
-      // console.log('downLoadTeamIndex')
+      console.log('download')
+      window.location.href = urls.downloadTeamIndx
     }
 
     // 刷新
@@ -97,6 +98,7 @@ export default class Overlook extends Component {
 
     render() {
       const { id, visible, umId } = this.state
+      console.log('id', id);
       return (
         <div style={{ height: '100%', position: 'relative' }}>
           <div className={styles.toolsHeader}>
