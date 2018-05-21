@@ -12,7 +12,7 @@ import { setAuthority, getAuthority } from 'utils/localStorageAuthority';
 import services from 'api/services';
 import urls from 'api/urls';
 
-import data from '../../data';
+// import data from '../../data';
 import styles from './index.less';
 
 
@@ -33,11 +33,10 @@ export default class LoginPage extends React.Component {
 		const auth = getAuthority();
 		console.log(auth)
 	}
-	authSuccess = ({userType, msg, um}) => {
+	authSuccess = ({userType, msg, umId}) => {
 		// 如果登陆成功，则将登陆账号存入localStorage
-		if (um === 'guanguan' && !msg) {
-			// console.log('um', um)
-			setAuthority(um);
+		if (umId && !msg) {
+			setAuthority(umId);
 			this.setState({
 				redirectTO: '/dashboard',
 			})
@@ -59,7 +58,7 @@ export default class LoginPage extends React.Component {
 	}
 	onSubmit = (err, values) => {
 		if (!err) {
-			services.get(urls.login, {um: values.username, pwd: values.password, autoLogin: this.state.autoLogin}, this.authSuccess)
+			services.get(urls.login, {umId: values.username, pwd: values.password, autoLogin: this.state.autoLogin}, this.authSuccess)
 		}
 	}
 	changeAutoLogin = (e) => {
@@ -78,7 +77,7 @@ return this.state.redirectTO ? <Redirect to={this.state.redirectTO} /> : (
   <div className={styles.loginpage}>
     <div className={styles.header}>
       <img src={Image} alt='' />
-      <span>{data.common.systemName}</span>
+      {/* <span>{data.common.systemName}</span> */}
     </div>
     <Login
       onSubmit={this.onSubmit}
@@ -92,7 +91,7 @@ return this.state.redirectTO ? <Redirect to={this.state.redirectTO} /> : (
       <Password name='password' onChange={value => this.handleChange('password', value)} />
       <div>
         <Checkbox checked={this.state.autoLogin} onChange={this.changeAutoLogin}>自动登录</Checkbox>
-        <a style={{ float: 'right' }} href=''>忘记密码</a>
+        {/* <a style={{ float: 'right' }} href=''>忘记密码</a> */}
       </div>
       <Submit className='loginButton'>登录</Submit>
     </Login>

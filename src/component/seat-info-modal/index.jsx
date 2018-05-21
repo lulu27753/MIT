@@ -37,7 +37,15 @@ export default class SeatInfoModal extends Component {
 
   handleUpdateState = (data) => {
     this.setState({
-      data: data
+      data: Object.assign({
+        'ONBOARD_AGE': '',
+        'TODAY_TOTAL_CI_PREMIUM': '',
+        'TODAY_TOTAL_NCI_PREMIUM': '',
+        'REALTIME_EFFEC_TALKTIME': '',
+        'REALTIME_AVG_TALKTIME': '',
+        'LAST_SUM_TIME': '',
+        'LAST_SUM_AVG': ''
+      }, data)
     })
   }
 
@@ -59,9 +67,10 @@ export default class SeatInfoModal extends Component {
   render() {
     const { visible } = this.props;
     const { data } = this.state;
+    console.log('seatIndex data:', data)
 
     return (
-      <Modal visible={visible} title='坐席详情' footer={null} onCancel={this.handleCancel} width={800} >
+      <Modal visible={visible} title='坐席详情' footer={null} onCancel={this.handleCancel} width={880} >
         <Row className={styles.row} >
           <Title title='基本信息' style={{paddingLeft: '0'}} />
         </Row>
@@ -76,7 +85,7 @@ export default class SeatInfoModal extends Component {
             <Indicator title='坐席业务模式' data={data.TMR_TYPE} />
           </Col>
           <Col span={6} >
-            <Indicator title='职级描述' data={data.POSITION_NAME} />
+            <Indicator title='职级描述' width='40%' data={data.POSITION_NAME} />
           </Col>
         </Row>
         <Divider className={styles.divider} />

@@ -62,7 +62,7 @@ Layout作为容器组件，Sider，Header，Content，Footer使用时必须包�
 菜单配置文件：`src/dashboard/getMenuData.jsx`，其主要作用是：
 
 * 配置菜单相关数据，菜单项的跳转链接`<Link>`的“to”为配置项及其所有父级配置 path 参数的拼接
-* 为菜单路由：`src/router/router.jsx`提供路由名称（name)等数据，根据拼接好的跳转链接来匹配相关路由
+* 为菜单路由：`src/router/router.jsx`提供路由名称（name) 等数据，根据拼接好的跳转链接来匹配相关路由
 * 如果你的项目并不需要菜单，你也可以直接在 `src/router/router.jsx`中配置 name 信息
 * 如果需要隐藏某条菜单项，可以在`src/dashboard/getMenuData.jsx`的该条数据中增加hideInMenu（Boolean）字段，并设置为true
 
