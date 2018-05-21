@@ -58,6 +58,7 @@ export default class Dashboard extends React.Component {
     if (!localStorage.getItem('idoll-pro-authority')) {
       return false;
     } else {
+      console.log(111111)
       services.get('peopleManagement/assitSignature.do', this.getAssitSignature)
     }
   }
