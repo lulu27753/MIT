@@ -60,13 +60,14 @@ export default class Dashboard extends React.Component {
 
   getAssitSignature(data) {
     this.setState({url: data.url});
-    const params = {p: data.pwd};
+    const url = data.url;
+    const params = {p: encodeURIComponent(data.pwd)};
     const option = {
       param: 'callback',
       timeout: 10000
     }
     const objParamsLogin = {
-      url: data.url,
+      url: url,
       params: params,
       option: option,
       type: 'dologin'
