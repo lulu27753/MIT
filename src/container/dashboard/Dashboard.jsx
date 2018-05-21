@@ -59,20 +59,30 @@ export default class Dashboard extends React.Component {
   }
   // 调用印记埋点登录
   getAssitSignature(data) {
-    this.setState({url: data.url});
-    const url = data.url;
-    const params = {p: encodeURIComponent(data.pwd)};
-    const option = {
-      param: 'callback',
-      timeout: 10000
+    if (data && data.resultCode === '000000') {
+      this.setState({url: data.url});
+      const url = data.url;
+      const params = {p: encodeURIComponent(data.pwd)};
+      const option = {
+        param: 'callback',
+        timeout: 10000
+      }
+      const objParamsLogin = {
+        url: url,
+        params: params,
+        option: option,
+        type: 'dologin'
+      }
+      const objParamsAcive = {
+        url: url,
+        option: option,
+        type: 'active'
+      }
+      jsonpCMT.writeLogLogin(objParamsLogin);
+      this.timeId = setInterval(() => jsonpCMT.writeLogActive(objParamsAcive), 1000 * 60 * 10)
+    } else {
+      return false;
     }
-    const objParamsLogin = {
-      url: url,
-      params: params,
-      option: option,
-      type: 'dologin'
-    }
-    jsonpCMT.writeLogLogin(objParamsLogin);
   }
 
   getPageTitle() {
