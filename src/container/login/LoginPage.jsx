@@ -12,7 +12,7 @@ import { setAuthority, getAuthority } from 'utils/localStorageAuthority';
 import services from 'api/services';
 import urls from 'api/urls';
 
-import data from '../../data';
+// import data from '../../data';
 import styles from './index.less';
 
 
@@ -35,7 +35,7 @@ export default class LoginPage extends React.Component {
 	}
 	authSuccess = ({userType, msg, um}) => {
 		// 如果登陆成功，则将登陆账号存入localStorage
-		if (um === 'guanguan' && !msg) {
+		if (um && !msg) {
 			// console.log('um', um)
 			setAuthority(um);
 			this.setState({
@@ -78,7 +78,7 @@ return this.state.redirectTO ? <Redirect to={this.state.redirectTO} /> : (
   <div className={styles.loginpage}>
     <div className={styles.header}>
       <img src={Image} alt='' />
-      <span>{data.common.systemName}</span>
+      {/* <span>{data.common.systemName}</span> */}
     </div>
     <Login
       onSubmit={this.onSubmit}

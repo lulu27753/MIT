@@ -8,7 +8,7 @@
 
 const data = {
 	common: {
-		systemName: '产险线上化分析平台',
+		systemName: 'Dbox Pro',
 	},
 	gfooter: {
 		links: [{
