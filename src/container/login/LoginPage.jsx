@@ -35,7 +35,7 @@ export default class LoginPage extends React.Component {
 	}
 	authSuccess = ({userType, msg, um}) => {
 		// 如果登陆成功，则将登陆账号存入localStorage
-		if (um === 'guanguan' && !msg) {
+		if (um && !msg) {
 			// console.log('um', um)
 			setAuthority(um);
 			this.setState({

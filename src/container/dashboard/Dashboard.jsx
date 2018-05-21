@@ -33,7 +33,7 @@ const menus = getMenuData();
 menus.forEach(getRedirect);
 
 const Task = () => (<ChildContent title='Task' />)
-const ChildDashboard = () => (<ChildContent title='Dashboard' />)
+// const ChildDashboard = () => (<ChildContent title='Dashboard' />)
 // const User = () => (<ChildContent title='User' />)
 const NotFound = () => (<Content title='404' text='抱歉，你访问的页面不存在' />)
 
