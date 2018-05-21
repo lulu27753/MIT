@@ -20,7 +20,7 @@ function dateFormat (date, type) {
 }
 
 const COMMON_PARAMS = {
-  'systemName': 'PAD-PAC',
+  'systemName': 'PNC-ANALYSIS',
   'operateTime': dateFormat(Date.now()),
   'operateUm': ''
 }

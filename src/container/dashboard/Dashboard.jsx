@@ -54,13 +54,13 @@ export default class Dashboard extends React.Component {
     this.setState({
       auth: auth
     })
-    // 埋点信息(判断是否登陆成功)
+    // 埋点信息
       services.get(urls.assitSignature, {}, this.getAssitSignature)
   }
 
   getAssitSignature(data) {
     this.setState({url: data.url});
-    const params = {pwd: data.pwd};
+    const params = {p: data.pwd};
     const option = {
       param: 'callback',
       timeout: 10000
