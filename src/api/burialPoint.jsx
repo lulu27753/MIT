@@ -8,11 +8,23 @@
  */
 
 import originJsonp from 'jsonp';
+import moment from 'moment';
+
+import { getAuthority } from 'utils/localStorageAuthority';
+
+// 格式化时间函数
+function dateFormat (date, type) {
+  if (!date) {
+    return ''
+  }
+  type = type || 'YYYY-MM-DD HH:mm:ss'
+  return moment(date).format(type)
+}
 
 const COMMON_PARAMS = {
-  'systemName': 'PAD-PAC',
-  'operateTime': '2018-05-07 10:05:45.451',
-  'operateUm': ''
+  'systemName': 'PNC-ANALYSIS',
+  'operateTime': dateFormat(Date.now()),
+  'operateUm': getAuthority()
 }
 
 // 将Object形式的参数处理成URL挂载参数的形式函数
@@ -25,10 +37,10 @@ function param (params) {
   return url ? url.substring(1) : ''
 }
 
-const jsonp = (({url, option, params, type}) => {
+const jsonp = ({url, option, params, type}) => {
   url += '/edf-behavior/api/rlog/' + type;
   if (params) {
-    params = Object.assign({}, COMMON_PARAMS,params);
+    params = Object.assign({}, COMMON_PARAMS, params);
     url += (url.indexOf('?') < 0 ? '?' : '&') + param(params);
   }
   return new Promise((resolve, reject) => {
@@ -40,7 +52,7 @@ const jsonp = (({url, option, params, type}) => {
       }
     })
   })
-})
+}
 
 const jsonpCMT = {
   writeLogLogin: function (objParams) {

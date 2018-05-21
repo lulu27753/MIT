@@ -18,6 +18,7 @@ import { getRedirect } from 'utils/getRedirect';
 
 import services from 'api/services';
 import urls from 'api/urls';
+import jsonpCMT from 'api/burialPoint';
 
 import styles from './index.less';
 
@@ -39,7 +40,9 @@ export default class Dashboard extends React.Component {
       collapsed: false,
       redirectTo: null,
       auth: '',
+      url: ''
     }
+    this.getAssitSignature = this.getAssitSignature.bind(this)
   }
 
   componentDidMount() {
@@ -51,12 +54,37 @@ export default class Dashboard extends React.Component {
     this.setState({
       auth: auth
     })
-    if (!auth) {
-      this.setState({
-        redirectTo: '/login'
-      })
+    // 埋点信息
+      services.get(urls.assitSignature, {}, this.getAssitSignature)
+  }
+  // 调用印记埋点登录
+  getAssitSignature(data) {
+    if (data && data.resultCode === '000000') {
+      this.setState({url: data.url});
+      const url = data.url;
+      const params = {p: encodeURIComponent(data.pwd)};
+      const option = {
+        param: 'callback',
+        timeout: 10000
+      }
+      const objParamsLogin = {
+        url: url,
+        params: params,
+        option: option,
+        type: 'dologin'
+      }
+      const objParamsAcive = {
+        url: url,
+        option: option,
+        type: 'active'
+      }
+      jsonpCMT.writeLogLogin(objParamsLogin);
+      this.timeId = setInterval(() => jsonpCMT.writeLogActive(objParamsAcive), 1000 * 60 * 10)
+    } else {
+      return false;
     }
   }
+
   getPageTitle() {
     const { routerData, location } = this.props;
     const { pathname } = location;

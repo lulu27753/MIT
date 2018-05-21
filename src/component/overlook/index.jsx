@@ -97,7 +97,6 @@ export default class Overlook extends Component {
 
     render() {
       const { id, visible, umId } = this.state
-      console.log('id', id);
       return (
         <div style={{ height: '100%', position: 'relative' }}>
           <div className={styles.toolsHeader}>
