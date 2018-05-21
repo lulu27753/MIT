@@ -15,7 +15,6 @@ export default {
                 // console.log('res', response)
                 const data = response.data
                 if (data.resultCode === '000000') {
-                    // console.log('成功', data.data)
                     typeof resolve === 'function' && resolve(data.data)
                     return data.data;
                 } else {
