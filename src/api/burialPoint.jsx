@@ -21,8 +21,8 @@ function dateFormat (date, type) {
 
 const COMMON_PARAMS = {
   'systemName': 'PNC-ANALYSIS',
-  // 'operateTime': dateFormat(Date.now()),
-  // 'operateUm': ''
+  'operateTime': dateFormat(Date.now()),
+  'operateUm': ''
 }
 
 // 将Object形式的参数处理成URL挂载参数的形式函数
