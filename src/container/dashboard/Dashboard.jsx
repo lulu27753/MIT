@@ -13,7 +13,7 @@ import Main from 'container/main';
 import data from '../../data';
 import logo from 'assets/images/logo.png';
 import { getMenuData } from './getMenuData';
-import { getAuthority, setAuthority } from 'utils/localStorageAuthority';
+import { getAuthority, setAuthority, setBurialUrl } from 'utils/localStorageAuthority';
 import { getRedirect } from 'utils/getRedirect';
 
 import services from 'api/services';
@@ -40,7 +40,6 @@ export default class Dashboard extends React.Component {
       collapsed: false,
       redirectTo: null,
       auth: '',
-      url: ''
     }
     this.getAssitSignature = this.getAssitSignature.bind(this)
   }
@@ -57,45 +56,12 @@ export default class Dashboard extends React.Component {
     // 埋点信息
       services.get(urls.assitSignature, {}, this.getAssitSignature)
   }
-  /**
-   * 
-   * 
-   * @param {any} data 
-   * @returns 
-   * @memberof Dashboard
-   */
+
+  // 调用印记埋点登录
   getAssitSignature(data) {
-    if (data && data.resultCode === '000000') {
-      this.setState({url: data.url});
-      const url = data.url;
-      const params = {p: encodeURIComponent(data.pwd)};
-      const option = {
-        param: 'callback',
-        timeout: 10000
-      }
-      const objParamsLogin = {
-        url: url,
-        params: params,
-        option: option,
-        type: 'dologin'
-      }
-      const objParamsAcive = {
-        url: url,
-        option: option,
-        type: 'active'
-      }
-      jsonpCMT.writeLogLogin(objParamsLogin).then((res) => {
-        if (res.resultCode === 'success') {
-          console.log(111);
-        }
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-      // this.timeId = setInterval(() => jsonpCMT.writeLogActive(objParamsAcive), 1000 * 60 * 10)
-    } else {
-      return false;
-    }
+    setBurialUrl(data.url)
+    jsonpCMT.writeLogLogin({ p: encodeURIComponent(data.pwd) });
+    this.timeId = setInterval(() => jsonpCMT.writeLogActive(), 1000 * 60 * 10);
   }
 
   getPageTitle() {
@@ -124,7 +90,6 @@ export default class Dashboard extends React.Component {
       collapsed
     });
   }
-
 	render() {
     const {
       currentUser,

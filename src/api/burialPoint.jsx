@@ -10,7 +10,7 @@
 import originJsonp from 'jsonp';
 import moment from 'moment';
 
-import { getAuthority } from 'utils/localStorageAuthority';
+import { getAuthority, getBurialUrl } from 'utils/localStorageAuthority';
 
 // 格式化时间函数
 function dateFormat (date, type) {
@@ -39,10 +39,14 @@ function param (params) {
 
 const jsonp = ({url, option, params, type}) => {
   url += '/edf-behavior/api/rlog/' + type;
-  if (params) {
-    params = Object.assign({}, COMMON_PARAMS, params);
-    url += (url.indexOf('?') < 0 ? '?' : '&') + param(params);
-  }
+  params = Object.assign({}, COMMON_PARAMS, params || {});
+  url += (url.indexOf('?') < 0 ? '?' : '&') + param(params);
+
+  option = Object.assign({
+    timeout: 10000,
+    param: 'callback'
+  }, option || {})
+
   return new Promise((resolve, reject) => {
     originJsonp(url, option, function(err, data) {
       if (!err) {
@@ -55,24 +59,40 @@ const jsonp = ({url, option, params, type}) => {
 }
 
 const jsonpCMT = {
-  writeLogLogin: function (objParams) {
-    jsonp(objParams)
-    // .then((res) => {
-    //   if (res && res.resultCode && res.resultCode === 'success') {
-    //     console.log('[edfBehaviorWriteLogLogin登录成功！]resultMsg:' + res.resultMsg);
-    //   } else {
-    //     console.log('[edfBehaviorWriteLogLogin登录失败！]resultMsg:' + res.resultMsg);
-    //   }
-    // })
-    // .catch((err) => {
-    //   console.log(err)
-    // })
+  writeLogLogin: function (params) {
+    let jsonpParam = {
+      url: getBurialUrl(),
+      params: params,
+      type: 'dologin'
+    }
+    jsonp(jsonpParam)
+    .then((res) => {
+      if (res && res.resultCode && res.resultCode === 'success') {
+        console.log('[edfBehaviorWriteLogLogin登录成功！]resultMsg:' + res.resultMsg);
+      } else {
+        console.log('[edfBehaviorWriteLogLogin登录失败！]resultMsg:' + res.resultMsg);
+      }
+    })
+    .catch((err) => {
+      console.log(err)
+    })
   },
-  writeLogActive: function (objParams) {
-    jsonp(objParams);
+  writeLogActive: function (params) {
+    let jsonpParam = {
+      url: getBurialUrl(),
+      params: params,
+      type: 'active'
+    }
+    jsonp(jsonpParam);
   },
-  writeLogToDSInfo: function (objParams) {
-    jsonp(objParams)
+  writeLogToDSInfo: (params, context) => {
+    let jsonpParam = {
+      url: getBurialUrl(),
+      params: params,
+      type: 'info'
+    }
+
+    jsonp(jsonpParam)
     .then((res) => {
       if (res && res.resultCode && res.resultCode === 'success') {
         console.log('[edfBehaviorWriteLogToDSInfo写入日志成功！]resultMsg:' + res.resultMsg)

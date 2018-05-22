@@ -187,10 +187,10 @@ export default class SiderMenu extends PureComponent {
 			logo,
 			collapsed,
 			location: { pathname },
-			onSelect,
 			toggle
 		} = this.props;
-		// console.log('SiderMenuProps', this.props);
+		console.log('SiderMenuProps', this.props);
+		// console.log('onSelect', this.props.onSelect);
 		// console.log('collapsed', collapsed);
 		const { openKeys: { menuProps } } = this.state;
 		// console.log('this.state.openKeys', menuProps);
@@ -217,12 +217,11 @@ export default class SiderMenu extends PureComponent {
       {...openKeys}
       key='Menu'
       theme='dark'
-      mode='inline'
-      onOpenChange={this.handleOpenChange}
+			mode='inline'
+			onOpenChange={this.handleOpenChange}
       selectedKeys={collapsed ? [] : selectedKeys}
       className={styles.menu}
-      inlineCollapsed={collapsed}
-      onSelect={onSelect}
+			inlineCollapsed={collapsed}
     >
       {this.getNavMenuItems(this.menus)}
       <Menu.Item key='collapsed_icon' className={styles.toggle}>

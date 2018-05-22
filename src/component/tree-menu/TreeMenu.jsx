@@ -7,6 +7,7 @@ import Input from 'components/input';
 import { generateList, getParentKey } from './util'
 import services from 'api/services';
 import urls from 'api/urls';
+import jsonpCMT from 'api/burialPoint';
 import styles from './index.less';
 
 const TreeNode = Tree.TreeNode;
@@ -55,6 +56,13 @@ export default class TreeMenu extends React.Component {
     });
     // console.log('expandedKeys', expandedKeys)
     this.setState({expandedKeys, searchValue: value, autoExpandParent: true});
+
+    // 搜索埋点
+    let jsonParams = {
+      operateCode: 'onChange',
+      operateObject: '搜索职场'
+    }
+    jsonpCMT.writeLogToDSInfo(jsonParams);
   }
   onSelect = (selectedKeys) => {
     this.props.onToggle(selectedKeys)
