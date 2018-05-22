@@ -91,11 +91,11 @@ export default class Dashboard extends React.Component {
     });
   }
   handleMenuItem = () => {
-    const { routerData, location } = this.props;
-    const { pathname } = location;
+    let title = this.getPageTitle();
+    console.log(title);
     let jsonpParams = {
       operateCode: 'click',
-      operateObject: routerData[pathname].name
+      operateObject: title
     }
     jsonpCMT.writeLogToDSInfo(jsonpParams)
   }
