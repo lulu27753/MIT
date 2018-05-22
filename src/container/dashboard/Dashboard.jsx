@@ -90,6 +90,13 @@ export default class Dashboard extends React.Component {
       collapsed
     });
   }
+  handleMenuItem = () => {
+    let jsonpParams = {
+      operateCode: 'click',
+      operateObject: this.getPageTitle()
+    }
+    jsonpCMT.writeLogToDSInfo(jsonpParams);
+  }
 	render() {
     const {
       currentUser,
@@ -108,6 +115,7 @@ export default class Dashboard extends React.Component {
             menuData={getMenuData()}
             collapsed={this.state.collapsed}
             onCollapse={this.onCollapse}
+            onSelect={this.handleMenuItem}
             toggle
            />
         </Sider>

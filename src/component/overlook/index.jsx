@@ -5,6 +5,7 @@ import StandardTable from 'component/standard-table'
 import { Icon } from 'components'
 import services from 'api/services';
 import urls from 'api/urls';
+import jsonpCMT from 'api/burialPoint';
 
 import styles from './index.less';
 
@@ -87,7 +88,12 @@ export default class Overlook extends Component {
 
     // 下载团队指标
     downloadTeamIndex = () => {
-      window.location.href = urls.downloadTeamIndx
+      window.location.href = urls.downloadTeamIndx;
+      let jsonpParams = {
+        operateCode: 'download',
+        operateObject: '下载坐席指标'
+      }
+      jsonpCMT.writeLogToDSInfo(jsonpParams);
     }
 
     // 刷新
