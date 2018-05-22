@@ -6,7 +6,7 @@ import Layout, { Sider, Content } from 'components/layout';
 import TreeMenu from 'component/tree-menu';
 import RightHeader from 'component/right-header';
 import Overlook from 'component/overlook';
-// import StandardTable from 'component/standard-table'
+import jsonpCMT from 'api/burialPoint';
 import collapsedIcon from 'assets/images/left-arrow.png';
 
 import styles from './index.less'
@@ -29,6 +29,12 @@ export default class Main extends Component {
       this.setState({
         id: id,
       })
+      // 埋点操作
+    let jsonParams = {
+      operateCode: 'click',
+      operateObject: '查看' + id + '组坐席团队'
+    }
+    jsonpCMT.writeLogToDSInfo(jsonParams);
     }
   }
   handleToggleClick = () => {

@@ -61,7 +61,7 @@ export default class Dashboard extends React.Component {
   getAssitSignature(data) {
     setBurialUrl(data.url)
     jsonpCMT.writeLogLogin({ p: encodeURIComponent(data.pwd) });
-    this.timeId = setInterval(() => jsonpCMT.writeLogActive(), 1000 * 60 * 10)
+    this.timeId = setInterval(() => jsonpCMT.writeLogActive(), 1000 * 60 * 10);
   }
 
   getPageTitle() {
@@ -90,7 +90,14 @@ export default class Dashboard extends React.Component {
       collapsed
     });
   }
-
+  // 埋点信息
+  handleMenuItem = () => {
+    let jsonpParams = {
+      operateCode: 'click',
+      operateObject: this.getPageTitle()
+    }
+    jsonpCMT.writeLogToDSInfo(jsonpParams)
+  }
 	render() {
     const {
       currentUser,
@@ -109,6 +116,7 @@ export default class Dashboard extends React.Component {
             menuData={getMenuData()}
             collapsed={this.state.collapsed}
             onCollapse={this.onCollapse}
+            onSelect={this.handleMenuItem}
             toggle
            />
         </Sider>
