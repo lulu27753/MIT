@@ -90,12 +90,11 @@ export default class Dashboard extends React.Component {
       collapsed
     });
   }
+  // 埋点信息
   handleMenuItem = () => {
-    let title = this.getPageTitle();
-    console.log(title);
     let jsonpParams = {
       operateCode: 'click',
-      operateObject: title
+      operateObject: this.getPageTitle()
     }
     jsonpCMT.writeLogToDSInfo(jsonpParams)
   }
