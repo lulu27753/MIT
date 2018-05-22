@@ -217,11 +217,11 @@ export default class SiderMenu extends PureComponent {
       {...openKeys}
       key='Menu'
       theme='dark'
-			mode='inline'
-			onOpenChange={this.handleOpenChange}
+      mode='inline'
+      onOpenChange={this.handleOpenChange}
       selectedKeys={collapsed ? [] : selectedKeys}
       className={styles.menu}
-			inlineCollapsed={collapsed}
+      inlineCollapsed={collapsed}
     >
       {this.getNavMenuItems(this.menus)}
       <Menu.Item key='collapsed_icon' className={styles.toggle}>

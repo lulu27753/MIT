@@ -23,7 +23,7 @@ function dateFormat (date, type) {
 
 const COMMON_PARAMS = {
   'systemName': 'PNC-ANALYSIS',
-  'operateTime': dateFormat(Date.now()),
+  'operateTime': dateFormat(Date.now() + '.000'),
   'operateUm': getAuthority()
 }
 
