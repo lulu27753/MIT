@@ -95,9 +95,9 @@ export default class Dashboard extends React.Component {
     const { pathname } = location;
     let jsonpParams = {
       operateCode: 'click',
-      operateObject: routerData[pathname]
+      operateObject: routerData[pathname].name
     }
-    jsonpCMT.writeLogToDSInfo(jsonpParams);
+    jsonpCMT.writeLogToDSInfo(jsonpParams)
   }
 	render() {
     const {
