@@ -43,6 +43,6 @@ export const getRouterData = () => {
 			authority: routerConfig[item].authority || menuItem.authority,
 		}
 	})
-	// // console.log('routerData', routerData);
+	console.log('routerData', routerData);
 	return routerData;
 }
