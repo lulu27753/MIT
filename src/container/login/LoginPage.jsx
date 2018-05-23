@@ -60,7 +60,7 @@ export default class LoginPage extends React.Component {
 	}
 	onSubmit = (err, values) => {
 		const mdPwd = doEncrypt(values.password);
-		// console.log('mdPwd', mdPwd);
+		console.log('mdPwd', mdPwd);
 		if (!err) {
 			services.post(urls.login, { umId: values.username, pwd: mdPwd, autoLogin: this.state.autoLogin }, this.authSuccess)
 		}
@@ -104,9 +104,33 @@ return this.state.redirectTO ? <Redirect to={this.state.redirectTO} /> : (
 	}
 };
 
+// -----------------------------------华丽丽的分割线--------------------------------------------
+
+
+// 判断当前是否处于开发环境
+const _DEV_ = (process.env.NODE_ENV || 'development') === 'development';
+// 判断当前是否处于测试环境
+// const _STG_ = (process.env.NODE_ENV || 'staging') === 'staging';
+// 判断当前是否处于生产环境
+const _PRD_ = (process.env.NODE_ENV || 'production') === 'production';
+// 根据环境来生成不同的key值
+function initKey() {
+	if (_DEV_) {
+		return {
+			keyX: '9D18DCF9A4C04E12FFFF68A5A43AE321D56E2E693B4DBAB6CBE263EA156B81B9',
+			keyY: '68864B894038382F7649B088733CB9F4DE322953CC81C58FC76F28BC96D43AE7',
+		}
+	}
+	if (_PRD_) {
+		return {
+			keyX: 'CE334A29C0FDF7810D4BBB1C9917E54719E53394F947AC8B525CCDEFDDA44810',
+			keyY: '649E2A9651401CC3251BCEDAD42CE1506841A7A31D3EE3DEADDE65D769BA4458',
+		}
+	}
+}
+// 根据加密库对密码进行加密
 function doEncrypt(pwd) {
-	var keyX = '9D18DCF9A4C04E12FFFF68A5A43AE321D56E2E693B4DBAB6CBE263EA156B81B9';
-	var keyY = '68864B894038382F7649B088733CB9F4DE322953CC81C58FC76F28BC96D43AE7';
+	const { keyX, keyY } = initKey();
 	var msgData = CryptoJS.enc.Utf8.parse(pwd);
 	var cipherMode = SM2CipherMode.C1C3C2;
 	var cipher = new SM2Cipher(cipherMode);
