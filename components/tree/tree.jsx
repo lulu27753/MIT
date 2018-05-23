@@ -12,6 +12,7 @@ export default class Tree extends React.Component {
     showIcon: false,
     openAnimation: animation,
   };
+
 	render() {
 		const { prefixCls, className, children } = this.props;
 		let checkable = this.props.checkable;
