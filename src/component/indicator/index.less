@@ -6,33 +6,27 @@
   font-size: 14px;
   border: 1px solid #e2e2e2;
   border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
 
   .monitoring {
-    position: relative;
-    display: inline-block;
     width: 65%;
     height: 100%;
-    padding-left: 10px;
-    box-sizing: border-box;
+    display: flex;
     color: #999;
-    background-color: #f8f9fc;
-    .title_span {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-  }
-
-  .monitoring_data {
-    display: inline-block;
-    height: 100%;
-    position: relative;
     padding-left: 10px;
-    .data_span {
-      width: 60px;
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-    }
+    align-items: center;
+    box-sizing: border-box;
+    justify-content: flex-start;
+    background-color: #f8f9fc;
+  }
+  .monitoring_data {
+    height: 100%;
+    display: flex;
+    color: #999;
+    padding-right: 20px;
+    align-items: center;
+    box-sizing: border-box;
+    justify-content: flex-start;
   }
 }
