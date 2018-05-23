@@ -38,7 +38,7 @@ export default class SeatInfoModal extends Component {
 
   handleUpdateState = (data) => {
     this.setState({
-      data: Object.assign(data)
+      data: data
     })
   }
 
@@ -56,6 +56,7 @@ export default class SeatInfoModal extends Component {
       }
   }
 
+  // 解析layoutData生成dom
   generator = (data) => {
     let child = layoutData.map((item, index) => {
       console.log('item', item)
@@ -70,6 +71,7 @@ export default class SeatInfoModal extends Component {
     return child
   }
 
+  // 处理content类型
   handleContent = (content, data) => {
     if (content.children && content.children.length > 0) {
       return this.generatorContentList(content.children, data)
@@ -78,6 +80,7 @@ export default class SeatInfoModal extends Component {
     }
   }
 
+  // 解析content生成dom
   generatorContent = (content, data) => {
     return content.map((item) => {
       let text;
@@ -92,6 +95,7 @@ export default class SeatInfoModal extends Component {
     })
   }
 
+  // 解析contentList
   generatorContentList = (contentList, data) => {
     return contentList.map((item, index) => {
       return (item && <Row key={index} className={styles.row}>{this.generatorContent(item, data)}</Row>)
