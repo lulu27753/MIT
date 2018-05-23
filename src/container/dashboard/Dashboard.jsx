@@ -13,7 +13,7 @@ import Main from 'container/main';
 import data from '../../data';
 import logo from 'assets/images/logo.png';
 import { getMenuData } from './getMenuData';
-import { getAuthority, setAuthority, setBurialUrl } from 'utils/localStorageAuthority';
+import { getAuthority, removeAuthority, setBurialUrl } from 'utils/localStorageAuthority';
 import { getRedirect } from 'utils/getRedirect';
 
 import services from 'api/services';
@@ -49,7 +49,12 @@ export default class Dashboard extends React.Component {
     // 从localstorerage里面获取授权
     // console.log('match', this.props.match)
     let auth = getAuthority();
-    console.log('auth', auth);
+    // console.log('auth', auth);
+    if (!auth) {
+      this.setState({
+        redirectTo: '/login'
+      });
+    }
     // 将授权信息存储到context中
     this.setState({
       auth: auth
@@ -77,7 +82,7 @@ export default class Dashboard extends React.Component {
   logoutSuccess = (data) => {
     // console.log(data)
     // 清除auth
-    setAuthority('')
+    removeAuthority()
     this.setState({
       redirectTo: '/login'
     });

@@ -59,7 +59,7 @@ export default class SeatInfoModal extends Component {
   // 解析layoutData生成dom
   generator = (data) => {
     let child = layoutData.map((item, index) => {
-      console.log('item', item)
+      // console.log('item', item)
       return (
         <div key={item.header}>
           {item.header && <Row className={styles.row} ><Title title={item.header} style={{paddingLeft: '0'}} /></Row>}

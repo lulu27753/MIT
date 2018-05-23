@@ -33,7 +33,12 @@ export default class LoginPage extends React.Component {
 	componentDidMount() {
 		// console.log(this.props.history);
 		const auth = getAuthority();
-		console.log(auth)
+		// console.log(auth)
+		if (auth) {
+			this.setState({
+				redirectTO: '/dashboard',
+			})
+		}
 	}
 	authSuccess = ({userType, msg, umId}) => {
 		// 如果登陆成功，则将登陆账号存入localStorage
