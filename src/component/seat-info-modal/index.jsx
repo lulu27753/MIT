@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
-import { Modal, Title, Grid, Divider, Icon, Tooltip } from 'components';
-import Indicator from 'component/indicator';
+import { Modal, Title, Grid, Divider } from 'components';
+import layoutData from './layoutData'
+import Info from 'component/Info';
 import services from 'api/services';
 import urls from 'api/urls';
 
@@ -14,15 +15,7 @@ export default class SeatInfoModal extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      data: {
-        'ONBOARD_AGE': '',
-        'TODAY_TOTAL_CI_PREMIUM': '',
-        'TODAY_TOTAL_NCI_PREMIUM': '',
-        'REALTIME_EFFEC_TALKTIME': '',
-        'REALTIME_AVG_TALKTIME': '',
-        'LAST_SUM_TIME': '',
-        'LAST_SUM_AVG': ''
-      }
+      data: {}
     }
   }
 
@@ -45,21 +38,12 @@ export default class SeatInfoModal extends Component {
 
   handleUpdateState = (data) => {
     this.setState({
-      data: Object.assign({
-        'ONBOARD_AGE': '',
-        'TODAY_TOTAL_CI_PREMIUM': '',
-        'TODAY_TOTAL_NCI_PREMIUM': '',
-        'REALTIME_EFFEC_TALKTIME': '',
-        'REALTIME_AVG_TALKTIME': '',
-        'LAST_SUM_TIME': '',
-        'LAST_SUM_AVG': ''
-      }, data)
+      data: Object.assign(data)
     })
   }
 
   getData = (umId) => {
     if (umId) {
-      // console.log('umId2', umId);
       services.get(urls.querySeatIndex, {umId: umId}, this.handleUpdateState)
     }
   }
@@ -72,102 +56,55 @@ export default class SeatInfoModal extends Component {
       }
   }
 
+  generator = (data) => {
+    let child = layoutData.map((item, index) => {
+      console.log('item', item)
+      return (
+        <div key={item.header}>
+          {item.header && <Row className={styles.row} ><Title title={item.header} style={{paddingLeft: '0'}} /></Row>}
+          {item.content && this.handleContent(item.content, data)}
+          {index !== layoutData.length - 1 && <Divider className={styles.divider} />}
+        </div>
+      )
+    })
+    return child
+  }
+
+  handleContent = (content, data) => {
+    if (content.children && content.children.length > 0) {
+      return this.generatorContentList(content.children, data)
+    } else {
+      return <Row className={styles.row}>{this.generatorContent(content, data)}</Row>
+    }
+  }
+
+  generatorContent = (content, data) => {
+    return content.map((item) => {
+      let text;
+      text = item.suffix && data[item.text] ? data[item.text] + item.suffix : data[item.text];
+      text = item.mapData ? item.mapData[text] : text;
+      return (
+        <Col key={item.text} span={content.length <= 3 ? 8 : 6} className={styles.col}>
+          <Info title={item.title} text={text} className={item.className} />
+          {item.children && item.children(data)}
+        </Col>
+      )
+    })
+  }
+
+  generatorContentList = (contentList, data) => {
+    return contentList.map((item, index) => {
+      return (item && <Row key={index} className={styles.row}>{this.generatorContent(item, data)}</Row>)
+    })
+  }
+
   render() {
     const { visible } = this.props;
     const { data } = this.state;
-    console.log('seatIndex data:', data)
 
     return (
-      <Modal visible={visible} title='坐席详情' footer={null} onCancel={this.handleCancel} width={880} >
-        <Row className={styles.row} >
-          <Title title='基本信息' style={{paddingLeft: '0'}} />
-        </Row>
-        <Row className={styles.row}>
-          <Col span={6} className={styles.col}>
-            <Indicator title='姓名' data={data.TMR_NAME} />
-          </Col>
-          <Col span={6} className={styles.col}>
-            <Indicator title='司龄' data={data.ONBOARD_AGE + '月'} />
-          </Col>
-          <Col span={6} className={styles.col}>
-            <Indicator title='坐席业务模式' data={data.TMR_TYPE} />
-          </Col>
-          <Col span={6} >
-            <Indicator title='职级描述' width='40%' data={data.POSITION_NAME} />
-          </Col>
-        </Row>
-        <Divider className={styles.divider} />
-        <Row className={styles.row}>
-          <Title title='当日工作情况' style={{paddingLeft: '0'}} />
-        </Row>
-        <Row className={styles.row}>
-          <Col span={8}>
-            <Indicator title='是否话务活跃' data={data.IS_ACTIVE === 1 ? '是' : '否'} />
-          </Col>
-        </Row>
-        <Divider className={styles.divider} />
-        <Row className={styles.row}>
-          <Title title='当日业绩情况' style={{paddingLeft: '0'}} />
-        </Row>
-        <Row className={styles.row}>
-          <Col span={8} className={styles.col}>
-            <Indicator title='当日累计车险保费' data={data.TODAY_TOTAL_CI_PREMIUM + '元'} />
-          </Col>
-          <Col span={8} className={styles.col}>
-            <Indicator title='当日累计核保通过客户数' data={data.SECURITY_THROUGH_CUST_CNT} width='70%' />
-          </Col>
-          <Col span={8}>
-            <Indicator title='当日累计非车保护费' data={data.TODAY_TOTAL_NCI_PREMIUM + '元'} />
-          </Col>
-        </Row>
-        <Divider className={styles.divider} />
-        <Row className={styles.row}>
-          <Title title='当日话务情况' style={{paddingLeft: '0'}} />
-        </Row>
-        {/* <Row className={styles.row}>
-          <Col span={8} className={styles.col}>
-            <Indicator title='当日累计首播名单量' data={data.name} />
-          </Col>
-          <Col span={8} className={styles.col}>
-            <Indicator title='当日累计拨打名单量' data={data.name} />
-          </Col>
-          <Col span={8}>
-            <Indicator title='当日累计预约名单量' data={data.name} />
-          </Col>
-        </Row> */}
-        <Row className={styles.row}>
-          <Col span={8} className={styles.col}>
-            <Indicator title='实时有效通时(上一时段)' data={data.REALTIME_EFFEC_TALKTIME + 'h'} width='75%' />
-          </Col>
-          <Col span={8} className={styles.col}>
-            <Indicator title='实时有效通次(上一时段)' data={data.REALTIME_EFFEC_TALKNUM} width='75%' />
-          </Col>
-          <Col span={8}>
-            <Indicator title='实时平均通时(上一时段)' data={data.REALTIME_AVG_TALKTIME + 'h'} width='75%' />
-          </Col>
-        </Row>
-        <Row className={styles.row}>
-          <Col span={8} className={styles.col}>
-            <Indicator title='当日累计通时' data={data.TODAY_TOTAL_TALKTIME} />
-            <Tooltip placement='right' title={`昨日累计通时 ${data.LAST_SUM_TIME + 'h'}`}>
-              <Icon type={data.TODAY_TOTAL_TALKTIME > data.LAST_SUM_TIME ? 'arrowup' : 'arrowdown'}
-                className={styles.fixIcon}
-              />
-            </Tooltip>
-          </Col>
-          <Col span={8} className={styles.col}>
-            <Indicator title='当日累计通次' data={data.TODAY_TOTAL_TALKNUM} />
-            <Tooltip placement='right' title={`昨日累计通次 ${data.LAST_SUM_COUNT}`}>
-              <Icon type={data.todayTotalTalkNum >= data.LAST_SUM_COUNT ? 'arrowup' : 'arrowdown'} className={styles.fixIcon} />
-            </Tooltip>
-          </Col>
-          <Col span={8}>
-            <Indicator title='当日累计平均通时' data={data.TODAY_TOTAL_AVG_TALKTIME} />
-            <Tooltip placement='right' title={`昨日累计平均通时 ${data.LAST_SUM_AVG + 'h'}`}>
-              <Icon type={data.TODAY_TOTAL_AVG_TALKTIME > data.LAST_SUM_AVG ? 'arrowup' : 'arrowdown'} className={styles.fixIcon} style={{ right: '8px' }} />
-            </Tooltip>
-          </Col>
-        </Row>
+      <Modal visible={visible} title='坐席详情' footer={null} onCancel={this.handleCancel} width={900} >
+        {this.generator(data)}
       </Modal>
     )
   }
