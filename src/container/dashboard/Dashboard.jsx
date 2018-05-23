@@ -92,7 +92,7 @@ export default class Dashboard extends React.Component {
     });
   }
   // 埋点信息
-  handleMenuItem = ({item, key, keypath}) => {
+  handleMenuItem = ({key}) => {
     const { routerData } = this.props;
     let title = data.common.systemName;
     if (routerData[`/${key}`] && routerData[`/${key}`].name) {
