@@ -40,6 +40,7 @@ export default class Dashboard extends React.Component {
       collapsed: false,
       redirectTo: null,
       auth: '',
+      title: '',
     }
     this.getAssitSignature = this.getAssitSignature.bind(this)
   }
@@ -91,10 +92,15 @@ export default class Dashboard extends React.Component {
     });
   }
   // 埋点信息
-  handleMenuItem = () => {
+  handleMenuItem = ({key}) => {
+    const { routerData } = this.props;
+    let title = data.common.systemName;
+    if (routerData[`/${key}`] && routerData[`/${key}`].name) {
+      title = `${routerData[`/${key}`].name}`;
+    }
     let jsonpParams = {
       operateCode: 'click',
-      operateObject: this.getPageTitle()
+      operateObject: title,
     }
     jsonpCMT.writeLogToDSInfo(jsonpParams)
   }
