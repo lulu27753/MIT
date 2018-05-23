@@ -34,7 +34,12 @@ export default class Seat extends Component {
       if (typeof handleModalStatus === 'function') {
         handleModalStatus(status.umId, true)
       }
-      burialPoint.writeLogToDSInfo({telephoneState: status.telephoneState})
+      let jsonParams = {
+        telephoneState: status.telephoneState,
+        operateCode: 'click',
+        operateObject: '点击坐席'
+      }
+      burialPoint.writeLogToDSInfo(jsonParams);
     }
 
     render() {

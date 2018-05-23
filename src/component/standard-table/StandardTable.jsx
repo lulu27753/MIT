@@ -74,12 +74,12 @@ export default class StandardTable extends Component {
         TODAY_TOTAL_CI_CUST_CNT: data.TODAY_TOTAL_CI_CUST_CNT,
         TODAY_TOTAL_CI_AVG_PREMIUM: data.TODAY_TOTAL_CI_AVG_PREMIUM,
         TODAY_TOTAL_NCI_PREMIUM: '¥' + data.TODAY_TOTAL_NCI_PREMIUM || '',
-        REALTIME_EFFEC_TALKTIME: data.REALTIME_EFFEC_TALKTIME || '' + 'h',
-        TODAY_TOTAL_TALKTIME: data.TODAY_TOTAL_TALKTIME || '' + 'h',
+        REALTIME_EFFEC_TALKTIME: data.REALTIME_EFFEC_TALKTIME + 'h' || '',
+        TODAY_TOTAL_TALKTIME: data.TODAY_TOTAL_TALKTIME + 'h' || '',
         REALTIME_EFFEC_TALKNUM: data.REALTIME_EFFEC_TALKNUM,
         TODAY_TOTAL_TALKNUM: data.TODAY_TOTAL_TALKNUM,
-        REALTIME_AVG_TALKTIME: data.REALTIME_AVG_TALKTIME || '' + 'h',
-        TODAY_TOTAL_AVG_TALKTIME: data.TODAY_TOTAL_AVG_TALKTIME || '' + 'h'
+        REALTIME_AVG_TALKTIME: data.REALTIME_AVG_TALKTIME + 'h' || '',
+        TODAY_TOTAL_AVG_TALKTIME: data.TODAY_TOTAL_AVG_TALKTIME + 'h' || ''
       })
   }
 
@@ -108,10 +108,10 @@ export default class StandardTable extends Component {
               </div>
               <div className={styles.embarkationContainer} style={{ display: this.state.expand ? 'block' : 'none' }}>
                 <div className={styles.embarkation}>
-                  <Indicator title='当前通话人力' width='80%' style={{ height: 36 }} data={this.state.CURRENT_CALL_CNT} />
+                  <Indicator title='当前通话人力' width='65%' style={{ height: 36 }} data={this.state.CURRENT_CALL_CNT} />
                 </div>
                 <div className={styles.embarkation}>
-                  <Indicator title='当前空闲人力' width='80%' style={{ height: 36 }} data={this.state.CURRENT_IDLE_CNT} />
+                  <Indicator title='当前空闲人力' width='65%' style={{ height: 36 }} data={this.state.CURRENT_IDLE_CNT} />
                 </div>
               </div>
             </div>
